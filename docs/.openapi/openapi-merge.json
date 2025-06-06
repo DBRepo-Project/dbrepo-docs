@@ -1,0 +1,20 @@
+{
+  "inputs": [
+    {
+      "inputFile": "./api.base.yaml"
+    },
+    {
+      "inputFile": "./api-analyse-service.yaml"
+    },
+    {
+      "inputFile": "./api-data-service.yaml"
+    },
+    {
+      "inputFile": "./api-metadata-service.yaml"
+    },
+    {
+      "inputFile": "./api-search-service.yaml"
+    }
+  ],
+  "output": "./api.yaml"
+}

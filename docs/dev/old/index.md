@@ -22,6 +22,5 @@ technologies. The conceptualized microservices (c.f. [Fig. 1](#fig1)) operate th
 *findability*, *accessability*, *interoperability* and *reuseability* (FAIR).
 
 <figure id="fig1" markdown>
-![DBRepo architecture](../../images/architecture.svg)
-<figcaption>Fig. 1: Architecture of the services</figcaption>
+![DBRepo architecture](/infrastructures/dbrepo/images/architecture.svg)
 </figure>

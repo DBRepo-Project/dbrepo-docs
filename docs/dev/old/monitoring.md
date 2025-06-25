@@ -14,6 +14,17 @@ a [Docker container](https://prometheus.io/docs/prometheus/latest/installation/)
 ## Dashboards
 
 <figure markdown>
+<<<<<<<< HEAD:docs/dev/old/monitoring.md
+![DBRepo Dashboard](/infrastructures/dbrepo/images/screenshots/grafana4.png)
+</figure>
+
+<figure markdown>
+![MariaDB Galera Dashboard](/infrastructures/dbrepo/images/screenshots/grafana3.png)
+</figure>
+
+<figure markdown>
+![RabbitMQ Dashboard](/infrastructures/dbrepo/images/screenshots/grafana5.png)
+========
 ![DBRepo Dashboard](../../images/screenshots/grafana4.png)
 <figcaption>Figure 1: DBRepo Dashboard</figcaption>
 </figure>
@@ -26,4 +37,5 @@ a [Docker container](https://prometheus.io/docs/prometheus/latest/installation/)
 <figure markdown>
 ![RabbitMQ Dashboard](../../images/screenshots/grafana5.png)
 <figcaption>Figure 3: Broker Service Dashboard</figcaption>
+>>>>>>>> master:docs/dev/concepts/monitoring.md
 </figure>

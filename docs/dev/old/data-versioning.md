@@ -12,8 +12,7 @@ end. Tuples in system-versioned tables are not *actually* modified, they are mar
 (c.f. [Fig. 1](#fig1)).
 
 <figure id="fig1" markdown>
-![](../../images/data-versioning.png)
-<figcaption>Fig. 1: Data versioning in MariaDB system-versioned tables.</figcaption>
+![](/infrastructures/dbrepo/images/data-versioning.png)
 </figure>
 
 Assuming that Sensor A was calibrated wrong and an updated measurement is passed to the system-versioned table, the

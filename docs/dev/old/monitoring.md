@@ -14,16 +14,13 @@ a [Docker container](https://prometheus.io/docs/prometheus/latest/installation/)
 ## Dashboards
 
 <figure markdown>
-![DBRepo Dashboard](../../images/screenshots/grafana4.png)
-<figcaption>Figure 1: DBRepo Dashboard</figcaption>
+![DBRepo Dashboard](/infrastructures/dbrepo/images/screenshots/grafana4.png)
 </figure>
 
 <figure markdown>
-![MariaDB Galera Dashboard](../../images/screenshots/grafana3.png)
-<figcaption>Figure 2: Database Dashboard (Kubernetes deployment only)</figcaption>
+![MariaDB Galera Dashboard](/infrastructures/dbrepo/images/screenshots/grafana3.png)
 </figure>
 
 <figure markdown>
-![RabbitMQ Dashboard](../../images/screenshots/grafana5.png)
-<figcaption>Figure 3: Broker Service Dashboard</figcaption>
+![RabbitMQ Dashboard](/infrastructures/dbrepo/images/screenshots/grafana5.png)
 </figure>

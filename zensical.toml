@@ -5,7 +5,7 @@ repo_url = "https://github.com/DBRepo-Project/dbrepo-web"
 repo_name = "DBRepo-Project/dbrepo-web"
 site_author = "The DBRepo developers"
 copyright = "CC-BY 4.0 2020-2026 The DBRepo developers"
-extra_css = ["stylesheets/extra.css"]
+
 
 nav = [
   { "Get Started" = [
@@ -116,7 +116,6 @@ anchors = "ignore"
 unrecognized_links = "ignore"
 
 [project.theme]
-favicon = "images/favicon.ico"
 features = [
   "content.code.annotate",
   "content.code.copy",
@@ -127,38 +126,6 @@ features = [
   "navigation.sections",
   "search.suggest",
 ]
-
-[project.theme.font]
-text = "Roboto"
-code = "Roboto Mono"
-
-[project.theme.icon]
-logo = "material/database-search"
-repo = "fontawesome/brands/git-alt"
-
-[[project.theme.palette]]
-media = "(prefers-color-scheme: light)"
-scheme = "default"
-primary = "indigo"
-
-[project.theme.palette.font]
-code = "Roboto Mono"
-
-[project.theme.palette.toggle]
-icon = "material/brightness-7"
-name = "Switch to dark mode"
-
-[[project.theme.palette]]
-media = "(prefers-color-scheme: dark)"
-scheme = "slate"
-primary = "indigo"
-
-[project.theme.palette.font]
-code = "Roboto Mono"
-
-[project.theme.palette.toggle]
-icon = "material/brightness-4"
-name = "Switch to light mode"
 
 [project.markdown_extensions.attr_list]
 [project.markdown_extensions.def_list]

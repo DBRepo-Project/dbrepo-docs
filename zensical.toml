@@ -1,11 +1,12 @@
 [project]
 site_name = "DBRepo"
 site_url = "https://dbrepo.github.io/"
+site_description = "Documentation for DBRepo - a repository software for relational databases"
 repo_url = "https://github.com/DBRepo-Project/dbrepo"
 repo_name = "DBRepo-Project/dbrepo"
 site_author = "The DBRepo developers"
 copyright = "This work is licensed under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY 4.0</a>. &copy; 2020-2026 <a href=\"https://github.com/DBRepo-Project/dbrepo/graphs/contributors\">The DBRepo developers</a>"
-
+extra_css = ["stylesheets/extra.css"]
 
 nav = [
   { "Get Started" = [
@@ -116,6 +117,8 @@ anchors = "ignore"
 unrecognized_links = "ignore"
 
 [project.theme]
+font = false
+variant = "modern"
 features = [
   "content.code.annotate",
   "content.code.copy",
@@ -127,21 +130,29 @@ features = [
   "search.suggest",
 ]
 
+# Palette toggle for automatic mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "Switch to light mode"
+
+# Palette toggle for light mode
 [[project.theme.palette]]
 media = "(prefers-color-scheme: light)"
 scheme = "default"
+primary = "indigo"
+accent = "indigo"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
 
-[project.theme.palette.toggle]
-icon = "material/brightness-7"
-name = "Switch to dark mode"
-
+# Palette toggle for dark mode
 [[project.theme.palette]]
 media = "(prefers-color-scheme: dark)"
 scheme = "slate"
-
-[project.theme.palette.toggle]
-icon = "material/brightness-4"
-name = "Switch to light mode"
+primary = "light blue"
+accent = "light blue"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to system preference"
 
 [project.markdown_extensions.attr_list]
 [project.markdown_extensions.def_list]

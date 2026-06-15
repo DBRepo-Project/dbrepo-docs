@@ -69,3 +69,11 @@
     --md-text-font: "Inter";
     --md-code-font: "JetBrains Mono";
 }
+
+.support-active {
+    color: green;
+}
+
+.support-inactive {
+    color: red;
+}

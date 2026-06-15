@@ -46,6 +46,9 @@ jobs:
       - name: Deploy with mike
         run: mike deploy --push --update-aliases 1.13 latest
 
+      - name: Set default version
+        run: mike set-default --push latest
+
   build-check:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest

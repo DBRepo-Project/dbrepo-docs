@@ -2,22 +2,22 @@
 author: Martin Weise
 ---
 
-Please check the [guide](/infrastructures/dbrepo/1.13/maintainer-guide/backup-data/) on how to perform a backup first.
+Please check the [guide](/maintainer-guide/backup-data/) on how to perform a backup first.
 
 ## TL;DR
 
 This page explains how to restore from a backup of a MariaDB Galera (
-i.e. [Data Database](/infrastructures/dbrepo/1.13/dev/services/data-db/)
-and [Metadata Database](/infrastructures/dbrepo/1.13/dev/services/metadata-db/)).
+i.e. [Data Database](/dev/services/data-db/)
+and [Metadata Database](/dev/services/metadata-db/)).
 
 ## Restore Data
 
-There are multiple guides available on how to restore, we prioritize 
-the [Helm Chart documentation](https://artifacthub.io/packages/helm/bitnami/mariadb-galera) over the 
+There are multiple guides available on how to restore, we prioritize
+the [Helm Chart documentation](https://artifacthub.io/packages/helm/bitnami/mariadb-galera) over the
 official [MariaDB 11.3.2 documentation](https://mariadb.com/docs/server/server-usage/backup-and-restore/mariadb-backup/full-backup-and-restore-with-mariadb-backup)
 as it simplifies many steps.
 
-If you are not sure what to do, attempt to restore the database, assuming it was 
+If you are not sure what to do, attempt to restore the database, assuming it was
 an [orderly shutdown](#orderly-shutdown). Only then attempt a disaster recovery after
 a [crash shutdown](#crash-shutdown).
 
@@ -27,7 +27,7 @@ This section follows the official MariaDB 11.3.2 documentation adapted to the Bi
 (or all) nodes in the cluster fail to reach a quorum due to them switching to a non-primary state and refusing to serve
 queries to protect data integrity[^1].
 
-Follow the recommendation of the safe to bootstrap feature on each node N=`0`, `1` and `2` (or more). Look 
+Follow the recommendation of the safe to bootstrap feature on each node N=`0`, `1` and `2` (or more). Look
 for `safe_to_bootstrap: 1`.
 
 ```shell
@@ -77,7 +77,7 @@ kubectl run -i --rm --tty volpod --overrides='
 }' --image="bitnami/minideb"
 ```
 
-If there exists a node with `safe_to_bootstrap: 1`, use this node `M` to [bootstrap](#bootstrap) from. Otherwise, 
+If there exists a node with `safe_to_bootstrap: 1`, use this node `M` to [bootstrap](#bootstrap) from. Otherwise,
 if **no** node is safe to bootstrap from, follow the next section of [unexpected shutdown](#unexpected-shutdown)
 scenario.
 
@@ -160,7 +160,7 @@ If you need to perform a disaster recovery, start by restoring the backups for e
     ```shell
     kubectl -n $NAMESPACE exec pod/data-db-0 -c mariadb-galera -- \
         mariadb-backup \
-        --prepare \ 
+        --prepare \
         --target-dir=/bitnami/mariadb/backup
     ```
 
@@ -169,7 +169,7 @@ If you need to perform a disaster recovery, start by restoring the backups for e
     ```shell
     kubectl -n $NAMESPACE exec pod/data-db-0 -c mariadb-galera -- \
         mariadb-backup \
-        --move-back \ 
+        --move-back \
         --target-dir=/bitnami/mariadb/backup
     ```
 
@@ -197,7 +197,7 @@ If you need to perform a disaster recovery, start by restoring the backups for e
     ```shell
     kubectl -n $NAMESPACE exec pod/metadata-db-0 -c mariadb-galera -- \
         mariadb-backup \
-        --prepare \ 
+        --prepare \
         --target-dir=/bitnami/mariadb/backup
     ```
 
@@ -206,7 +206,7 @@ If you need to perform a disaster recovery, start by restoring the backups for e
     ```shell
     kubectl -n $NAMESPACE exec pod/metadata-db-0 -c mariadb-galera -- \
         mariadb-backup \
-        --move-back \ 
+        --move-back \
         --target-dir=/bitnami/mariadb/backup
     ```
 
@@ -214,7 +214,7 @@ Repeat this for nodes `1` or `2` (or more).
 
 ### Troubleshooting
 
-If your restored cluster still fails to reach a quorum (e.g. due to nodes being out of sync and the `SST` mechanism 
+If your restored cluster still fails to reach a quorum (e.g. due to nodes being out of sync and the `SST` mechanism
 fails to transmit the snapshots) you can try to perform
 a [manual `SST`](https://mariadb.com/docs/galera-cluster/high-availability/state-snapshot-transfers-ssts-in-galera-cluster/manual-sst-of-galera-cluster-node-with-mariadb-backup).
 

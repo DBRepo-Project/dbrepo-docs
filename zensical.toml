@@ -1,0 +1,203 @@
+[project]
+site_name = "DBRepo"
+site_url = "https://dbrepo.github.io/"
+repo_url = "https://github.com/DBRepo-Project/dbrepo-web"
+repo_name = "DBRepo-Project/dbrepo-web"
+site_author = "The DBRepo developers"
+copyright = "CC-BY 4.0 2020-2026 The DBRepo developers"
+extra_css = ["stylesheets/extra.css"]
+
+nav = [
+  { "Get Started" = [
+    { "Welcome to DBRepo" = "index.md" },
+    { "Get Started" = "get-started.md" },
+    { "Why use DBRepo" = "why.md" },
+    { "Help with DBRepo" = "help.md" },
+  ]},
+  { "User Guide" = [
+    { "Overview" = "user-guide/index.md" },
+    "user-guide/quickstart.md",
+    { "Account Management" = [
+      { "Create Account" = "user-guide/create-account.md" },
+    ]},
+    { "Database Management" = [
+      { "Create Database" = "user-guide/create-database.md" },
+      { "Database Access" = "user-guide/database-access.md" },
+      { "Database Dashboard" = "user-guide/database-dashboard.md" },
+      { "Database Visibility" = "user-guide/update-visibility.md" },
+      { "Delete Database" = "user-guide/delete-database.md" },
+    ]},
+    { "Data Management" = [
+      { "Create Persistent Identifier" = "user-guide/create-pid.md" },
+      { "Create Subset" = "user-guide/create-subset.md" },
+      { "Fetch Data" = "user-guide/get-data.md" },
+      { "Import Dataset" = "user-guide/import-dataset.md" },
+      { "Import Live Data" = "user-guide/import-live-data.md" },
+    ]},
+  ]},
+  { "Maintainer Guide" = [
+    "maintainer-guide/index.md",
+    "maintainer-guide/configuration.md",
+    { "Customization" = "customization.md" },
+    { "Deployments" = [
+      { "Install on Kubernetes" = "maintainer-guide/install-kubernetes.md" },
+      { "Install on Docker" = "maintainer-guide/install-docker.md" },
+      { "Install on VM" = "maintainer-guide/install-vm.md" },
+      { "Build from Sourcecode" = "maintainer-guide/build-source.md" },
+    ]},
+    { "Management" = [
+      { "Backup Data" = "maintainer-guide/backup-data.md" },
+      { "Restore Data" = "maintainer-guide/restore-data.md" },
+    ]},
+    "maintainer-guide/troubleshooting.md",
+    { "Updating the Application" = "maintainer-guide/updating.md" },
+  ]},
+  { "API" = [
+    { "Overview" = "api/index.md" },
+    { "Python API" = "api/python.md" },
+    { "REST API" = "api/rest.md" },
+    { "AMQP / MQTT API" = "api/broker.md" },
+    { "OAI-PMH API" = "api/oai-pmh.md" },
+    { "JSON-LD API" = "api/json-ld.md" },
+    { "FAIR Signposting API" = "api/fair-signposting.md" },
+  ]},
+  { "Use Cases" = [
+    { "Overview" = "examples/index.md" },
+    { "Air Quality Data" = "examples/air.md" },
+    { "COVID-19 Data" = "examples/covid-19.md" },
+    { "Hazard Data" = "examples/hazard.md" },
+    { "Health Data" = "examples/health.md" },
+    { "Industry 4.0 Power Data" = "examples/power.md" },
+    { "Survey Data" = "examples/survey.md" },
+    { "Lute Data" = "examples/lute-data.md" },
+    { "Music-ML Data" = "examples/music.md" },
+    { "PLS Data" = "examples/pls-data.md" },
+    { "Theater Data" = "examples/theater.md" },
+    { "Transportation Data" = "examples/transportation.md" },
+    { "XPS Data" = "examples/xps-data.md" },
+  ]},
+  { "Development" = [
+    { "Overview" = "dev/index.md" },
+    { "Databases" = [
+      { "Cache Database" = "dev/services/cache-db.md" },
+      { "Data Database" = "dev/services/data-db.md" },
+      { "Metadata Database" = "dev/services/metadata-db.md" },
+      { "Metric Database" = "dev/services/metric-db.md" },
+      { "Search Database" = "dev/services/search-db.md" },
+    ]},
+    { "Services" = [
+      { "Overview" = "dev/services/index.md" },
+      { "Auth Service" = "dev/services/auth-service.md" },
+      { "Broker Service" = "dev/services/broker-service.md" },
+      { "Data Service" = "dev/services/data-service.md" },
+      { "Dashboard Service" = "dev/services/dashboard-service.md" },
+      { "Gateway Service" = "dev/services/gateway-service.md" },
+      { "Identity Service" = "dev/services/identity-service.md" },
+      { "Metadata Service" = "dev/services/metadata-service.md" },
+      { "Search Service" = "dev/services/search-service.md" },
+      { "Storage Service" = "dev/services/storage-service.md" },
+    ]},
+    { "UI" = [
+      { "Repository" = "dev/services/ui.md" },
+    ]},
+    { "Changelog" = "dev/changelog.md" },
+    { "Contributing" = "dev/contributing.md" },
+  ]},
+  "publications.md",
+  "contact.md",
+]
+
+[project.validation]
+unresolved_references = false
+
+[project.validation.links]
+absolute_links = "ignore"
+anchors = "ignore"
+unrecognized_links = "ignore"
+
+[project.theme]
+favicon = "images/favicon.ico"
+features = [
+  "content.code.annotate",
+  "content.code.copy",
+  "content.tooltips",
+  "navigation.tabs",
+  "navigation.tabs.sticky",
+  "navigation.instant",
+  "navigation.sections",
+  "search.suggest",
+]
+
+[project.theme.font]
+text = "Roboto"
+code = "Roboto Mono"
+
+[project.theme.icon]
+logo = "material/database-search"
+repo = "fontawesome/brands/git-alt"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "custom"
+
+[project.theme.palette.font]
+code = "Roboto Mono"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-7"
+name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "custom"
+
+[project.theme.palette.font]
+code = "Roboto Mono"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-4"
+name = "Switch to light mode"
+
+[project.markdown_extensions.attr_list]
+[project.markdown_extensions.def_list]
+[project.markdown_extensions.md_in_html]
+[project.markdown_extensions.admonition]
+[project.markdown_extensions.footnotes]
+[project.markdown_extensions.toc]
+permalink = true
+[project.markdown_extensions.pymdownx.details]
+[project.markdown_extensions.pymdownx.superfences]
+custom_fences = [
+  { name = "mermaid", class = "mermaid", format = "pymdownx.superfences.fence_code_format" },
+]
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+[project.markdown_extensions.pymdownx.tabbed]
+alternate_style = true
+[project.markdown_extensions.pymdownx.emoji]
+emoji_index = "zensical.extensions.emoji.twemoji"
+emoji_generator = "zensical.extensions.emoji.to_svg"
+options = { custom_icons = ["docs/overrides/.icons"] }
+
+[project.plugins.search]
+
+[project.extra]
+homepage = "https://dbrepo.github.io/"
+
+[project.extra.version]
+provider = "mike"
+default = "1.13"
+
+[[project.extra.social]]
+icon = "simple/artifacthub"
+link = "https://artifacthub.io/packages/helm/dbrepo/dbrepo"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/python"
+link = "https://pypi.org/project/dbrepo/"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/DBRepo-Project/dbrepo-web"

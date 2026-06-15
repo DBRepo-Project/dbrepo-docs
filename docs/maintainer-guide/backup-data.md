@@ -10,13 +10,13 @@ author: Martin Weise
 ## TL;DR
 
 This page explains how to perform regular backups of MariaDB Galera (
-i.e. [Data Database](/infrastructures/dbrepo/1.13/dev/services/data-db/)
-and [Metadata Database](/infrastructures/dbrepo/1.13/dev/services/metadata-db/)) so they can be recovered at a later
+i.e. [Data Database](/dev/services/data-db/)
+and [Metadata Database](/dev/services/metadata-db/)) so they can be recovered at a later
 point in time.
 
 ## Full Backup
 
-We adhere to the 
+We adhere to the
 official [MariaDB 11.3.2 documentation](https://mariadb.com/docs/server/server-usage/backup-and-restore/mariadb-backup/full-backup-and-restore-with-mariadb-backup)
 in this section.
 
@@ -31,7 +31,7 @@ this for all nodes e.g. nodes `0`, `1` and `2`). Beware that not all paths are w
         /bitnami/mariadb/backup
     ```
 
-    Then create the backup using the values from `values.yaml`. The credentials are located at 
+    Then create the backup using the values from `values.yaml`. The credentials are located at
     `datadb.galera.mariabackup.user` and `datadb.galera.mariabackup.password`.
 
     ```shell
@@ -56,7 +56,7 @@ this for all nodes e.g. nodes `0`, `1` and `2`). Beware that not all paths are w
     ```
 
     Move the backup from the nodes to your backup machine through e.g. copying it:
-    
+
     ```shell
     kubectl -n $NAMESPACE \
         cp \
@@ -74,7 +74,7 @@ this for all nodes e.g. nodes `0`, `1` and `2`). Beware that not all paths are w
         /bitnami/mariadb/backup
     ```
 
-    Then create the backup using the values from `values.yaml`. The credentials are located at 
+    Then create the backup using the values from `values.yaml`. The credentials are located at
     `metadatadb.galera.mariabackup.user` and `metadatadb.galera.mariabackup.password`.
 
     ```shell
@@ -99,7 +99,7 @@ this for all nodes e.g. nodes `0`, `1` and `2`). Beware that not all paths are w
     ```
 
     Move the backup from the nodes to your backup machine through e.g. copying it:
-    
+
     ```shell
     kubectl -n $NAMESPACE \
         cp \
@@ -110,4 +110,3 @@ this for all nodes e.g. nodes `0`, `1` and `2`). Beware that not all paths are w
     ```
 
 Repeat this for nodes `1` and `2` (or more).
-    

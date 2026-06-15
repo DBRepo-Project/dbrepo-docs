@@ -43,14 +43,14 @@ the `setup-schema.sql` into the container. This can be done more transparently t
 
 !!! warning "Alphabetic Filename Sorting"
 
-    Beware that the init script provided by Bitnami executes files in alphabetic order! For example: the file 
+    Beware that the init script provided by Bitnami executes files in alphabetic order! For example: the file
     `setup-schema.sql` is executed **after** the file `setup-data.sql`! Thefore a sorting prefix 1-9 is recommended!
 
 ## Backup & Restore
 
 Please refer to our detailed documentation to perform
-a [full backup](/infrastructures/dbrepo/1.13/maintainer-guide/backup-data/)
-and [restore](/infrastructures/dbrepo/1.13/maintainer-guide/restore-data/).
+a [full backup](/maintainer-guide/backup-data/)
+and [restore](/maintainer-guide/restore-data/).
 
 ## Limitations
 
@@ -59,5 +59,5 @@ and [restore](/infrastructures/dbrepo/1.13/maintainer-guide/restore-data/).
 !!! question "Do you miss functionality? Do these limitations affect you?"
 
     We strongly encourage you to help us implement it as we are welcoming contributors to open-source software and get
-    in [contact](/infrastructures/dbrepo/1.13/contact) with us, we happily answer requests for collaboration with attached CV and your programming 
+    in [contact](/contact) with us, we happily answer requests for collaboration with attached CV and your programming
     experience!

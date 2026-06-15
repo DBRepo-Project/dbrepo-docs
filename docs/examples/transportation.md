@@ -9,8 +9,8 @@ author: Martin Weise
 
 ## Description
 
-The Subway Transportation Data-Dataset is a comprehensive and dynamic collection of data that captures the intricate 
-details of the city's public transportation system. This dataset encompasses a wide array of information, including bus 
+The Subway Transportation Data-Dataset is a comprehensive and dynamic collection of data that captures the intricate
+details of the city's public transportation system. This dataset encompasses a wide array of information, including bus
 and tram schedules, subway routes, ticketing details, and real-time updates on vehicle locations.
 
 ## Solution
@@ -19,7 +19,7 @@ We wrote an algorithm that parses open data (available) information from Wiener 
 agency directly and feeds it, after some cleaning, into DBRepo on a 5-minute interval.
 
 <figure markdown>
-![Subway Transportation Data Dashboard](/infrastructures/dbrepo/1.13/images/screenshots/transportation-dashboard.png)
+![Subway Transportation Data Dashboard](/images/screenshots/transportation-dashboard.png)
 <caption>Figure 1: Dashboard visualizing the live data of the current interruptions.</caption>
 </figure>
 

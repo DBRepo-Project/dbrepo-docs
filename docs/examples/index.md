@@ -10,10 +10,10 @@ author: Martin Weise
 
     Data that is of high volume or -variety.
 
-    [:octicons-arrow-right-24: Air Quality](/infrastructures/dbrepo/1.13/examples/air/),
-    [:octicons-arrow-right-24: Industry 4.0 Power Data](/infrastructures/dbrepo/1.13/examples/power/),
-    [:octicons-arrow-right-24: Health Data Data](/infrastructures/dbrepo/1.13/examples/health/),
-    [:octicons-arrow-right-24: Hazard Data](/infrastructures/dbrepo/1.13/examples/hazard/),
+    [:octicons-arrow-right-24: Air Quality](/examples/air/),
+    [:octicons-arrow-right-24: Industry 4.0 Power Data](/examples/power/),
+    [:octicons-arrow-right-24: Health Data Data](/examples/health/),
+    [:octicons-arrow-right-24: Hazard Data](/examples/hazard/),
 
 -   :material-robot:{ .lg .middle } **Machine Learning Data**
 
@@ -21,7 +21,7 @@ author: Martin Weise
 
     Quality data sources for algorithmic systems.
 
-    [:octicons-arrow-right-24: Music-ML Data](/infrastructures/dbrepo/1.13/examples/music/)
+    [:octicons-arrow-right-24: Music-ML Data](/examples/music/)
 
 -   :material-microscope:{ .lg .middle } **Lab Research Data**
 
@@ -29,11 +29,11 @@ author: Martin Weise
 
     Desk research data sets.
 
-    [:octicons-arrow-right-24: XPS Data](/infrastructures/dbrepo/1.13/examples/xps-data/),
-    [:octicons-arrow-right-24: PLS Data](/infrastructures/dbrepo/1.13/examples/pls-data/),
-    [:octicons-arrow-right-24: Survey Data](/infrastructures/dbrepo/1.13/examples/survey/),
+    [:octicons-arrow-right-24: XPS Data](/examples/xps-data/),
+    [:octicons-arrow-right-24: PLS Data](/examples/pls-data/),
+    [:octicons-arrow-right-24: Survey Data](/examples/survey/),
 
 </div>
 
-Start by re-using some of the use-cases from our public 
+Start by re-using some of the use-cases from our public
 [pilots repository](https://gitlab.tuwien.ac.at/martin.weise/dbrepo-pilots).

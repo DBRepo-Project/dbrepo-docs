@@ -10,7 +10,7 @@ author: Martin Weise
 
 ## TL;DR
 
-[Download the live image](https://www.ifs.tuwien.ac.at/infrastructures/dbrepo/1.12.0/debian-13-testing-live-dbrepo-amd64.iso) and create a VM using your hypervisor. Below is an [extended example](#example) on how to do this on Debian with libvirt.
+[Download the live image](https://www.ifs.tuwien.ac.at/1.12.0/debian-13-testing-live-dbrepo-amd64.iso) and create a VM using your hypervisor. Below is an [extended example](#example) on how to do this on Debian with libvirt.
 
 Then start DBRepo and visit `http://<hostname_or_ip>` in your browser:
 
@@ -47,7 +47,7 @@ virt-manager \
   --show-domain-creator
 ```
 
-* Fill in the operating system install URL `https://www.ifs.tuwien.ac.at/infrastructures/dbrepo/1.12.0/debian-13-testing-live-dbrepo-amd64.iso`
+* Fill in the operating system install URL `https://www.ifs.tuwien.ac.at/1.12.0/debian-13-testing-live-dbrepo-amd64.iso`
 * Choose the operating system `Debian 13` (or similar)
 * Assign at least 4096 MiB memory and 4 CPUs
 * Assign at least 25 GiB virtual disk storage

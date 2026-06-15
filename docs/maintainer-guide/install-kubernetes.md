@@ -63,6 +63,6 @@ kubectl -n dbrepo \
 !!! danger "Further configuration is highly recommended"
 
     See "Security Disclaimer" above, this quick &amp; non-secure installation needs to be configured further to achieve
-    basic security guarantees. Please visit 
-    the [configuration](/infrastructures/dbrepo/1.13/maintainer-guide/configuration/) page in the next step to complete
+    basic security guarantees. Please visit
+    the [configuration](/maintainer-guide/configuration/) page in the next step to complete
     the installation.

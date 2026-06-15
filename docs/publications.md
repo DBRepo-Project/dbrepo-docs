@@ -11,25 +11,25 @@ hide:
     Please cite the following paper:
 
     Weise, M., Staudinger, M., Michlits, C., Gergely, E., Stytsenko, K., Ganguly, R., & Rauber, A. (2022). DBRepo: a
-    Semantic Digital Repository for Relational Databases. *International Journal of Digital Curation*, 17(1), 11. 
+    Semantic Digital Repository for Relational Databases. *International Journal of Digital Curation*, 17(1), 11.
     DOI: [10.2218/ijdc.v17i1.825](https://doi.org/10.2218/ijdc.v17i1.825)<br />
 
-    [[BibTeX](/infrastructures/dbrepo/1.13/papers/weise2022dbrepo.bib)] &nbsp; [[RIS](/infrastructures/dbrepo/1.13/papers/weise2022dbrepo.ris)] &nbsp; [[RDF](/infrastructures/dbrepo/1.13/papers/weise2022dbrepo.rdf)] &nbsp; [[EndNote](/infrastructures/dbrepo/1.13/papers/weise2022dbrepo.xml)]
+    [[BibTeX](/papers/weise2022dbrepo.bib)] &nbsp; [[RIS](/papers/weise2022dbrepo.ris)] &nbsp; [[RDF](/papers/weise2022dbrepo.rdf)] &nbsp; [[EndNote](/papers/weise2022dbrepo.xml)]
 
 ## Logos
 
 DBRepo logo in various formats:
 
-* PNG: [bigger](/infrastructures/dbrepo/1.13/images/logos/logo.png) ([smaller](/infrastructures/dbrepo/1.13/images/logos/favicon.png))
-* SVG: [bigger](/infrastructures/dbrepo/1.13/images/logos/logo.svg) ([smaller](/infrastructures/dbrepo/1.13/images/logos/favicon.svg))
+* PNG: [bigger](/images/logos/logo.png) ([smaller](/images/logos/favicon.png))
+* SVG: [bigger](/images/logos/logo.svg) ([smaller](/images/logos/favicon.svg))
 
 
 ## Refereed
 
 ##### 2026
 
-* Demuth, D. (2026). DBRepo: Make Research in Relational Databases FAIR, Versioned and Citable, in *Love Data Week* 
-  pp. 1-8, February 9th-13th (online). 
+* Demuth, D. (2026). DBRepo: Make Research in Relational Databases FAIR, Versioned and Citable, in *Love Data Week*
+  pp. 1-8, February 9th-13th (online).
   DOI: [10.5281/zenodo.18629998](https://doi.org/10.5281/zenodo.18629998) :wikimedia-open-access:<br />
 
 ##### 2025
@@ -77,7 +77,7 @@ DBRepo logo in various formats:
 
 ##### 2022
 
-* Ekaputra, F. E., Weise, M., Flicker, K., Salleh, M. R., Rahman, N. A., Miksa, T., & Rauber, A. (2022). Towards A 
+* Ekaputra, F. E., Weise, M., Flicker, K., Salleh, M. R., Rahman, N. A., Miksa, T., & Rauber, A. (2022). Towards A
   Data Repository for Educational Factories. *Proceedings of the 8th International Conference on Data and Software
   Engineering*, pp. 149-154. DOI: [10.1109/ICoDSE56892.2022.9971958](https://doi.org/10.1109/ICoDSE56892.2022.9971958) :wikimedia-open-access:<br />
 

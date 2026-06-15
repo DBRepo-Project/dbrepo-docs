@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Reduce dependencies for Java-based services to resolve a bug where Spring runs into problems with verifying OAuth
   tokens.
 * Fixed the storage of the [`nuxt-oidc-auth`](https://nuxt.com/modules/nuxt-oidc-auth) module in the UI to share the
-  session secrets in the [Cache Database](/infrastructures/dbrepo/1.13/dev/services/cache-db/).
+  session secrets in the [Cache Database](/dev/services/cache-db/).
 
 ### Features
 
@@ -77,14 +77,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Added an integration test to the CI/CD pipeline that ensures the Broker Service is configured properly (e.g. MQTT is
   enabled).
-* Re-hash subset results and expose them via `X-Result-Hash` header to enable verification 
+* Re-hash subset results and expose them via `X-Result-Hash` header to enable verification
   in [#569](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/issues/569).
 
 ### Changes
 
-* Refactored the user information out of the Metadata Database into the Auth Service (i.e. Auth DB) to get rid of 
+* Refactored the user information out of the Metadata Database into the Auth Service (i.e. Auth DB) to get rid of
   consistency problems related to SSO-based identity providers.
-* Bumped Keycloak from version `26.2.4` to `26.4.4` to 
+* Bumped Keycloak from version `26.2.4` to `26.4.4` to
   include [default-values for profile attributes](https://github.com/keycloak/keycloak/issues/36160).
 * Changed the Bitnami catalog to the legacy repository `docker.io/bitnamilegacy` where possible instead of our local
   registry which was meant only as temporary fix.
@@ -93,14 +93,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
-* Changed not-anymore-existing `docker.io/bitnami` based images to the mirrored images at our local 
+* Changed not-anymore-existing `docker.io/bitnami` based images to the mirrored images at our local
   registry `registry.datalab.tuwien.ac.at/bitnami`.
 
 ## [v1.11.0](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/tags/v1.11.0) - 2025-09-25
 
 ### Fixes
 
-* Fixed the schema column add feature 
+* Fixed the schema column add feature
   in [#561](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/issues/561).
 
 ### Changes
@@ -112,18 +112,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changes
 
-* Added a free-text field to optionally add data description comments to each column 
+* Added a free-text field to optionally add data description comments to each column
   in [#564](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/issues/564).
-* Updated the version of all Java-based services from 17 (EOL) to 21 and updated the version of all Node-based services 
+* Updated the version of all Java-based services from 17 (EOL) to 21 and updated the version of all Node-based services
   from 20 (EOL) to 24 in [#562](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/issues/562).
 
 ## [v1.10.4](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/tags/v1.10.4) - 2025-08-04
 
 #### Changes
 
-* Added the language next to descriptions and titles 
+* Added the language next to descriptions and titles
   in [#559](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/issues/559).
-* Added the verbs [`ListRecords`](https://www.openarchives.org/OAI/openarchivesprotocol.html#ListRecords) and 
+* Added the verbs [`ListRecords`](https://www.openarchives.org/OAI/openarchivesprotocol.html#ListRecords) and
   [`ListSets`](https://www.openarchives.org/OAI/openarchivesprotocol.html#ListSets) to comply with OpenAIRE Provide and
   make the records findable using the OAI-PMH harvesting protocol.
 
@@ -132,7 +132,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 #### Fixes
 
 * Fixed a wrong configuration of the Auth Service in the Helm Chart, where new pods reset the realm settings, leading
-  to a deletion of e.g. the SSO settings 
+  to a deletion of e.g. the SSO settings
   in [#550](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/issues/550).
 
 ## [v1.10.2](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/tags/v1.10.2) - 2025-07-12
@@ -509,7 +509,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Features
 
-* Added [Dashboard Service](/infrastructures/dbrepo/1.13/api/dashboard-service/) and monitoring in default setup.
+* Added [Dashboard Service](/api/dashboard-service/) and monitoring in default setup.
 
 #### Changes
 

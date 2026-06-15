@@ -28,9 +28,9 @@ A datasource therefore can have four possible visibility states:
 
 * **Data-only**
 
-    When set to visible Transparency and hidden Insights, this affects data sources. Associated schema metadata is 
+    When set to visible Transparency and hidden Insights, this affects data sources. Associated schema metadata is
     hidden.
-    
+
     * Database: removes the list of tables, views and subsets.
     * Table: removes the list of columns.
     * View: removes the SQL query.
@@ -38,20 +38,20 @@ A datasource therefore can have four possible visibility states:
 
 * **Schema-only**
 
-    When set to hidden Transparency and visible Insights, this affects data sources. Associated data information is 
+    When set to hidden Transparency and visible Insights, this affects data sources. Associated data information is
     hidden and the data preview is disabled for anyone without at least `read` access.
 
 * **Hidden**
 
     When set to hidden Transparency and hidden Insights, this affects data sources, everything is hidden to anyone (even
     the existence). Only the owner and selected user accounts that have at least `read` access can see the datasource.
-    No [database dashboard](/infrastructures/dbrepo/1.13/database-dashboard) is visible to anyone.
+    No [database dashboard](/database-dashboard) is visible to anyone.
 
 ### UI
 
 <video autoplay loop>
-  <source src="/infrastructures/dbrepo/1.13/videos/update-visibility.webm" type="video/webm" />
-  <source src="/infrastructures/dbrepo/1.13/videos/update-visibility.mp4" type="video/mp4" />
+  <source src="/videos/update-visibility.webm" type="video/webm" />
+  <source src="/videos/update-visibility.mp4" type="video/mp4" />
 </video>
 
 ### Python

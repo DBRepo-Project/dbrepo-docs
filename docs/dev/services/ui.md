@@ -18,18 +18,18 @@ author: Martin Weise
 
 The User Interface is configured in the `runtimeConfig` section of the `nuxt.config.ts` file during build time. For the
 runtime, you need to override those values through environment variables or by mounting a `.env` file. As a small
-example, you can configure the logo :material-numeric-1-circle-outline: below. Make sure you mount the logo 
+example, you can configure the logo :material-numeric-1-circle-outline: below. Make sure you mount the logo
 as image as well, in this example we want to mount a custom logo `my_logo.png` into the container and specify the name.
 
 <figure markdown>
-![Architecture of the UI microservice](/infrastructures/dbrepo/1.13/images/screenshots/ui-config-step-1.png)
+![Architecture of the UI microservice](/images/screenshots/ui-config-step-1.png)
 </figure>
 
 === "Docker Compose"
 
-    Text values like the title :material-numeric-2-circle-outline: can be configured as well via the Nuxt runtime 
+    Text values like the title :material-numeric-2-circle-outline: can be configured as well via the Nuxt runtime
     configuration through single environment variables or `.env` files.
-    
+
     ```yaml title=".env"
     NUXT_PUBLIC_TITLE="My overriden title"
     NUXT_PUBLIC_LOGO="https://mydomain/my_logo.png"
@@ -38,8 +38,8 @@ as image as well, in this example we want to mount a custom logo `my_logo.png` i
     ```
 
     To work, you need to serve the `my_logo.png` and `my_favicon.ico` from a separate webserver. Note that simply
-    copying the files into the Nuxt [`public/`](https://nuxt.com/docs/guide/directory-structure/public) directory will 
-    not work as the content length is calculated only during build time. The development 
+    copying the files into the Nuxt [`public/`](https://nuxt.com/docs/guide/directory-structure/public) directory will
+    not work as the content length is calculated only during build time. The development
     team [#19263](https://github.com/nuxt/nuxt/issues/19263) does not plan to fix this.
 
 === "Kubernetes"
@@ -52,7 +52,7 @@ as image as well, in this example we want to mount a custom logo `my_logo.png` i
       --from-file=logo.png
     ```
 
-    Then you need to mount the configmap into the [Gateway Service](/infrastructures/dbrepo/1.13/gateway-service) under `/etc/nginx/assets/assets`.
+    Then you need to mount the configmap into the [Gateway Service](/gateway-service) under `/etc/nginx/assets/assets`.
 
     ```yaml title="dbrepo-ui-custom.yaml"
     gatewayservice:
@@ -83,7 +83,7 @@ The server-client architecture of the User Interface is shown below, it is suppo
 User Interface on development.
 
 <figure markdown>
-![Architecture of the UI microservice](/infrastructures/dbrepo/1.13/images/architecture-ui.svg)
+![Architecture of the UI microservice](/images/architecture-ui.svg)
 </figure>
 
 * Runtime: Node.js 22 LTS
@@ -113,7 +113,7 @@ rendered.
 !!! question "Do you miss functionality? Do these limitations affect you?"
 
     We strongly encourage you to help us implement it as we are welcoming contributors to open-source software and get
-    in [contact](/infrastructures/dbrepo/1.13/contact) with us, we happily answer requests for collaboration with attached CV and your programming 
+    in [contact](/contact) with us, we happily answer requests for collaboration with attached CV and your programming
     experience!
 
 ## Security

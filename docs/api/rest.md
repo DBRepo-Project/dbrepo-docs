@@ -2,7 +2,7 @@
 author: Martin Weise
 ---
 
-The REST API manages all of DBRepo. This documentation is also available as [Swagger UI](/infrastructures/dbrepo/1.13/rest/).
+The REST API manages all of DBRepo. This documentation is also available as [Swagger UI](/rest/).
 
 # REST API
 
@@ -201,15 +201,15 @@ that are used between the services themselves.
 
 ### [GET]/api/v1/database/{databaseId}/view/{viewId}/data
 
-- Summary  
+- Summary
 Get view data
 
-- Description  
+- Description
 Gets data from a view of a database. For private databases, the user needs at least *READ* access to the associated database.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -261,15 +261,15 @@ Accept: string
 
 ### [HEAD]/api/v1/database/{databaseId}/view/{viewId}/data
 
-- Summary  
+- Summary
 Get view data
 
-- Description  
+- Description
 Gets data from a view of a database. For private databases, the user needs at least *READ* access to the associated database.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -321,15 +321,15 @@ Accept: string
 
 ### [GET]/api/v1/database/{databaseId}/table/{tableId}/data
 
-- Summary  
+- Summary
 Get table data
 
-- Description  
+- Description
 Gets data from a table with id. For a table in a private database, the user needs to have at least *READ* access to the associated database. Requests with HTTP method **GET** return the full dataset, requests with HTTP method **HEAD** only the number of tuples in the `X-Count` header.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -379,15 +379,15 @@ Accept: string
 
 ### [PUT]/api/v1/database/{databaseId}/table/{tableId}/data
 
-- Summary  
+- Summary
 Update tuple
 
-- Description  
+- Description
 Updates a data tuple into a table, then the table statistics are updated. The user needs to have at least *WRITE_OWN* access to the associated database. Requires role `insert-table-data`.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### RequestBody
 
@@ -420,15 +420,15 @@ bearerAuth
 
 ### [POST]/api/v1/database/{databaseId}/table/{tableId}/data
 
-- Summary  
+- Summary
 Insert tuple
 
-- Description  
+- Description
 Inserts a data tuple into a table, then the table statistics are updated. The user needs to have at least *WRITE_OWN* access to the associated database. Requires role `insert-table-data`.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### RequestBody
 
@@ -458,15 +458,15 @@ bearerAuth
 
 ### [DELETE]/api/v1/database/{databaseId}/table/{tableId}/data
 
-- Summary  
+- Summary
 Delete tuple
 
-- Description  
+- Description
 Deletes a data tuple into a table, then the table statistics are updated. The user needs to have at least *WRITE_OWN* access to the associated database. Requires role `delete-table-data`.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### RequestBody
 
@@ -496,15 +496,15 @@ bearerAuth
 
 ### [HEAD]/api/v1/database/{databaseId}/table/{tableId}/data
 
-- Summary  
+- Summary
 Get table data
 
-- Description  
+- Description
 Gets data from a table with id. For a table in a private database, the user needs to have at least *READ* access to the associated database. Requests with HTTP method **GET** return the full dataset, requests with HTTP method **HEAD** only the number of tuples in the `X-Count` header.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -554,15 +554,15 @@ Accept: string
 
 ### [GET]/api/v1/database/{databaseId}/subset/{subsetId}/data
 
-- Summary  
+- Summary
 Get subset data
 
-- Description  
+- Description
 Gets data of subset with id. For private databases, the user needs at least *READ* grant to the associated database. Requests with HTTP method **GET** return the subset dataset. Requests with HTTP method **HEAD** only the number of rows in the subset dataset in the `X-Count` header, the subset id in the `X-Id` header and the `sha256`-result set hash in the `X-Result-Hash` header. Requests with HTTP method **GET** additionally return the result set in the response body.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Parameters(Query)
 
@@ -614,15 +614,15 @@ Accept: string
 
 ### [HEAD]/api/v1/database/{databaseId}/subset/{subsetId}/data
 
-- Summary  
+- Summary
 Get subset data
 
-- Description  
+- Description
 Gets data of subset with id. For private databases, the user needs at least *READ* grant to the associated database. Requests with HTTP method **GET** return the subset dataset. Requests with HTTP method **HEAD** only the number of rows in the subset dataset in the `X-Count` header, the subset id in the `X-Id` header and the `sha256`-result set hash in the `X-Result-Hash` header. Requests with HTTP method **GET** additionally return the result set in the response body.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Parameters(Query)
 
@@ -674,15 +674,15 @@ Accept: string
 
 ### [GET]/api/v1/database/{databaseId}/grant/{username}
 
-- Summary  
+- Summary
 Get grants
 
-- Description  
+- Description
 Get the grant permissions for a user of a given database.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Responses
 
@@ -720,15 +720,15 @@ bearerAuth
 
 ### [HEAD]/api/v1/database/{databaseId}/grant/{username}
 
-- Summary  
+- Summary
 Get grants
 
-- Description  
+- Description
 Get the grant permissions for a user of a given database.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Responses
 
@@ -766,15 +766,15 @@ bearerAuth
 
 ### [PUT]/api/v1/database/{databaseId}/subset/{queryId}
 
-- Summary  
+- Summary
 Persist subset
 
-- Description  
+- Description
 Persists a subset with id. Requires role `persist-query`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -879,15 +879,15 @@ basicAuth
 
 ### [POST]/api/v1/upload
 
-- Summary  
+- Summary
 Uploads a multipart file
 
-- Description  
+- Description
 Uploads a multipart file to the Storage Service. Requires role `upload-file`.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### RequestBody
 
@@ -911,15 +911,15 @@ bearerAuth
 
 ### [POST]/api/v1/database/{databaseId}/table/{tableId}/data/import
 
-- Summary  
+- Summary
 Import dataset
 
-- Description  
+- Description
 Imports a dataset in a table. Then update the table statistics. The user needs to have at least *WRITE_OWN* access to the associated database when importing into a owned table. Otherwise *WRITE_ALL* access in needed. Requires role `insert-table-data`.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Headers
 
@@ -962,15 +962,15 @@ Authorization: string
 
 ### [GET]/api/v1/database/{databaseId}/subset
 
-- Summary  
+- Summary
 Find subsets
 
-- Description  
+- Description
 Finds subsets in the query store. When the database schema is marked as hidden, the user needs to be authorized, have at least read-access to the database. The result can be optionally filtered by setting `persisted`. When set to *true*, only persisted queries are returned, otherwise only non-persisted queries are returned.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -1066,15 +1066,15 @@ persisted?: boolean
 
 ### [POST]/api/v1/database/{databaseId}/subset
 
-- Summary  
+- Summary
 Create subset
 
-- Description  
+- Description
 Creates a subset in the query store of the data database. Can also be used without authentication if (and only if) the database is marked as public (i.e. when `is_public` = `is_schema_public` is set to `true`). Otherwise at least read access is required.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -1166,14 +1166,14 @@ size?: integer
 
 ### [GET]/api/v1/image/{imageId}/analyse/schema/{key}
 
-- Summary  
+- Summary
 Analyse schema
 
-- Description  
+- Description
 Analyses a dataset stored at the Storage Service and attempts to map the datatypes, requires role `analyse-datatypes`.
 
-- Security  
-basicAuth  
+- Security
+basicAuth
 
 #### Responses
 
@@ -1230,15 +1230,15 @@ basicAuth
 
 ### [GET]/api/v1/database/{databaseId}/table/{tableId}/history
 
-- Summary  
+- Summary
 Get history
 
-- Description  
+- Description
 Gets the insert/delete operations history performed. For tables in private databases, the user needs to have at least *READ* access to the associated database.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -1275,15 +1275,15 @@ size?: integer
 
 ### [GET]/api/v1/database/{databaseId}/subset/{subsetId}
 
-- Summary  
+- Summary
 Find subset
 
-- Description  
+- Description
 Finds a subset in the data database.  When the database schema is marked as hidden, the user needs to be authorized, have at least read-access to the database.  Requests with HTTP header `Accept=application/json` return the metadata, requests with HTTP header `Accept=text/csv` return the data as downloadable file.
 
-- Security  
-basicAuth  
-bearerAuth  
+- Security
+basicAuth
+bearerAuth
 
 #### Parameters(Query)
 
@@ -1385,15 +1385,15 @@ timestamp?: string
 
 ### [GET]/api/v1/user/{username}
 
-- Summary  
+- Summary
 Get user
 
-- Description  
+- Description
 Gets own user information from the metadata database. Requires authentication. Foreign user information can only be obtained if additional role `find-foreign-user` is present. Finding information about internal users results in a 404 error.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -1427,15 +1427,15 @@ basicAuth
 
 ### [PUT]/api/v1/user/{username}
 
-- Summary  
+- Summary
 Update user
 
-- Description  
+- Description
 Updates user with given username. Requires role `modify-user-information`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -1488,15 +1488,15 @@ basicAuth
 
 ### [HEAD]/api/v1/user/{username}
 
-- Summary  
+- Summary
 Get user
 
-- Description  
+- Description
 Gets own user information from the metadata database. Requires authentication. Foreign user information can only be obtained if additional role `find-foreign-user` is present. Finding information about internal users results in a 404 error.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -1530,10 +1530,10 @@ basicAuth
 
 ### [GET]/api/v1/database
 
-- Summary  
+- Summary
 List databases
 
-- Description  
+- Description
 Lists all databases in the metadata database. Requests with HTTP method **GET** return the list of databases, requests with HTTP method **HEAD** only the number in the `X-Count` header.
 
 #### Parameters(Query)
@@ -1619,15 +1619,15 @@ internal_name?: string
 
 ### [POST]/api/v1/database
 
-- Summary  
+- Summary
 Create database
 
-- Description  
+- Description
 Creates a database in the container with id. Requires roles `create-database`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -1737,10 +1737,10 @@ basicAuth
 
 ### [HEAD]/api/v1/database
 
-- Summary  
+- Summary
 List databases
 
-- Description  
+- Description
 Lists all databases in the metadata database. Requests with HTTP method **GET** return the list of databases, requests with HTTP method **HEAD** only the number in the `X-Count` header.
 
 #### Parameters(Query)
@@ -1826,15 +1826,15 @@ internal_name?: string
 
 ### [GET]/api/v1/database/{databaseId}/access/{username}
 
-- Summary  
+- Summary
 Find/Check access
 
-- Description  
+- Description
 Finds or checks access of a user with given username to a database with given id. Requests with HTTP method **GET** return the access object, requests with HTTP method **HEAD** only the status. When the user has at least *READ* access, the status 200 is returned, 403 otherwise. Requires role `check-database-access` or `check-foreign-database-access`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -1868,15 +1868,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/access/{username}
 
-- Summary  
+- Summary
 Modify access
 
-- Description  
+- Description
 Modifies access of a user with given username to database with given id. Requires role `update-database-access`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -1907,15 +1907,15 @@ basicAuth
 
 ### [POST]/api/v1/database/{databaseId}/access/{username}
 
-- Summary  
+- Summary
 Give access
 
-- Description  
+- Description
 Give a user with given username access to some database with given id. Requires role `create-database-access`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -1966,15 +1966,15 @@ basicAuth
 
 ### [DELETE]/api/v1/database/{databaseId}/access/{username}
 
-- Summary  
+- Summary
 Delete access
 
-- Description  
+- Description
 Delete access of a user with given username to a database with id. Requires role `delete-database-access`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -1994,15 +1994,15 @@ basicAuth
 
 ### [HEAD]/api/v1/database/{databaseId}/access/{username}
 
-- Summary  
+- Summary
 Find/Check access
 
-- Description  
+- Description
 Finds or checks access of a user with given username to a database with given id. Requests with HTTP method **GET** return the access object, requests with HTTP method **HEAD** only the status. When the user has at least *READ* access, the status 200 is returned, 403 otherwise. Requires role `check-database-access` or `check-foreign-database-access`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -2036,15 +2036,15 @@ basicAuth
 
 ### [PUT]/api/v1/message/{messageId}
 
-- Summary  
+- Summary
 Update message
 
-- Description  
+- Description
 Updates a message with id. Requires role `update-maintenance-message`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -2082,15 +2082,15 @@ basicAuth
 
 ### [DELETE]/api/v1/message/{messageId}
 
-- Summary  
+- Summary
 Delete message
 
-- Description  
+- Description
 Deletes a message with id. Requires role `delete-maintenance-message`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -2104,10 +2104,10 @@ basicAuth
 
 ### [GET]/api/v1/image/{imageId}
 
-- Summary  
+- Summary
 Find image
 
-- Description  
+- Description
 Finds a container image in the metadata database.
 
 #### Responses
@@ -2181,15 +2181,15 @@ Finds a container image in the metadata database.
 
 ### [PUT]/api/v1/image/{imageId}
 
-- Summary  
+- Summary
 Update image
 
-- Description  
+- Description
 Updates container image in the metadata database. Requires role `modify-image`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -2281,15 +2281,15 @@ basicAuth
 
 ### [DELETE]/api/v1/image/{imageId}
 
-- Summary  
+- Summary
 Delete image
 
-- Description  
+- Description
 Deletes a container image in the metadata database. Requires role `delete-image`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -2301,10 +2301,10 @@ basicAuth
 
 ### [GET]/api/v1/identifier/{identifierId}
 
-- Summary  
+- Summary
 Find identifier
 
-- Description  
+- Description
 Finds an identifier with id. The response format depends on the HTTP `Accept` header set on the request.
 
 #### Headers
@@ -2499,15 +2499,15 @@ Accept: string
 
 ### [PUT]/api/v1/identifier/{identifierId}
 
-- Summary  
+- Summary
 Save identifier
 
-- Description  
+- Description
 Saves an identifier with id as a draft identifier. Identifiers can only be created for objects the user has at least *READ* access in the associated database (requires role `create-identifier`) or for any object in any database (requires role `create-foreign-identifier`).
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -2686,15 +2686,15 @@ basicAuth
 
 ### [DELETE]/api/v1/identifier/{identifierId}
 
-- Summary  
+- Summary
 Delete identifier
 
-- Description  
+- Description
 Deletes an identifier with id. Requires role `delete-identifier`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -2712,15 +2712,15 @@ basicAuth
 
 ### [PUT]/api/v1/identifier/{identifierId}/publish
 
-- Summary  
+- Summary
 Publish identifier
 
-- Description  
+- Description
 Publishes an identifier with id. A published identifier cannot be changed anymore. Requires role `publish-identifier`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -2833,15 +2833,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/visibility
 
-- Summary  
+- Summary
 Update database visibility
 
-- Description  
+- Description
 Updates the database with id on the visibility. Only the database owner can perform this operation. Requires role `modify-database-visibility`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -2945,15 +2945,15 @@ basicAuth
 
 ### [GET]/api/v1/database/{databaseId}/view/{viewId}
 
-- Summary  
+- Summary
 Get view
 
-- Description  
+- Description
 Gets a view with id in the metadata database.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -3119,15 +3119,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/view/{viewId}
 
-- Summary  
+- Summary
 Update view
 
-- Description  
+- Description
 Updates a view with id. This can only be performed by the view owner or database owner. Requires role `create-database-view`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -3187,15 +3187,15 @@ basicAuth
 
 ### [DELETE]/api/v1/database/{databaseId}/view/{viewId}
 
-- Summary  
+- Summary
 Delete view
 
-- Description  
+- Description
 Deletes a view with id. Requires role `delete-database-view`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -3217,15 +3217,15 @@ basicAuth
 
 ### [GET]/api/v1/database/{databaseId}/table/{tableId}
 
-- Summary  
+- Summary
 Find table
 
-- Description  
+- Description
 Finds a table with id. When a table is hidden (i.e. when `is_public` is `false`), then the user needs to have at least read access and the role `find-table`. When the `system` role is present, the endpoint responds with additional connection metadata in the header.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -3502,15 +3502,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/table/{tableId}
 
-- Summary  
+- Summary
 Update table
 
-- Description  
+- Description
 Updates a table in the database with id. Requires role `update-table` or `system`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -3570,15 +3570,15 @@ basicAuth
 
 ### [DELETE]/api/v1/database/{databaseId}/table/{tableId}
 
-- Summary  
+- Summary
 Delete table
 
-- Description  
+- Description
 Deletes a table with id. Only the owner of a table can perform this action (requires role `delete-table`) or anyone can delete a table (requires role `delete-foreign-table`).
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -3598,15 +3598,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/table/{tableId}/statistic
 
-- Summary  
+- Summary
 Update statistics
 
-- Description  
+- Description
 Updates basic statistical properties (min, max, mean, median, std.dev) for numerical columns in a table with id. This action can only be performed by the table owner. Requires role `update-table-statistic`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -3626,15 +3626,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/table/{tableId}/column/{columnId}
 
-- Summary  
+- Summary
 Update semantics
 
-- Description  
+- Description
 Updates column semantics of a table column with id. Only the table owner with at least *READ* access to the associated database can update the column semantics (requires role `modify-table-column-semantics`) or foreign table columns if role `modify-foreign-table-column-semantics`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -3734,15 +3734,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/owner
 
-- Summary  
+- Summary
 Update database owner
 
-- Description  
+- Description
 Updates the database with id on the owner. Only the database owner can perform this operation. Requires role `modify-database-owner`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -3842,15 +3842,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/metadata/view
 
-- Summary  
+- Summary
 Update database view schemas
 
-- Description  
+- Description
 Updates the database with id with generated metadata from view that are not yet known to the database. Only the database owner can perform this operation. Requires role `find-database`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -3937,15 +3937,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/metadata/table
 
-- Summary  
+- Summary
 Update database table schemas
 
-- Description  
+- Description
 Updates the database with id with generated metadata from tables that are not yet known to the database. Only the database owner can perform this operation. Requires role `find-database`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -4034,15 +4034,15 @@ basicAuth
 
 ### [GET]/api/v1/database/{databaseId}/image
 
-- Summary  
+- Summary
 Get database preview image
 
-- Description  
+- Description
 Gets the database with id on the preview image.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -4063,15 +4063,15 @@ basicAuth
 
 ### [PUT]/api/v1/database/{databaseId}/image
 
-- Summary  
+- Summary
 Update database preview image
 
-- Description  
+- Description
 Updates the database with id on the preview image. Only the database owner can perform this operation. Requires role `modify-database-image`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -4171,10 +4171,10 @@ basicAuth
 
 ### [GET]/api/v1/message
 
-- Summary  
+- Summary
 List messages
 
-- Description  
+- Description
 Lists messages known to the metadata database. Messages can be filtered be filtered with the optional `active` parameter. If set to *true*, only active messages (that is, messages whose end time has not been reached) will be returned. Otherwise only inactive messages are returned. If not set, active and inactive messages are returned.
 
 #### Parameters(Query)
@@ -4205,15 +4205,15 @@ active?: boolean
 
 ### [POST]/api/v1/message
 
-- Summary  
+- Summary
 Create message
 
-- Description  
+- Description
 Creates a message in the metadata database. Requires role `create-maintenance-message`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -4249,10 +4249,10 @@ basicAuth
 
 ### [GET]/api/v1/image
 
-- Summary  
+- Summary
 List images
 
-- Description  
+- Description
 Lists all container images known to the metadata database.
 
 #### Responses
@@ -4278,15 +4278,15 @@ Lists all container images known to the metadata database.
 
 ### [POST]/api/v1/image
 
-- Summary  
+- Summary
 Create image
 
-- Description  
+- Description
 Creates a container image in the metadata database. Requires role `create-image`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -4383,10 +4383,10 @@ basicAuth
 
 ### [GET]/api/v1/identifier
 
-- Summary  
+- Summary
 List identifiers
 
-- Description  
+- Description
 Lists all identifiers known to the metadata database
 
 #### Parameters(Query)
@@ -4509,15 +4509,15 @@ Accept: string
 
 ### [POST]/api/v1/identifier
 
-- Summary  
+- Summary
 Create identifier
 
-- Description  
+- Description
 Create an identifier with id to create a draft identifier. Identifiers can only be created for objects the user has at least *READ* access in the associated database (requires role `create-identifier`) or for any object in any database (requires role `create-foreign-identifier`).
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -4720,15 +4720,15 @@ basicAuth
 
 ### [GET]/api/v1/database/{databaseId}/view
 
-- Summary  
+- Summary
 List views
 
-- Description  
+- Description
 Lists views known to the metadata database.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -4767,15 +4767,15 @@ basicAuth
 
 ### [POST]/api/v1/database/{databaseId}/view
 
-- Summary  
+- Summary
 Create view
 
-- Description  
+- Description
 Creates a view. This can only be performed by the database owner. Requires role `create-database-view`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -4878,15 +4878,15 @@ basicAuth
 
 ### [GET]/api/v1/database/{databaseId}/table
 
-- Summary  
+- Summary
 List tables
 
-- Description  
+- Description
 Lists all tables known to the metadata database. When a database has a hidden schema (i.e. when `is_schema_public` is `false`), then the user needs to have at least read access and the role `list-tables`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -4925,15 +4925,15 @@ basicAuth
 
 ### [POST]/api/v1/database/{databaseId}/table
 
-- Summary  
+- Summary
 Create table
 
-- Description  
+- Description
 Creates a table in the database with id. Requires role `create-table`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -5034,10 +5034,10 @@ basicAuth
 
 ### [GET]/api/v1/container
 
-- Summary  
+- Summary
 List containers
 
-- Description  
+- Description
 List all containers in the metadata database.
 
 #### Parameters(Query)
@@ -5083,15 +5083,15 @@ limit?: integer
 
 ### [POST]/api/v1/container
 
-- Summary  
+- Summary
 Create container
 
-- Description  
+- Description
 Creates a container in the metadata database. Requires role `create-container`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### RequestBody
 
@@ -5204,10 +5204,10 @@ basicAuth
 
 ### [GET]/api/v1/user
 
-- Summary  
+- Summary
 List users
 
-- Description  
+- Description
 Lists users known to the metadata database. Internal users are omitted from the result list. If the optional query parameter `username` is present, the result list can be filtered by matching this exact username.
 
 #### Parameters(Query)
@@ -5253,7 +5253,7 @@ username?: string
 
 ### [GET]/api/v1/oai
 
-- Summary  
+- Summary
 Get record
 
 #### Parameters(Query)
@@ -5294,10 +5294,10 @@ parameters: {
 
 ### [GET]/api/v1/message/message/{messageId}
 
-- Summary  
+- Summary
 Find message
 
-- Description  
+- Description
 Finds a message with id in the metadata database.
 
 #### Responses
@@ -5324,10 +5324,10 @@ Finds a message with id in the metadata database.
 
 ### [GET]/api/v1/license
 
-- Summary  
+- Summary
 List licenses
 
-- Description  
+- Description
 Lists licenses known to the metadata database.
 
 #### Responses
@@ -5351,10 +5351,10 @@ Lists licenses known to the metadata database.
 
 ### [GET]/api/v1/identifier/retrieve
 
-- Summary  
+- Summary
 Retrieve PID metadata
 
-- Description  
+- Description
 Retrieves Persistent Identifier (PID) metadata from external endpoints. Requires authentication. Supported PIDs are: ORCID, ROR, DOI.
 
 #### Parameters(Query)
@@ -5466,15 +5466,15 @@ url: string
 
 ### [GET]/api/v1/database/{databaseId}
 
-- Summary  
+- Summary
 Find database
 
-- Description  
+- Description
 Finds a database with id.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -5557,10 +5557,10 @@ basicAuth
 
 ### [GET]/api/v1/container/{containerId}
 
-- Summary  
+- Summary
 Find container
 
-- Description  
+- Description
 Finds a container in the metadata database.
 
 #### Responses
@@ -5646,15 +5646,15 @@ Finds a container in the metadata database.
 
 ### [DELETE]/api/v1/container/{containerId}
 
-- Summary  
+- Summary
 Delete container
 
-- Description  
+- Description
 Deletes a container in the metadata database. Requires role `delete-container`.
 
-- Security  
-bearerAuth  
-basicAuth  
+- Security
+bearerAuth
+basicAuth
 
 #### Responses
 
@@ -5668,10 +5668,10 @@ basicAuth
 
 ### [GET]/api/v1/search
 
-- Summary  
+- Summary
 Performs a fuzzy search
 
-- Description  
+- Description
 Performs a fuzzy search
 
 #### Parameters(Query)
@@ -5696,10 +5696,10 @@ q: string
 
 ### [POST]/api/v1/search/{field_type}
 
-- Summary  
+- Summary
 Performs a general search
 
-- Description  
+- Description
 Performs a general search
 
 #### Parameters(Query)
@@ -5741,7 +5741,7 @@ body: {
 
 ### [GET]/api/v1/search/{field_type}/fields
 
-- Summary  
+- Summary
 Get searchable fields
 
 #### Responses
@@ -5767,10 +5767,10 @@ Get searchable fields
 
 ### [GET]/api/v1/search/{index}
 
-- Summary  
+- Summary
 Gets the index
 
-- Description  
+- Description
 Gets the index
 
 #### Parameters(Body)

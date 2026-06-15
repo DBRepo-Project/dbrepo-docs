@@ -7,11 +7,11 @@ A user wants to create a database in DBRepo.
 ### UI
 
 A database can be created by choosing a name (e.g. My Database), selecting an engine (e.g. MariaDB) and defining the
-visibility, this can be [changed later](/infrastructures/dbrepo/1.13/update-visibility).
+visibility, this can be [changed later](/update-visibility).
 
 <video autoplay loop>
-  <source src="/infrastructures/dbrepo/1.13/videos/create-database.webm" type="video/webm" />
-  <source src="/infrastructures/dbrepo/1.13/videos/create-database.mp4" type="video/mp4" />
+  <source src="/videos/create-database.webm" type="video/webm" />
+  <source src="/videos/create-database.mp4" type="video/mp4" />
 </video>
 
 ### Python
@@ -38,7 +38,7 @@ Create a public database with the container id from the previous step.
 from dbrepo.RestClient import RestClient
 
 client = RestClient("http://<hostname>", username="foo", password="bar")
-database = client.create_database("My Database", 
+database = client.create_database("My Database",
                                   "6cfb3b8e-1792-4e46-871a-f3d103527203",
                                   is_public=False,
                                   is_schema_public=False)

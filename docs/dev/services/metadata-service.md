@@ -23,13 +23,13 @@ author: Martin Weise
 
 ## Overview
 
-The metadata service manages metadata of identities, the [Broker Service](/infrastructures/dbrepo/1.13/broker-service) (i.e. obtaining queue
+The metadata service manages metadata of identities, the [Broker Service](/broker-service) (i.e. obtaining queue
 types), semantic concepts (i.e. ontologies) and relational metadata (databases, tables, queries, views) and identifiers.
 
 ## Generation
 
-DBRepo generates metadata for managed tables automatically by querying MariaDB's internal structures 
-(e.g. `information_schema`). 
+DBRepo generates metadata for managed tables automatically by querying MariaDB's internal structures
+(e.g. `information_schema`).
 
 !!! info "Managed Tables"
 
@@ -70,8 +70,8 @@ services:
 
 ## Semantics
 
-The service provides metadata to the table columns in 
-the [Metadata Database](/infrastructures/dbrepo/1.13/dev/services/metadata-db) from registered ontologies
+The service provides metadata to the table columns in
+the [Metadata Database](/dev/services/metadata-db) from registered ontologies
 like Wikidata [`wd:`](https://wikidata.org), Ontology of Units of
 Measurement [`om2:`](https://www.ontology-of-units-of-measure.org/resource/om-2), Friend of a
 Friend [`foaf:`](http://xmlns.com/foaf/0.1/), the [`prov:`](http://www.w3.org/ns/prov#) namespace, etc.
@@ -84,7 +84,7 @@ Friend [`foaf:`](http://xmlns.com/foaf/0.1/), the [`prov:`](http://www.w3.org/ns
 !!! question "Do you miss functionality? Do these limitations affect you?"
 
     We strongly encourage you to help us implement it as we are welcoming contributors to open-source software and get
-    in [contact](/infrastructures/dbrepo/1.13/contact) with us, we happily answer requests for collaboration with attached CV and your programming 
+    in [contact](/contact) with us, we happily answer requests for collaboration with attached CV and your programming
     experience!
 
 ## Security

@@ -9,13 +9,13 @@ author: Martin Weise
 
 ## Description
 
-We use a dataset collected by [Aljanaki et al.](https://www2.projects.science.uu.nl/memotion/emotifydata/), consisting 
-of 400 MP3 music files, each having a playtime of one minute and labeled with one of four genres: rock, pop, classical 
+We use a dataset collected by [Aljanaki et al.](https://www2.projects.science.uu.nl/memotion/emotifydata/), consisting
+of 400 MP3 music files, each having a playtime of one minute and labeled with one of four genres: rock, pop, classical
 and electronic, each genre contains 100 files, the genre will be used as label for the ML model. Then by generating MFCC
 vectors and training a SVM, the ML-model can classify emotions of the provided .mp3 files with and accuracy of 76.25%.
 
 <figure markdown>
-![](/infrastructures/dbrepo/1.13/images/screenshots/mfcc-jupyter.png){ .img-border }
+![](/images/screenshots/mfcc-jupyter.png){ .img-border }
 <figcaption>Figure 1: Accuracy of predictions matrix in Jupyter Notebook.</figcaption>
 </figure>
 

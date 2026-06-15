@@ -1,0 +1,4296 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="Martin Weise">
+      
+      
+        <link rel="canonical" href="https://dbrepo.github.io/1.13/dev/services/">
+      
+      
+        <link rel="prev" href="./search-db/">
+      
+      
+        <link rel="next" href="./auth-service/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../images/favicon.ico">
+      <meta name="generator" content="zensical-0.0.45">
+    
+    
+      
+        <title>Overview - DBRepo</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/modern/palette.dfe2e883.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#overview" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.68 12.32a4.49 4.49 0 0 0-6.36.01 4.49 4.49 0 0 0 0 6.36 4.51 4.51 0 0 0 5.57.63L21 22.39 22.39 21l-3.09-3.11c1.13-1.77.87-4.09-.62-5.57m-1.41 4.95c-.98.98-2.56.97-3.54 0-.97-.98-.97-2.56.01-3.54.97-.97 2.55-.97 3.53 0 .97.98.97 2.56 0 3.54M10.9 20.1a6.5 6.5 0 0 1-1.48-2.32C6.27 17.25 4 15.76 4 14v3c0 2.21 3.58 4 8 4-.4-.26-.77-.56-1.1-.9M4 9v3c0 1.68 2.07 3.12 5 3.7v-.2c0-.93.2-1.85.58-2.69C6.34 12.3 4 10.79 4 9m8-6C7.58 3 4 4.79 4 7c0 2 3 3.68 6.85 4h.05c1.2-1.26 2.86-2 4.6-2 .91 0 1.81.19 2.64.56A3.22 3.22 0 0 0 20 7c0-2.21-3.58-4-8-4"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            DBRepo
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/DBRepo-Project/dbrepo-web" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DBRepo-Project/dbrepo-web
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../.." class="md-tabs__link">
+          
+  
+  Get Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../user-guide/" class="md-tabs__link">
+          
+  
+  User Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../maintainer-guide/" class="md-tabs__link">
+          
+  
+  Maintainer Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../examples/" class="md-tabs__link">
+          
+  
+  Use Cases
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+      
+    
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../publications/" class="md-tabs__link">
+        
+  
+  Publications
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../contact/" class="md-tabs__link">
+        
+  
+  Contact
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.68 12.32a4.49 4.49 0 0 0-6.36.01 4.49 4.49 0 0 0 0 6.36 4.51 4.51 0 0 0 5.57.63L21 22.39 22.39 21l-3.09-3.11c1.13-1.77.87-4.09-.62-5.57m-1.41 4.95c-.98.98-2.56.97-3.54 0-.97-.98-.97-2.56.01-3.54.97-.97 2.55-.97 3.53 0 .97.98.97 2.56 0 3.54M10.9 20.1a6.5 6.5 0 0 1-1.48-2.32C6.27 17.25 4 15.76 4 14v3c0 2.21 3.58 4 8 4-.4-.26-.77-.56-1.1-.9M4 9v3c0 1.68 2.07 3.12 5 3.7v-.2c0-.93.2-1.85.58-2.69C6.34 12.3 4 10.79 4 9m8-6C7.58 3 4 4.79 4 7c0 2 3 3.68 6.85 4h.05c1.2-1.26 2.86-2 4.6-2 .91 0 1.81.19 2.64.56A3.22 3.22 0 0 0 20 7c0-2.21-3.58-4-8-4"/></svg>
+
+    </a>
+    DBRepo
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/DBRepo-Project/dbrepo-web" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    DBRepo-Project/dbrepo-web
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get Started
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Get Started
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Welcome to DBRepo
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../get-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Get Started
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../why/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Why use DBRepo
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../help/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Help with DBRepo
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  User Guide
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  User Guide
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Quickstart
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Account Management
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Account Management
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/create-account/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Create Account
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Database Management
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Database Management
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/create-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Create Database
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/database-access/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Database Access
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/database-dashboard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Database Dashboard
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/update-visibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Database Visibility
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/delete-database/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Delete Database
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Management
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Data Management
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/create-pid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Create Persistent Identifier
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/create-subset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Create Subset
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/get-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Fetch Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/import-dataset/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Import Dataset
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../user-guide/import-live-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Import Live Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Maintainer Guide
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Maintainer Guide
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Installation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/configuration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Configuration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../customization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Customization
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Deployments
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Deployments
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/install-kubernetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Install on Kubernetes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/install-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Install on Docker
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/install-vm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Install on VM
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/build-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Build from Sourcecode
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Management
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Management
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/backup-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Backup Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/restore-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Restore Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Troubleshooting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../maintainer-guide/updating/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Updating the Application
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  API
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Python API
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/rest/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  REST API
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/broker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMQP / MQTT API
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/oai-pmh/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  OAI-PMH API
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/json-ld/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  JSON-LD API
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/fair-signposting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  FAIR Signposting API
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Use Cases
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Use Cases
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/air/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Air Quality Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/covid-19/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  COVID-19 Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/hazard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Hazard Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/health/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Health Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/power/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Industry 4.0 Power Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Survey Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/lute-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lute Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/music/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Music-ML Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/pls-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  PLS Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/theater/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Theater Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/transportation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Transportation Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/xps-data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  XPS Data
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Development
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Development
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Databases
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Databases
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./cache-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Cache Database
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./data-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Database
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./metadata-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Metadata Database
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./metric-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Metric Database
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./search-db/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Search Database
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Services
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Services
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Create User Account
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Create Database
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Import Dataset
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-database-dump" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Import Database Dump
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-live-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Import Live Data
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-subset" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Export Subset
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assign-database-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Assign Database PID
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Private Database &amp; Access
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./auth-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Auth Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./broker-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Broker Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./data-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Data Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./dashboard-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dashboard Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./gateway-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Gateway Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./identity-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Identity Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./metadata-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Metadata Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./search-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Search Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./storage-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Storage Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  UI
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  UI
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./ui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Repository
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Changelog
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contributing
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../publications/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Publications
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contact/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Contact
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-user-account" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Create User Account
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Create Database
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Import Dataset
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-database-dump" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Import Database Dump
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#import-live-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Import Live Data
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#export-subset" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Export Subset
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assign-database-pid" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Assign Database PID
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-database-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Private Database &amp; Access
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h1>
+<p>We developed a Python Library for communicating with DBRepo from e.g. Jupyter Notebooks. See
+the <a href="/open-api">Python Library</a> page for more details.</p>
+<p>We give usage examples of the most important use-cases we identified.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: center;">UI</th>
+<th style="text-align: center;">Terminal</th>
+<th style="text-align: center;">JDBC</th>
+<th style="text-align: center;">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="#create-user-account">Create User Account</a></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td><a href="#create-database">Create Database</a></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td><a href="#import-dataset">Import Dataset</a></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td><a href="#import-database-dump">Import Database Dump</a></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
+</tr>
+<tr>
+<td><a href="#import-live-data">Import Live Data</a></td>
+<td style="text-align: center;"><img alt="❌" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/274c.svg" title=":x:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td><a href="#export-subset">Export Subset</a></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td><a href="#assign-database-pid">Assign Database PID</a></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+<tr>
+<td><a href="#private-database-access">Private Database &amp; Access</a></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+<td style="text-align: center;"><img alt="✅" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@16.0.1/assets/svg/2705.svg" title=":white_check_mark:" /></td>
+</tr>
+</tbody>
+</table>
+<h2 id="create-user-account">Create User Account<a class="headerlink" href="#create-user-account" title="Permanent link">&para;</a></h2>
+<p>A user wants to create an account in DBRepo.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">UI</label><label for="__tabbed_1_2">Terminal</label><label for="__tabbed_1_3">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>To create a new user account in DBRepo, navigate to the signup page by clicking the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 14c-2.67 0-8 1.33-8 4v2h16v-2c0-2.67-5.33-4-8-4m-9-4V7H4v3H1v2h3v3h2v-3h3v-2m6 2a4 4 0 0 0 4-4 4 4 0 0 0-4-4 4 4 0 0 0-4 4 4 4 0 0 0 4 4"/></svg></span> SIGNUP"
+button and provide a valid work e-mail address <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and a username (in lowercase
+alphanumeric characters) <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Choose a secure password in field
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and repeat it in field <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Click "SUBMIT" and
+the system creates a user account in Figure 1 with the <a href="/system-services-authentication/#roles">default roles</a>
+that your administrator has assigned.</p>
+<p><figure markdown>
+<img alt="Create user account" class="img-border" src="/images/screenshots/create-account-step-1.png" />
+</figure></p>
+<p>To login in DBRepo, navigate to the login page by clicking the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 7 9.6 8.4l2.6 2.6H2v2h10.2l-2.6 2.6L11 17l5-5zm9 12h-8v2h8c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2h-8v2h8z"/></svg></span> LOGIN" button and provide the
+username <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and the password from the previous step
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. After clicking "LOGIN", you will acquire the roles assigned to you and are now
+authenticated with DBRepo in Figure 2.</p>
+<p><figure markdown>
+<img alt="Create user account" class="img-border" src="/images/screenshots/create-account-step-2.png" />
+</figure></p>
+<p>You can view your user information upon clicking on your username <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> on the top. To
+change your password in all components of DBRepo, click the "AUTHENTICATION" tab <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>
+and change your password by typing a new one into fields <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and repeat it
+identically in field <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p><figure markdown>
+<img alt="Change user account password" class="img-border" src="/images/screenshots/create-account-step-3.png" />
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p>To create a new user account in DBRepo with the Terminal, provide your details in the following REST HTTP-API call.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;username&quot;: &quot;foo&quot;,&quot;email&quot;: &quot;foo.bar@example.com&quot;, &quot;password&quot;:&quot;bar&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/user<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.id
+</code></pre></div>
+<p>You can view your user information by sending a request to the user endpoint with your access token.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/user/14824cc5-186b-423d-a7b7-a252aed42b59<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>To change your password in all components of DBRepo:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;password&quot;: &quot;s3cr3tp4ss0rd&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/user/USER_ID/password<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>To create a new user account in DBRepo with the Terminal, provide your details in the following REST HTTP-API call.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">)</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_user</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">,</span>
+                          <span class="n">email</span><span class="o">=</span><span class="s2">&quot;foo@example.com&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;user id: </span><span class="si">{</span><span class="n">user</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>You can view your user information by sending a request to the user endpoint with your access token.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_user</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="s2">&quot;57ea75c6-2a1d-4516-89f4-296b8b62539b&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;user info: </span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>To change your password in all components of DBRepo:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">update_user_password</span><span class="p">(</span><span class="n">user_id</span><span class="o">=</span><span class="s2">&quot;57ea75c6-2a1d-4516-89f4-296b8b62539b&quot;</span><span class="p">,</span>
+                            <span class="n">password</span><span class="o">=</span><span class="s2">&quot;baz&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="create-database">Create Database<a class="headerlink" href="#create-database" title="Permanent link">&para;</a></h2>
+<p>A user wants to create a database in DBRepo.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">UI</label><label for="__tabbed_2_2">Terminal</label><label for="__tabbed_2_3">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Login and press the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z"/></svg></span> DATABASE" button on the top right <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> as seen in Figure 4.</p>
+<p><figure markdown>
+<img alt="Open the create database dialog" class="img-border" src="/images/screenshots/create-database-step-1.png" />
+</figure></p>
+<p>Give the database a meaningful title <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> that describes the contained data in few
+words and select a pre-configured container <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> from the list for this database. To
+finally create the database, press "Create" <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> as seen in Figure 5.</p>
+<p><figure markdown>
+<img alt="Create database form" class="img-border" src="/images/screenshots/create-database-step-2.png" />
+</figure></p>
+<p>After a few seconds, you can see the created database in the "Recent Databases" list, as seen in Figure 6.</p>
+<p><figure markdown>
+<img alt="View the created database" class="img-border" src="/images/screenshots/create-database-step-3.png" />
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p>Then list all available containers with their database engine descriptions and obtain a container id.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/container<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>Create a public databse with the container id from the previous step. You can also create a private database in this
+step, others can still see the metadata.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Danube Water Quality Measurements&quot;, &quot;container_id&quot;:1, &quot;is_public&quot;:true}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.id
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>List all available containers with their database engine descriptions and obtain a container id.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">containers</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_containers</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">containers</span><span class="p">)</span>
+</code></pre></div>
+<p>Create a public databse with the container id from the previous step. You can also create a private database in this
+step, others can still see the metadata.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_database</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Test&quot;</span><span class="p">,</span> <span class="n">container_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">is_public</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;database id: </span><span class="si">{</span><span class="n">database</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="import-dataset">Import Dataset<a class="headerlink" href="#import-dataset" title="Permanent link">&para;</a></h2>
+<p>A user wants to import a static dataset (e.g. from a .csv file) into a database that they have at least <code>write-own</code>
+access to. This is the default for self-created databases like above in <a href="#create-database">Create Databases</a>.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">UI</label><label for="__tabbed_3_2">Terminal</label><label for="__tabbed_3_3">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Login and select a database where you have at least <code>write-all</code> access (this is the case for e.g. self-created
+databases). Click the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 20H6.5q-2.28 0-3.89-1.57Q1 16.85 1 14.58q0-1.95 1.17-3.48 1.18-1.53 3.08-1.95.63-2.3 2.5-3.72Q9.63 4 12 4q2.93 0 4.96 2.04Q19 8.07 19 11q1.73.2 2.86 1.5 1.14 1.28 1.14 3 0 1.88-1.31 3.19T18.5 20H13v-7.15l1.6 1.55L16 13l-4-4-4 4 1.4 1.4 1.6-1.55Z"/></svg></span> IMPORT CSV" button <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> as seen in
+Figure 7.</p>
+<p><figure markdown>
+<img alt="Open the import CSV form" class="img-border" src="/images/screenshots/import-dataset-step-1.png" />
+</figure></p>
+<p>Provide the table name <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and optionally a table description <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>
+as seen in Figure 8.</p>
+<p><figure markdown>
+<img alt="Basic table information" class="img-border" src="/images/screenshots/import-dataset-step-2.png" />
+</figure></p>
+<p>Next, provide the dataset metadata that is necessary for import into the table by providing the dataset separator
+(e.g. <code>,</code> or <code>;</code> or <code>\t</code>) in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. If your dataset has a header line (the first line
+containing the names of the columns) set the number of lines to skip to 1 in field <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.
+If your dataset contains more lines that should be ignored, set the number of lines accordingly. If your dataset
+contains quoted values, indicate this by setting the field <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> accordingly
+in Figure 9.</p>
+<p>If your dataset contains encodings for <code>NULL</code> (e.g. <code>NA</code>), provide this encoding information
+in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Similar, if it contains encodings for boolean <code>true</code> (e.g. <code>1</code> or <code>YES</code>),
+provide this encoding information in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h6v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H9v-2h4v-2H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. For boolean <code>false</code> (e.g. <code>0</code> or <code>NO</code>),
+provide this information in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 7h4v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2m0 6v2h2v-2zm1-11a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p><figure markdown>
+<img alt="Dataset metadata necessary for import" class="img-border" src="/images/screenshots/import-dataset-step-3.png" />
+</figure></p>
+<p>Select the dataset file from your local computer by clicking <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> or dragging the
+dataset file onto the field in Figure 10.</p>
+<p><figure markdown>
+<img alt="Dataset import file" class="img-border" src="/images/screenshots/import-dataset-step-4.png" />
+</figure></p>
+<p>The table schema is suggested based on heuristics between the upload and the suggested schema in Figure 8. If your
+dataset has no column names present, e.g. you didn't provide a <em>Number of lines to skip</em> (c.f. Figure 6), then you
+need to provide a column name in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Provide a data type from the list of MySQL 8
+available data types <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Indicate if the column is (part of) a primary key
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> or if <code>NULL</code> values are allowed in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h6v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H9v-2h4v-2H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> or if a
+unique constraint is needed (no values in this column are then allowed to repeat) in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 7h4v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2m0 6v2h2v-2zm1-11a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p>Optionally, you can remove table column definitions by clicking the "REMOVE" button or add additional table column
+definitions by clicking the "ADD COLUMN" button in Figure 11.</p>
+<p><figure markdown>
+<img alt="Confirm the table schema and provide missing information" class="img-border" src="/images/screenshots/import-dataset-step-5.png" />
+</figure></p>
+<p>If a table column data type is of <code>DATE</code> or <code>TIMESTAMP</code> (or similar), provide a date format
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> from the list of available formats that are most similar to the one in the
+dataset as seen in Figure 12.</p>
+<p><figure markdown>
+<img alt="Confirm the table schema and provide missing information" class="img-border" src="/images/screenshots/import-dataset-step-6.png" />
+</figure></p>
+<p>When you are finished with the table schema definition, the dataset is imported and a table is created. You are
+being redirected automatically to the table info page upon success, navigate to the "DATA" tab
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. You can still delete the table <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> as long as
+no identifier is associated with it <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p>Public databases allow anyone to download <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> the table data as dataset file. Also
+it allows anyone to view the recent history of inserted data <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h6v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H9v-2h4v-2H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> dialog in Figure
+13.</p>
+<p><figure markdown>
+<img alt="Table data" class="img-border" src="/images/screenshots/import-dataset-step-7.png" />
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p>Select a database where you have at least <code>write-all</code> access (this is the case for e.g. self-created databases).</p>
+<p>Upload the dataset via the <a href="https://github.com/adhocore/tusc.sh"><code>tusc</code></a> terminal application or use Python and
+copy the file key.</p>
+<div class="highlight"><pre><span></span><code>tusc<span class="w"> </span>-H<span class="w"> </span>http://&lt;hostname&gt;/api/upload/files<span class="w"> </span>-f<span class="w"> </span>danube.csv<span class="w"> </span>-b<span class="w"> </span>/dbrepo-upload/
+</code></pre></div>
+<p>Analyse the dataset and get the table column names and datatype suggestion.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;filename&quot;:&quot;FILEKEY&quot;,&quot;separator&quot;:&quot;,&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/analyse/datatypes<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>Provide the table name and optionally a table description along with the table columns.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;name&quot;:&quot;Danube water levels&quot;,&quot;description&quot;:&quot;Measurements of the river danube water levels&quot;,&quot;columns&quot;:[{&quot;name&quot;:&quot;datetime&quot;,&quot;type&quot;:&quot;timestamp&quot;,&quot;dfid&quot;:1,&quot;primary_key&quot;:false,&quot;null_allowed&quot;:true},{&quot;name&quot;:&quot;level&quot;,&quot;type&quot;:&quot;bigint&quot;,&quot;size&quot;:255,&quot;primary_key&quot;:false,&quot;null_allowed&quot;:true}]}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/table<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.id
+</code></pre></div>
+<p>Next, provide the dataset metadata that is necessary for import into the table by providing the dataset separator
+(e.g. <code>,</code> or <code>;</code> or <code>\t</code>). If your dataset has a header line (the first line containing the names of the columns)
+set the number of lines to skip to 1. If your dataset contains more lines that should be ignored, set the number of
+lines accordingly. If your dataset contains quoted values, indicate this by setting the field accordingly.</p>
+<p>If your dataset contains encodings for <code>NULL</code> (e.g. <code>NA</code>), provide this encoding information. Similar, if it
+contains encodings for boolean <code>true</code> (e.g. <code>1</code> or <code>YES</code>), provide this encoding information. For boolean <code>false</code>
+(e.g. <code>0</code> or <code>NO</code>), provide this information.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;location&quot;:&quot;FILEKEY&quot;,&quot;separator&quot;:&quot;,&quot;,&quot;quote&quot;:&quot;\&quot;&quot;,&quot;skip_lines&quot;:1,&quot;null_element&quot;:&quot;NA&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/table/1/data/import<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>When you are finished with the table schema definition, the dataset is imported and a table is created. View the
+table data:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/table/1/data?page<span class="o">=</span><span class="m">0</span><span class="p">&amp;</span><span class="nv">size</span><span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Select a database where you have at least <code>write-all</code> access (this is the case for e.g. self-created databases).
+Upload the dataset to analyse the dataset and get the table column names and datatype suggestion.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">analysis</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">analyse_datatypes</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;/path/to/dataset.csv&quot;</span><span class="p">,</span>
+                                    <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;analysis: </span><span class="si">{</span><span class="n">analysis</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># separator=, columns={(id, bigint), ...}, line_termination=\n</span>
+</code></pre></div>
+<p>Provide the table name and optionally a table description along with the table columns.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">table</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_table</span><span class="p">(</span><span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                            <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Sensor Data&quot;</span><span class="p">,</span>
+                            <span class="n">constraints</span><span class="o">=</span><span class="n">CreateTableConstraints</span><span class="p">(),</span>
+                            <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="n">CreateTableColumn</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;id&quot;</span><span class="p">,</span>
+                                                       <span class="nb">type</span><span class="o">=</span><span class="n">ColumnType</span><span class="o">.</span><span class="n">BIGINT</span><span class="p">,</span>
+                                                       <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                                       <span class="n">null_allowed</span><span class="o">=</span><span class="kc">False</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;table id: </span><span class="si">{</span><span class="n">table</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Next, provide the dataset metadata that is necessary for import into the table by providing the dataset separator
+(e.g. <code>,</code> or <code>;</code> or <code>\t</code>). If your dataset has a header line (the first line containing the names of the columns)
+set the number of lines to skip to 1. If your dataset contains more lines that should be ignored, set the number of
+lines accordingly. If your dataset contains quoted values, indicate this by setting the field accordingly.</p>
+<p>If your dataset contains encodings for <code>NULL</code> (e.g. <code>NA</code>), provide this encoding information. Similar, if it
+contains encodings for boolean <code>true</code> (e.g. <code>1</code> or <code>YES</code>), provide this encoding information. For boolean <code>false</code>
+(e.g. <code>0</code> or <code>NO</code>), provide this information.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">import_table_data</span><span class="p">(</span><span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">table_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+                         <span class="n">file_path</span><span class="o">=</span><span class="s2">&quot;/path/to/dataset.csv&quot;</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="s2">&quot;,&quot;</span><span class="p">,</span>
+                         <span class="n">skip_lines</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">line_encoding</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>When you are finished with the table schema definition, the dataset is imported and a table is created. View the
+table data:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">get_table_data</span><span class="p">(</span><span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">table_id</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="import-database-dump">Import Database Dump<a class="headerlink" href="#import-database-dump" title="Permanent link">&para;</a></h2>
+<p>A user wants to import a database dump in <code>.sql</code> (or in <code>.sql.gz</code>) format into DBRepo.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">UI</label><label for="__tabbed_4_2">Terminal</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>First, create a new database as descriped in the <a href="#create-database">Create Database</a> use-case above. Then, import
+the database dump <code>dump.sql</code> via the <a href="https://www.mysql.com/products/workbench/">MySQL Workbench</a> client which is
+semi-compatible with MariaDB databases, i.e. core features work some status/performance features do not.</p>
+<p>Setup a new connection in the MySQL Workbench (c.f. Figure 14) by clicking the small
+"<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m0-18A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2m1 5h-2v4H7v2h4v4h2v-4h4v-2h-4z"/></svg></span>" button <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> to open the dialog. In the opened dialog
+fill out the connection parameters (for local deployments the hostname is <code>127.0.0.1</code> and port <code>3307</code> for the
+<a href="/system-databases-data/">Data Database</a> <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p>The default credentials are username <code>root</code> and password <code>dbrepo</code>, type the password in
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and click the "OK" button. Then finish the setup of the new connection by
+clicking the "OK" button <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p><figure markdown>
+<img alt="Setup New Connection in MySQL Workbench" src="/images/screenshots/import-database-dump-step-1.png" />
+</figure></p>
+<p>Now you should be able to see some statistics for the Data Database (c.f. Figure 15), especially that it is running
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and basic connection and version information <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p><figure markdown>
+<img alt="Server status of the Data Database in MySQL Workbench" src="/images/screenshots/import-database-dump-step-2.png" />
+</figure></p>
+<p>Then proceed to import the database dump <code>dump.sql</code> by clicking "Data Import/Restore"
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and select "Import from Self-Contained File" in the Import Options. Then
+select the <code>dump.sql</code> file in the file path selection. Last, select the database you want to import this <code>dump.sql</code>
+into <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> (you can also create a new database for the import by clicking "New...").
+The import starts after clicking "Start Import" <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h6v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H9v-2h4v-2H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p><figure markdown>
+<img alt="Data Import/Restore in MySQL Workbench" src="/images/screenshots/import-database-dump-step-3.png" />
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p>First, create a new database as descriped in the <a href="#create-database">Create Database</a> use-case above. Then, import
+the database dump <code>dump.sql</code> via the <code>mariadb</code> client.</p>
+<div class="highlight"><pre><span></span><code>mariadb<span class="w"> </span>-H127.0.0.1<span class="w"> </span>-p3307<span class="w"> </span>-uUSERNAME<span class="w"> </span>-pYOURPASSWORD<span class="w"> </span>db_name<span class="w"> </span>&lt;<span class="w"> </span>dump.sql
+</code></pre></div>
+<p>Alternatively, if your database dump is compressed, import the <code>dump.sql.gz</code> by piping it through <code>gunzip</code>.</p>
+<div class="highlight"><pre><span></span><code>gunzip<span class="w"> </span>&lt;<span class="w"> </span>dump.sql.gz<span class="w"> </span><span class="p">|</span><span class="w"> </span>mysql<span class="w"> </span>-H127.0.0.1<span class="w"> </span>-p3307<span class="w"> </span>-uUSERNAME<span class="w"> </span>-pYOURPASSWORD<span class="w"> </span>db_name
+</code></pre></div>
+<p>The <a href="/system-services-metadata">Metadata Service</a> periodically (by default configuration every 60 seconds) checks
+and adds missing tables and views to the <a href="/system-databases-metadata">Metadata Database</a>, the database dump
+will be visible afterwards. Currently, date formats for columns with time types (e.g. <code>DATE</code>, <code>TIMESTAMP</code>) are
+assumed to match the first date format found for the database image. This may need to be manually specified by the
+administrator.</p>
+<div class="admonition example">
+<p class="admonition-title">Specifying a custom date format</p>
+<p>In case the pre-defined date formats are not matching the found date format in the database dump, the system
+administrator needs to add it manually in the <a href="/system-databases-metadata">Metadata Database</a>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">`</span><span class="n">mdb_images_date</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">iid</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">database_format</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">unix_format</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">example</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">has_time</span><span class="o">`</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;%d.%c.%Y&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;dd.MM.yyyy&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;15.01.2024&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">false</span><span class="p">),</span>
+<span class="w">       </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;%Y-%c-%d %l:%i:%S %p&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;yyyy-MM-dd ll:mm:ss r&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;2024-01-15 06:23:12 AM&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">true</span><span class="p">);</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+</div>
+<h2 id="import-live-data">Import Live Data<a class="headerlink" href="#import-live-data" title="Permanent link">&para;</a></h2>
+<p>A user wants to import live data from e.g. sensor measurements fast and without delay into a table in DBRepo.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Terminal</label><label for="__tabbed_5_2">JDBC API</label><label for="__tabbed_5_3">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Add a data tuple to an already existing table where the user has at least <code>write-own</code> access.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;data&quot;:{&quot;column1&quot;: &quot;value1&quot;, &quot;column2&quot;: &quot;value2&quot;}}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/table/1/data
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Add a data tuple to an already existing table where the user has at least <code>write-own</code> access. Connect to the
+database via JDBC, you can obtain the connection string in the UI under the database info (c.f. Figure 14).</p>
+<p><figure markdown>
+<img alt="JDBC connection information" class="img-border" src="/images/screenshots/database-jdbc.png" />
+</figure></p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">`</span><span class="n">danube_water_levels</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">datetime</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="k">level</span><span class="o">`</span><span class="p">)</span>
+<span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">NOW</span><span class="p">(),</span><span class="w"> </span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>Add a data tuple to an already existing table where the user has at least <code>write-own</code> access. Connect to the
+database via AMQP, you can obtain the connection string in the UI under the table info (c.f. Figure 14).</p>
+<p><figure markdown>
+<img alt="AMQP connection information" class="img-border" src="/images/screenshots/table-amqp.png" />
+</figure></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.AmqpClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">AmqpClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">AmqpClient</span><span class="p">(</span><span class="n">broker_host</span><span class="o">=</span><span class="s2">&quot;test.dbrepo.tuwien.ac.at&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">publish</span><span class="p">(</span><span class="n">exchange</span><span class="o">=</span><span class="s2">&quot;dbrepo&quot;</span><span class="p">,</span> <span class="n">routing_key</span><span class="o">=</span><span class="s2">&quot;dbrepo.database_feed.test&quot;</span><span class="p">,</span>
+               <span class="n">data</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;precipitation&#39;</span><span class="p">:</span> <span class="mf">2.4</span><span class="p">})</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="export-subset">Export Subset<a class="headerlink" href="#export-subset" title="Permanent link">&para;</a></h2>
+<p>A user wants to create a subset and export it as csv file.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="6:4"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><input id="__tabbed_6_3" name="__tabbed_6" type="radio" /><input id="__tabbed_6_4" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">UI</label><label for="__tabbed_6_2">Terminal</label><label for="__tabbed_6_3">JDBC</label><label for="__tabbed_6_4">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Login and select a database where you have at least <code>read</code> access (this is the case for e.g. self-created
+databases). Click the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m22.7 19-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4"/></svg></span> CREATE SUBSET" button <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> as seen in
+Figure 17.</p>
+<p><figure markdown>
+<img alt="Open the create subset form" class="img-border" src="/images/screenshots/export-subset-step-1.png" />
+</figure></p>
+<p>A subset can be created by using our query builder that is visible by default in the "SIMPLE" tab. First, a source
+table <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> needs to be selected, then the columns that are part of the subset in
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Optionally the subset can be filtered. The subset query (=SQL) is displayed
+in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> in Figure 18.</p>
+<p>Once you are confident the query covers the desired result, click "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.5 5.5c1.09 0 2-.92 2-2a2 2 0 0 0-2-2c-1.11 0-2 .88-2 2 0 1.08.89 2 2 2M9.89 19.38l1-4.38L13 17v6h2v-7.5l-2.11-2 .61-3A7.3 7.3 0 0 0 19 13v-2c-1.91 0-3.5-1-4.31-2.42l-1-1.58c-.4-.62-1-1-1.69-1-.31 0-.5.08-.81.08L6 8.28V13h2V9.58l1.79-.7L8.19 17l-4.9-1-.4 2z"/></svg></span> Create".</p>
+<p><figure markdown>
+<img alt="Subset query building" class="img-border" src="/images/screenshots/export-subset-step-2.png" />
+</figure></p>
+<p>Once the subset is created (may take some seconds), the user is presented with the result set in
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>, more information on the subset can be obtained by clicking "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13.5 5.5c1.09 0 2-.92 2-2a2 2 0 0 0-2-2c-1.11 0-2 .88-2 2 0 1.08.89 2 2 2M9.89 19.38l1-4.38L13 17v6h2v-7.5l-2.11-2 .61-3A7.3 7.3 0 0 0 19 13v-2c-1.91 0-3.5-1-4.31-2.42l-1-1.58c-.4-.62-1-1-1.69-1-.31 0-.5.08-.81.08L6 8.28V13h2V9.58l1.79-.7L8.19 17l-4.9-1-.4 2z"/></svg></span>
+View" on the top (c.f. Figure 19).</p>
+<p><figure markdown>
+<img alt="Subset result set" class="img-border" src="/images/screenshots/export-subset-step-3.png" />
+</figure></p>
+<p>The subset information page in Figure 20 shows the most important metadata like subset query hash and result hash
+(e.g. for reproducability) and subset result count. Note that although this subset is stored in the query store
+already, it is only temporarly stored there for 24 hours (default configuration).</p>
+<p>After that the subset is deleted from the query store. If you wish to keep the subset (with metadata information),
+click "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V7zm2 16H5V5h11.17L19 7.83zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M6 6h9v4H6z"/></svg></span> SAVE" in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. The subset can be exported to
+a csv file by clicking the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 20h14v-2H5m14-9h-4V3H9v6H5l7 7z"/></svg></span> DATA .CSV" button <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p><figure markdown>
+<img alt="Subset information" class="img-border" src="/images/screenshots/export-subset-step-4.png" />
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p>A subset can be created by passing a SQL query to a database where you have at least <code>read</code> access (this is the case
+for e.g. self-created databases).</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;statement&quot;:&quot;SELECT `id`,`datetime`,`level` FROM `danube_water_levels`&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/query?page<span class="o">=</span><span class="m">0</span><span class="p">&amp;</span><span class="nv">sort</span><span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.id
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An optional field <code>"timestamp":"2024-01-16 23:00:00"</code> can be provided to execute a query with a system time of
+2024-01-16 23:00:00 (UTC). Make yourself familiar with the concept
+of <a href="https://mariadb.com/kb/en/system-versioned-tables/">System Versioned Tables</a> for more information.</p>
+</div>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/query/1<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>The subset information shows the most important metadata like subset query hash and result hash (e.g. for
+reproducability) and subset result count. Note that although this subset is stored in the query store already, it is
+only temporarly stored there for 24 hours (default configuration).</p>
+<p>After that the subset is deleted from the query store. If you wish to keep the subset (with metadata information),
+persist it.</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;persist&quot;: true}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/query/1<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+</code></pre></div>
+<p>The subset can be exported to a <code>subset_export.csv</code> file (this also works for non-persisted subsets).</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Accept: text/csv&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>subset_export.csv<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/query/1
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<p>A subset can be created by passing a SQL query to a database where you have at least <code>read</code> access (this is the case
+for e.g. self-created databases). Connect to the database via JDBC, you can obtain the connection string in the UI
+under the database info (c.f. Figure 20).</p>
+<p><figure markdown>
+<img alt="JDBC connection information" class="img-border" src="/images/screenshots/database-jdbc.png" />
+</figure></p>
+<div class="highlight"><pre><span></span><code><span class="k">CALL</span><span class="w"> </span><span class="n">store_query</span><span class="p">(</span><span class="s1">&#39;SELECT `id`,`datetime`,`level` FROM `danube_water_levels`&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">NOW</span><span class="p">(),</span><span class="w"> </span><span class="o">@</span><span class="n">subsetId</span><span class="p">)</span>
+</code></pre></div>
+<p>Afterwards, you can see the subset in the UI with subset id <code>@subsetId</code> and persist it there. Only the administrator
+can persist the subset in the <a href="/system-databases-data">Data Database</a> through JDBC by setting the <code>persisted</code>
+column to <code>true</code> in the <code>qs_queries</code> table.</p>
+</div>
+<div class="tabbed-block">
+<p>A subset can be created by passing a SQL query to a database where you have at least <code>read</code> access (this is the case
+for e.g. self-created databases).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">execute_query</span><span class="p">(</span><span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                              <span class="n">query</span><span class="o">=</span><span class="s2">&quot;SELECT `id`,`datetime` FROM `danube_water_levels`&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;subset id: </span><span class="si">{</span><span class="n">subset</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>An optional field <code>timestamp="2024-01-16 23:00:00"</code> can be provided to execute a query with a system time of
+2024-01-16 23:00:00 (UTC). Make yourself familiar with the concept
+of <a href="https://mariadb.com/kb/en/system-versioned-tables/">System Versioned Tables</a> for more information.</p>
+</div>
+<p>The subset information can be shown:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">subset</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_query</span><span class="p">(</span><span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">query_id</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">subset</span><span class="p">)</span>
+</code></pre></div>
+<p>The subset information shows the most important metadata like subset query hash and result hash (e.g. for
+reproducability) and subset result count. Note that although this subset is stored in the query store already, it is
+only temporarly stored there for 24 hours (default configuration).</p>
+<p>After that the subset is deleted from the query store. If you wish to keep the subset (with metadata information),
+persist it.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">update_query</span><span class="p">(</span><span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">query_id</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">persist</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>The subset can be exported to a <code>subset_export.csv</code> file (this also works for non-persisted subsets).</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">get_query_data</span><span class="p">(</span><span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">query_id</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;subset_export.csv&#39;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="assign-database-pid">Assign Database PID<a class="headerlink" href="#assign-database-pid" title="Permanent link">&para;</a></h2>
+<p>A user wants to assign a persistent identifier to a database owned by them.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="7:4"><input checked="checked" id="__tabbed_7_1" name="__tabbed_7" type="radio" /><input id="__tabbed_7_2" name="__tabbed_7" type="radio" /><input id="__tabbed_7_3" name="__tabbed_7" type="radio" /><input id="__tabbed_7_4" name="__tabbed_7" type="radio" /><div class="tabbed-labels"><label for="__tabbed_7_1">UI</label><label for="__tabbed_7_2">Terminal</label><label for="__tabbed_7_3">JDBC</label><label for="__tabbed_7_4">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Login and select a database where you are the owner (this is the case for e.g. self-created databases). Click
+the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7v2H9v6h1v2H6v-2h1V9H6V7zm6 0a2 2 0 0 1 2 2v6c0 1.11-.89 2-2 2h-4V7m4 2h-2v6h2z"/></svg></span> GET PID" button <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> as seen in Figure 21.</p>
+<p><figure markdown>
+<img alt="Open the get persisent identifier form" class="img-border" src="/images/screenshots/assign-database-pid-step-1.png" />
+</figure></p>
+<p>First, provide information on the dataset creator(s). Since the <a href="/system-services-metadata">Metadata Service</a>
+automatically resolves external PIDs, the easiest way is to provide the correct mandatory data is by filling the
+name identifier <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. The creator type <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>
+denotes either a natural person or organization. Optionally fill out the given
+name <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and family name <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>, both form the
+mandatory name <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h6v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H9v-2h4v-2H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Optionally provide an external affilation
+identifier <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 7h4v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2m0 6v2h2v-2zm1-11a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> which is automatically resolved. Optionally provide an affiliation
+name <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 17H9l4-8H9V7h6v2zm1-15a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> in Figure 22. You can change the order of creators with the up/down buttons
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M11 13v2h2v-2zm0-4v2h2V9zm0 8a2 2 0 0 1-2-2v-1.5a1.5 1.5 0 0 1 1.5-1.5A1.5 1.5 0 0 1 9 10.5V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5V15a2 2 0 0 1-2 2zm1-15a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
+<p><figure markdown>
+<img alt="Identifier creator fields" class="img-border" src="/images/screenshots/assign-database-pid-step-2.png" />
+</figure></p>
+<p>The identifier needs at least one title in the title field <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and optionally a
+title type <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> from the selection and a title
+language <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> from the available list of languages. Additional titles can be removed
+again <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> if they are not needed in Figure 23.</p>
+<p><figure markdown>
+<img alt="JDBC connection information" class="img-border" src="/images/screenshots/assign-database-pid-step-3.png" />
+</figure></p>
+<p>The identifier needs at least one description in the description field <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and
+optionally a description type <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> from the selection and a description
+language <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Fill the dataset publisher information
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and publication year <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h6v2h-4v2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H9v-2h4v-2H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and optionally a
+publication month and publication day in Figure 24.</p>
+<p><figure markdown>
+<img alt="Identifier description fields and publishing information" class="img-border" src="/images/screenshots/assign-database-pid-step-4.png" />
+</figure></p>
+<p>Optionally reference other PIDs <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>, if you added too much, removing a related
+identifier can be done by clicking the "REMOVE" button <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Add a license from the
+list <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> fitting to your interests and optionally provide the main language for the
+identifier <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> (c.f. Figure 25). This helps machines to understand the context of
+your data.</p>
+<p><figure markdown>
+<img alt="Related identifiers, license and language of the identifier" class="img-border" src="/images/screenshots/assign-database-pid-step-5.png" />
+</figure></p>
+<p>Optionally add funding information, again the <a href="/system-services-metadata">Metadata Service</a>
+automatically resolves external PIDs, the easiest way is to provide the correct mandatory data is by filling the
+funder identifier <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> that attempts to get the funder
+name <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. If you provide an award number <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and/or
+award title <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h2v4h2V7h2v10h-2v-4H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>, this information will be represented also in human-readable
+language on the identifier summary page (c.f. Figure 26).</p>
+<p><figure markdown>
+<img alt="Identifier funder information" class="img-border" src="/images/screenshots/assign-database-pid-step-6.png" />
+</figure></p>
+<p>Scroll to the top again and click the "<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V7zm2 16H5V5h11.17L19 7.83zm-7-7c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3M6 6h9v4H6z"/></svg></span> CREATE PID" button to create the PID. The
+result is displayed in Figure 27.</p>
+<p><figure markdown>
+<img alt="Identifier summary page" class="img-border" src="/images/screenshots/assign-database-pid-step-7.png" />
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p>Create a persistent identifier for a database where you are the owner (this is the case for self-created databases)
+using the HTTP API:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;type&quot;: &quot;database&quot;, &quot;titles&quot;: [{&quot;title&quot;: &quot;Danube water level measurements&quot;, &quot;language&quot;: &quot;en&quot;},{&quot;title&quot;: &quot;Donau Wasserstandsmessungen&quot;, &quot;language&quot;: &quot;de&quot;, &quot;type&quot;: &quot;TranslatedTitle&quot;}], &quot;descriptions&quot;: [{&quot;description&quot;: &quot;This dataset contains hourly measurements of the water level in Vienna from 1983 to 2015&quot;, &quot;language&quot;: &quot;en&quot;, &quot;type&quot;: &quot;Abstract&quot;}], &quot;funders&quot;: [{ &quot;funder_name&quot;: &quot;Austrian Science Fund&quot;, &quot;funder_identifier&quot;: &quot;https://doi.org/10.13039/100000001&quot;, &quot;funder_identifier_type&quot;: &quot;Crossref Funder ID&quot;, &quot;scheme_uri&quot;: &quot;http://doi.org/&quot;}], &quot;licenses&quot;: [{&quot;identifier&quot;: &quot;CC-BY-4.0&quot;, &quot;uri&quot;: &quot;https://creativecommons.org/licenses/by/4.0/legalcode&quot;}], &quot;publisher&quot;: &quot;Example University&quot;, &quot;creators&quot;: [{&quot;firstname&quot;: &quot;Martin&quot;, &quot;lastname&quot;: &quot;Weise&quot;, &quot;affiliation&quot;: &quot;TU Wien&quot;, &quot;creator_name&quot;: &quot;Weise, Martin&quot;, &quot;name_type&quot;: &quot;Personal&quot;, &quot;name_identifier&quot;: &quot;0000-0003-4216-302X&quot;, &quot;name_identifier_scheme&quot;: &quot;ORCID&quot;, &quot;affiliation_identifier&quot;: &quot;https://ror.org/04d836q62&quot;, &quot;affiliation_identifier_scheme&quot;: &quot;ROR&quot;}], &quot;database_id&quot;: 1, &quot;publication_day&quot;: 16, &quot;publication_month&quot;: 1, &quot;publication_year&quot;: 2024, &quot;related_identifiers&quot;: [{&quot;value&quot;: &quot;10.5334/dsj-2022-004&quot;, &quot;type&quot;: &quot;DOI&quot;, &quot;relation&quot;: &quot;Cites&quot;}]}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/identifier<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>.id
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Creating a PID directly in the <a href="/system-databases-metadata">Metadata Database</a> is not recommended! It bypasses
+validation and creation of external PIDs (e.g. DOI) and may lead to inconstistent data locally compared to
+external systems (e.g. DataCite Fabrica).</p>
+</div>
+<p>Create a local PID directly in the <a href="/system-databases-metadata">Metadata Database</a> by filling the tables in this
+order (they have foreign key dependencies).</p>
+<ol>
+<li><code>mdb_identifiers</code> ... identifier core information<ul>
+<li><code>mdb_identifier_creators</code> ... identifier creator list</li>
+<li><code>mdb_identifier_titles</code> ... identifier creator list</li>
+<li><code>mdb_identifier_descriptions</code> ... identifier description list</li>
+<li><code>mdb_identifier_funders</code> ... identifier funder list</li>
+<li><code>mdb_identifier_licenses</code> ... identifier license list</li>
+<li><code>mdb_related_identifiers</code> ... related identifier list</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="tabbed-block">
+<p>Create a persistent identifier for a database where you are the owner (this is the case for self-created databases)
+using the HTTP API:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">python.dbrepo.api.dto</span><span class="w"> </span><span class="kn">import</span> <span class="n">IdentifierType</span><span class="p">,</span> <span class="n">CreateIdentifierFunder</span><span class="p">,</span> <span class="n">CreateIdentifierDescription</span><span class="p">,</span> \
+    <span class="n">CreateIdentifierTitle</span><span class="p">,</span> <span class="n">Identifier</span><span class="p">,</span> <span class="n">CreateIdentifierCreator</span><span class="p">,</span> <span class="n">CreateRelatedIdentifier</span><span class="p">,</span> <span class="n">RelatedIdentifierType</span><span class="p">,</span> \
+    <span class="n">RelatedIdentifierRelation</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">identifier</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">create_identifier</span><span class="p">(</span>
+    <span class="n">database_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="nb">type</span><span class="o">=</span><span class="n">IdentifierType</span><span class="o">.</span><span class="n">DATABASE</span><span class="p">,</span>
+    <span class="n">creators</span><span class="o">=</span><span class="p">[</span><span class="n">CreateIdentifierCreator</span><span class="p">(</span>
+        <span class="n">creator_name</span><span class="o">=</span><span class="s2">&quot;Weise, Martin&quot;</span><span class="p">,</span>
+        <span class="n">name_identifier</span><span class="o">=</span><span class="s2">&quot;https://orcid.org/0000-0003-4216-302X&quot;</span><span class="p">)],</span>
+    <span class="n">titles</span><span class="o">=</span><span class="p">[</span><span class="n">CreateIdentifierTitle</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Danube river water measurements&quot;</span><span class="p">)],</span>
+    <span class="n">descriptions</span><span class="o">=</span><span class="p">[</span><span class="n">CreateIdentifierDescription</span><span class="p">(</span>
+        <span class="n">description</span><span class="o">=</span><span class="s2">&quot;This dataset contains hourly measurements of the water </span><span class="se">\</span>
+<span class="s2">         level in Vienna from 1983 to 2015&quot;</span><span class="p">)],</span>
+    <span class="n">funders</span><span class="o">=</span><span class="p">[</span><span class="n">CreateIdentifierFunder</span><span class="p">(</span>
+        <span class="n">funder_name</span><span class="o">=</span><span class="s2">&quot;Austrian Science Fund&quot;</span><span class="p">,</span>
+        <span class="n">funder_identifier</span><span class="o">=</span><span class="s2">&quot;https://doi.org/10.13039/100000001&quot;</span><span class="p">)],</span>
+    <span class="n">licenses</span><span class="o">=</span><span class="p">[</span><span class="n">Identifier</span><span class="p">(</span><span class="n">identifier</span><span class="o">=</span><span class="s2">&quot;CC-BY-4.0&quot;</span><span class="p">)],</span>
+    <span class="n">publisher</span><span class="o">=</span><span class="s2">&quot;TU Wien&quot;</span><span class="p">,</span>
+    <span class="n">publication_year</span><span class="o">=</span><span class="mi">2024</span><span class="p">,</span>
+    <span class="n">related_identifiers</span><span class="o">=</span><span class="p">[</span><span class="n">CreateRelatedIdentifier</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="s2">&quot;https://doi.org/10.5334/dsj-2022-004&quot;</span><span class="p">,</span>
+        <span class="nb">type</span><span class="o">=</span><span class="n">RelatedIdentifierType</span><span class="o">.</span><span class="n">DOI</span><span class="p">,</span>
+        <span class="n">relation</span><span class="o">=</span><span class="n">RelatedIdentifierRelation</span><span class="o">.</span><span class="n">CITES</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;identifier id: </span><span class="si">{</span><span class="n">identifier</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+</div>
+</div>
+</div>
+<h2 id="private-database-access">Private Database &amp; Access<a class="headerlink" href="#private-database-access" title="Permanent link">&para;</a></h2>
+<p>A user wants a public database to be private and only give specific users access.</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><input id="__tabbed_8_4" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">UI</label><label for="__tabbed_8_2">Terminal</label><label for="__tabbed_8_3">JDBC</label><label for="__tabbed_8_4">Python</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p>Login and select a database where you are the owner (this is the case for e.g. self-created databases). Click
+the "SETTINGS" tab <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and set the visibility to <code>Private</code>
+<span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>, then click the "MODIFY VISIBILITY" button to apply the changes.</p>
+<p>An overview of users who have access to this database is given in <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and can be
+changed or revoked at any time by the owner. To give a user account access, click the "GIVE ACCESS" button to open
+the dialog (c.f. Figure 28).</p>
+<p><figure markdown>
+<img alt="Database settings for visibility and access" class="img-border" src="/images/screenshots/private-database-access-step-1.png" />
+</figure></p>
+<p>Give a user from the list access to the database by selecting the qualified username from the
+list <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and the access <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>, e.g. <code>read</code> for
+allowing users to view the private data (c.f. Figure 29).</p>
+<p><figure markdown>
+<img alt="Database acccess dialog" class="img-border" src="/images/screenshots/private-database-access-step-2.png" />
+</figure></p>
+</div>
+<div class="tabbed-block">
+<p>To change the visibility of a database where you are the owner (this is the case for self-created databases), send
+a request to the HTTP API:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>PUT<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;is_public&quot;: true}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/visibility
+</code></pre></div>
+<p>To give a user (with id <code>e9bf38a0-a254-4040-87e3-92e0f09e29c8</code> access to this database (e.g. read access), update
+their access using the HTTP API:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-X<span class="w"> </span>POST<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-u<span class="w"> </span><span class="s2">&quot;foo:bar&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-d<span class="w"> </span><span class="s1">&#39;{&quot;type&quot;: &quot;read&quot;}&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://&lt;hostname&gt;/api/database/1/access/e9bf38a0-a254-4040-87e3-92e0f09e29c8
+</code></pre></div>
+<p>In case the user already has access, use the method <code>PUT</code>.</p>
+</div>
+<div class="tabbed-block">
+<p>To change the visibility of a database as administrator with direct JDBC access to
+the <a href="/system-databases-metadata">Metadata Database</a>, change the visibility directly by executing the SQL-query
+in the <code>fda</code> schema:</p>
+<div class="highlight"><pre><span></span><code><span class="k">UPDATE</span><span class="w"> </span><span class="o">`</span><span class="n">fda</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">mdb_databases</span><span class="o">`</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="o">`</span><span class="n">is_public</span><span class="o">`</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">TRUE</span><span class="p">;</span>
+</code></pre></div>
+<p>To give a user (with id <code>e9bf38a0-a254-4040-87e3-92e0f09e29c8</code> access to this database (e.g. read access), update
+their access using the JDBC API:</p>
+<div class="highlight"><pre><span></span><code><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="o">`</span><span class="n">fda</span><span class="o">`</span><span class="p">.</span><span class="o">`</span><span class="n">mdb_have_access</span><span class="o">`</span><span class="w"> </span><span class="p">(</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">database_id</span><span class="o">`</span><span class="p">,</span><span class="w"> </span><span class="o">`</span><span class="n">access_type</span><span class="o">`</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;e9bf38a0-a254-4040-87e3-92e0f09e29c8&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;READ&#39;</span><span class="p">);</span>
+</code></pre></div>
+<p>In case the user already has access, use an <code>UPDATE</code> query.</p>
+</div>
+<div class="tabbed-block">
+<p>To change the visibility of a database where you are the owner (this is the case for self-created databases), send
+a request to the HTTP API:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">update_database_visibility</span><span class="p">(</span><span class="o">&lt;</span><span class="n">database_id</span><span class="o">&gt;</span><span class="p">,</span>
+                                  <span class="n">is_public</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                  <span class="n">is_schema_public</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                                  <span class="n">is_dashboard_enabled</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<p>To give a user (with id <code>e9bf38a0-a254-4040-87e3-92e0f09e29c8</code> access to this database (e.g. read access), update
+their access using the HTTP API:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">dbrepo.RestClient</span><span class="w"> </span><span class="kn">import</span> <span class="n">RestClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">python.dbrepo.api.dto</span><span class="w"> </span><span class="kn">import</span> <span class="n">AccessType</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">RestClient</span><span class="p">(</span><span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;http://&lt;hostname&gt;&quot;</span><span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s2">&quot;foo&quot;</span><span class="p">,</span>
+                    <span class="n">password</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">create_database_access</span><span class="p">(</span><span class="o">&lt;</span><span class="n">database_id</span><span class="o">&gt;</span><span class="p">,</span>
+                              <span class="nb">type</span><span class="o">=</span><span class="n">AccessType</span><span class="o">.</span><span class="n">READ</span><span class="p">,</span>
+                              <span class="n">user_id</span><span class="o">=</span><span class="s2">&quot;e9bf38a0-a254-4040-87e3-92e0f09e29c8&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>In case the user already has access, use the method <code>update_database_access</code> or revoke <code>delete_database_access</code>.</p>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      CC-BY 4.0 2020-2026 The DBRepo developers
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://artifacthub.io/packages/helm/dbrepo/dbrepo" target="_blank" rel="noopener" title="artifacthub.io" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 24a3.43 3.43 0 0 1-1.78-.5l-7.51-4.292A3.4 3.4 0 0 1 1.07 16.3V7.73c0-1.253.636-2.37 1.76-3.01L10.25.479a3.43 3.43 0 0 1 3.496.001l7.42 4.238a3.4 3.4 0 0 1 1.762 3.01v8.582c0 .967-.443 2.164-1.637 2.898l-7.51 4.292c-.564.344-1.199.5-1.782.5zm-.5-21.347-7.545 4.31c-.2.156-.379.368-.379.767l.001 8.67a.96.96 0 0 0 .373.635l7.56 4.316c.266.172.664.21.985 0l7.518-4.296a.92.92 0 0 0 .41-.654V7.73a.92.92 0 0 0-.377-.766L12.5 2.652a.91.91 0 0 0-1 .001"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://pypi.org/project/dbrepo/" target="_blank" rel="noopener" title="pypi.org" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6M286.2 444.7a20.4 20.4 0 1 1 0-40.7 20.4 20.4 0 1 1 0 40.7M167.8 248.1h106.8c29.7 0 53.4-24.5 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4m-6.6-183.4a20.4 20.4 0 1 1 0 40.8 20.4 20.4 0 1 1 0-40.8"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/DBRepo-Project/dbrepo-web" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":["content.code.annotate","content.code.copy","content.tooltips","navigation.tabs","navigation.tabs.sticky","navigation.instant","navigation.sections","search.suggest"],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"default":"1.13","provider":"mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.6e5f0216.min.js"></script>
+      
+    
+  </body>
+</html>

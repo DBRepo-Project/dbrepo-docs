@@ -38,6 +38,11 @@ jobs:
           which zensical
           which mike
 
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Deploy with mike
         run: mike deploy --push --update-aliases 1.13 latest
 

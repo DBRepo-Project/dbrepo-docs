@@ -1,10 +1,10 @@
 [project]
 site_name = "DBRepo"
 site_url = "https://dbrepo.github.io/"
-repo_url = "https://github.com/DBRepo-Project/dbrepo-web"
-repo_name = "DBRepo-Project/dbrepo-web"
+repo_url = "https://github.com/DBRepo-Project/dbrepo"
+repo_name = "DBRepo-Project/dbrepo"
 site_author = "The DBRepo developers"
-copyright = "CC-BY 4.0 2020-2026 The DBRepo developers"
+copyright = "This work is licensed under <a href=\"https://creativecommons.org/licenses/by-sa/4.0/\">CC-BY 4.0</a>. &copy; 2020-2026 <a href=\"https://github.com/DBRepo-Project/dbrepo/graphs/contributors\">The DBRepo developers</a>"
 
 
 nav = [
@@ -183,4 +183,4 @@ link = "https://pypi.org/project/dbrepo/"
 
 [[project.extra.social]]
 icon = "fontawesome/brands/github"
-link = "https://github.com/DBRepo-Project/dbrepo-web"
+link = "https://github.com/DBRepo-Project/dbrepo"

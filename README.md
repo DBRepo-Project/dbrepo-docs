@@ -22,7 +22,7 @@ Build the static site:
 
 The GitHub Actions workflow in `.github/workflows/docs.yml` builds the site on pull requests and pushes to `main`. Pushes to `main` deploy the generated `site/` directory to GitHub Pages.
 
-Repository settings need GitHub Pages configured with `GitHub Actions` as the source.
+Repository settings need GitHub Pages configured with "Deploy from a branch: gh-pages" as the source.
 
 ## Versioning
 

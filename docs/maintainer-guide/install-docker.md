@@ -30,7 +30,7 @@ docker compose up -d
     * min. 20GB free RAM memory
 
 Since DBRepo is intended to be a publicly available repository, an optional fixed/static IP-address with optional
-SSL/TLS certificate is recommended. Follow the [Secure Installation](#secure-installation) guide.
+SSL/TLS certificate is recommended. Follow the [Secure Installation](configuration/) guide.
 
 ## Uninstall
 

@@ -77,8 +77,8 @@ kubectl run -i --rm --tty volpod --overrides='
 }' --image="bitnami/minideb"
 ```
 
-If there exists a node with `safe_to_bootstrap: 1`, use this node `M` to [bootstrap](#bootstrap) from. Otherwise,
-if **no** node is safe to bootstrap from, follow the next section of [unexpected shutdown](#unexpected-shutdown)
+If there exists a node with `safe_to_bootstrap: 1`, use this node `M` to bootstrap from. Otherwise,
+if **no** node is safe to bootstrap from, follow the next section of [unexpected shutdown](#crash-shutdown)
 scenario.
 
 ```shell

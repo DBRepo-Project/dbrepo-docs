@@ -21,7 +21,7 @@ data into DBRepo. Then we access the data from DBRepo through the Jupyter Notebo
 the wavelength of the light source `f=254` nm. The remainder of the work was to match the chart design using `pyplot`.
 
 <figure markdown>
-![Jupyter Notebook](/images/screenshots/pls-chart.png){ .img-border }
+![Jupyter Notebook](../images/screenshots/pls-chart.png){ .img-border }
 <figcaption>Figure 1: Reproduction of experiment chart.</figcaption>
 </figure>
 

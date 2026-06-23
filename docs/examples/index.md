@@ -10,10 +10,10 @@ author: Martin Weise
 
     Data that is of high volume or -variety.
 
-    [:octicons-arrow-right-24: Air Quality](/examples/air/),
-    [:octicons-arrow-right-24: Industry 4.0 Power Data](/examples/power/),
-    [:octicons-arrow-right-24: Health Data Data](/examples/health/),
-    [:octicons-arrow-right-24: Hazard Data](/examples/hazard/),
+    [:octicons-arrow-right-24: Air Quality](air/),
+    [:octicons-arrow-right-24: Industry 4.0 Power Data](power/),
+    [:octicons-arrow-right-24: Health Data Data](health/),
+    [:octicons-arrow-right-24: Hazard Data](hazard/),
 
 -   :material-robot:{ .lg .middle } **Machine Learning Data**
 
@@ -21,7 +21,7 @@ author: Martin Weise
 
     Quality data sources for algorithmic systems.
 
-    [:octicons-arrow-right-24: Music-ML Data](/examples/music/)
+    [:octicons-arrow-right-24: Music-ML Data](music/)
 
 -   :material-microscope:{ .lg .middle } **Lab Research Data**
 
@@ -29,9 +29,9 @@ author: Martin Weise
 
     Desk research data sets.
 
-    [:octicons-arrow-right-24: XPS Data](/examples/xps-data/),
-    [:octicons-arrow-right-24: PLS Data](/examples/pls-data/),
-    [:octicons-arrow-right-24: Survey Data](/examples/survey/),
+    [:octicons-arrow-right-24: XPS Data](xps-data/),
+    [:octicons-arrow-right-24: PLS Data](pls-data/),
+    [:octicons-arrow-right-24: Survey Data](survey/),
 
 </div>
 

@@ -12,10 +12,10 @@ Reference:
 
 Related:
 
-* [Metadata Service](/dev/services/metadata-service)
+* [Metadata Service](../dev/services/metadata-service)
 
 ### Harvester
 
 We are OpenAIRE Provide 2.0-compliant:
 
-![OpenAIRE Provide Logo](/images/logos/openaire-provide.png){ width=200 }
+![OpenAIRE Provide Logo](../images/logos/openaire-provide.png){ width=200 }

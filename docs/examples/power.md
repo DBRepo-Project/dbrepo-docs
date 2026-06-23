@@ -14,13 +14,13 @@ transmission of compressed air, acceleration, forces at work and temperatures to
 maintenance, quality of products and ultimately process efficiency and -productivity.
 
 <figure markdown>
-![](/images/screenshots/power.png)
+![](../images/screenshots/power.png)
 <figcaption>Figure 1: Total power usage of machine floor TU Pilotfabrik, image from <a href="https://publik.tuwien.ac.at/files/PubDat_252294.pdf">Hacksteiner (2016)</a>.</figcaption>
 </figure>
 
 ## Solution
 
-We connected our [Broker Service](/api/broker-service) with the MQTT broker of the Pilotfabrik using a self-written
+We connected our [Broker Service](../api/broker) with the MQTT broker of the Pilotfabrik using a self-written
 connector service, bridging the two different protocols. The tuples are ingested into DBRepo at a rate of about 10/s.
 
 ## DBRepo Features

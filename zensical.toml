@@ -117,6 +117,15 @@ unresolved_references = false
 absolute_links = "warn"
 anchors = "warn"
 unrecognized_links = "warn"
+# NOTE: The categories above do NOT detect empty link targets `()`, so an empty
+# href renders as a dead/self-referential link in production while `zensical
+# build --strict` still exits 0 ("No issues found"). The phase-gate/CI
+# verification MUST run an explicit empty-link sweep alongside the --strict
+# build to catch this defect class:
+#   rg -n '\]\(\s*\)' docs --glob '*.md'
+# Phase 5 should keep this sweep even after escalating validation to "error",
+# since empty `()` targets are not covered by absolute_links/anchors/
+# unrecognized_links.
 
 [project.theme]
 font = false

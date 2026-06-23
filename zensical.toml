@@ -111,10 +111,12 @@ nav = [
 [project.validation]
 unresolved_references = false
 
+# Validation severity: warn = surfaces in build output without blocking deploy
+# Phase 5 may tighten to "error" once all links are confirmed clean
 [project.validation.links]
-absolute_links = "ignore"
-anchors = "ignore"
-unrecognized_links = "ignore"
+absolute_links = "warn"
+anchors = "warn"
+unrecognized_links = "warn"
 
 [project.theme]
 font = false

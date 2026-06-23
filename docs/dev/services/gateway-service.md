@@ -109,7 +109,7 @@ scrape_configs:
 ## Security
 
 1. Enable TLS encryption by downloading
-   the [`dbrepo.conf`](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/dbrepo-gateway-service/dbrepo.conf)
+   the [`dbrepo.conf`](https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/dbrepo-gateway-service/dbrepo.conf)
    and editing the *server* block to include your TLS certificate (with trust chain) `fullchain.pem` and TLS private key
    `privkey.pem` (PEM-encoded).
 

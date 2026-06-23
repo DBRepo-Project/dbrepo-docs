@@ -31,7 +31,7 @@ measurements used in databases.
 ## Index
 
 There is only one
-index [`database`](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/dev/dbrepo-search-db/init/indices/database.json)
+index [`database`](https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/dbrepo-search-db/init/indices/database.json)
 that holds all the metadata information which is mirrored from
 the [Metadata Database](metadata-db).
 

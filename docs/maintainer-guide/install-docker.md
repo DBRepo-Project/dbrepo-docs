@@ -13,7 +13,7 @@ author: Martin Weise
 Install DBRepo in one line:
 
 ```shell
-curl -sSL https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/release-1.13/.scripts/install.sh | bash
+curl -sSL https://raw.githubusercontent.com/DBRepo-Project/dbrepo/release-1.13/.scripts/install.sh | bash
 ```
 
 Then start DBRepo and visit [`http://localhost`](http://localhost) in your browser:

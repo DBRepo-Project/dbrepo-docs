@@ -8,7 +8,7 @@ Operational user-guide describing the graphical deposit, review and management o
 
 Jump right into and use our pre-configured starter resources:
 
-- Download the [Jupyter Notebook](https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/release-1.13/.jupyter/starter-notebook.ipynb?ref_type=heads&inline=false)
+- Download the [Jupyter Notebook](https://raw.githubusercontent.com/DBRepo-Project/dbrepo/release-1.13/.jupyter/starter-notebook.ipynb)
   for local development, or
 - Use the Jupyter image `registry.datalab.tuwien.ac.at/dbrepo/starter-notebook:1.13.4` for your Jupyterhub infrastructure
 

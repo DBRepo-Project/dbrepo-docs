@@ -7,11 +7,11 @@ author: Martin Weise
 [![Documentation](https://github.com/DBRepo-Project/dbrepo-web/actions/workflows/docs.yml/badge.svg)](https://github.com/DBRepo-Project/dbrepo-web/actions/workflows/docs.yml){ tabindex=-1 }
 [![Latest Release](https://img.shields.io/github/v/release/DBRepo-Project/dbrepo)](https://github.com/DBRepo-Project/dbrepo/releases){ tabindex=-1 }
 [![PyPI Library version](https://img.shields.io/pypi/v/dbrepo)](https://pypi.org/project/dbrepo/){ tabindex=-1 }
-[![Image Pulls](/images/pulls.svg)](https://registry.datalab.tuwien.ac.at/api/v2.0/projects/dbrepo/repositories/data-service){ tabindex=-1 }
+[![Image Pulls](images/pulls.svg)](https://registry.datalab.tuwien.ac.at/api/v2.0/projects/dbrepo/repositories/data-service){ tabindex=-1 }
 [![Helm Chart version](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/dbrepo)](https://artifacthub.io/packages/helm/dbrepo/dbrepo){ tabindex=-1 }
 [![GitHub License](https://img.shields.io/github/license/DBRepo-Project/dbrepo)](https://github.com/DBRepo-Project/dbrepo/blob/main/LICENSE){ tabindex=-1 }
 
-Documentation for version: [v1.13.4](https://github.com/DBRepo-Project/dbrepo/releases) (as [PDF](/dbrepo_v1.13.3.pdf)).
+Documentation for version: [v1.13.3](https://github.com/DBRepo-Project/dbrepo/releases) (as [PDF](dbrepo_v1.13.3.pdf)).
 
 DBRepo is an open-source database repository that cover the data life cycle supporting data evolution,
 -citation and -versioning. It implements the query store of the [RDA WGDC](https://doi.org/10.1162/99608f92.be565013) on
@@ -29,7 +29,7 @@ precisely identifying arbitrary subsets of data.
   that has an underlying PV storage provider.
 
 Installing DBRepo is very easy or
-[give it a try online](/user-guide/quickstart/).
+[give it a try online](user-guide/quickstart/).
 
 ## Who is using DBRepo?
 

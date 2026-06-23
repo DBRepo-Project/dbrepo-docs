@@ -6,12 +6,12 @@ If you need help getting started with DBRepo or with advanced usage, the followi
 
 ## Usage Documentation
 
-The [User Guide]() documentation is the most complete guide on how to use DBRepo.
+The [User Guide](user-guide/) documentation is the most complete guide on how to use DBRepo.
 
 ## API Documentation
 
-The [API documentation](/api/) present reference docs for all APIs.
+The [API documentation](api/) present reference docs for all APIs.
 
 !!! info "Additional Help"
 
-    [Contact us](/contact) via e-mail.
+    [Contact us](contact) via e-mail.

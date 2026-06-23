@@ -33,7 +33,7 @@ The Data Service uses [Apache Spark](https://spark.apache.org/), a open-source d
 from/into the [Data Database](data-db) with a wide range of open-source connectors. Retrieving data from a subset
 internally generates a view with the 64-character hash of the query. This view is not automatically deleted currently.
 
-The Data Service also uses [DuckDB](), a open-source column-oriented database for large-data analytics. It is used as
+The Data Service also uses [DuckDB](https://duckdb.org/), a open-source column-oriented database for large-data analytics. It is used as
 in-memory data type analytics database to suggest data types from a (big) dataset using the larger-than-memory feature.
 
 ## Caching

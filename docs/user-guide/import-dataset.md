@@ -14,7 +14,7 @@ graph LR
 A user wants to import a static dataset (e.g. from a .csv file). In this action, a table will be created in the
 database.
 
-Importing a dataset required at least `write-own` access, see [Database Access](/database-access). If you are the
+Importing a dataset required at least `write-own` access, see [Database Access](database-access). If you are the
 owner of the database, you are good to go by default.
 
 ### UI

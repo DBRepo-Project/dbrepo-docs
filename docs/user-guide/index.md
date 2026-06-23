@@ -4,7 +4,7 @@ author: Martin Weise
 
 Operational user-guide describing the graphical deposit, review and management of records.
 
-- [Quick start](/user-guide/quickstart)
+- [Quick start](quickstart)
 
 Jump right into and use our pre-configured starter resources:
 

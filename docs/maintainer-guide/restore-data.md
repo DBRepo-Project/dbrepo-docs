@@ -2,13 +2,13 @@
 author: Martin Weise
 ---
 
-Please check the [guide](/maintainer-guide/backup-data/) on how to perform a backup first.
+Please check the [guide](backup-data/) on how to perform a backup first.
 
 ## TL;DR
 
 This page explains how to restore from a backup of a MariaDB Galera (
-i.e. [Data Database](/dev/services/data-db/)
-and [Metadata Database](/dev/services/metadata-db/)).
+i.e. [Data Database](../dev/services/data-db/)
+and [Metadata Database](../dev/services/metadata-db/)).
 
 ## Restore Data
 

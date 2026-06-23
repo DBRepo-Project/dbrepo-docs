@@ -3,7 +3,7 @@ author: Martin Weise
 ---
 
 This guide assumes you have already performed the
-quick [Install on Docker](/maintainer-guide/install-docker/). You can (re-)configure most
+quick [Install on Docker](install-docker/). You can (re-)configure most
 components by executing:
 
 ```shell
@@ -42,7 +42,7 @@ First, access the Admin UI at [http://localhost:8080](http://localhost:8080) and
 default `dbrepo-client` client:
 
 <figure markdown>
-![Change the Client Secret](/images/screenshots/auth-service-client-secret.png)
+![Change the Client Secret](../images/screenshots/auth-service-client-secret.png)
 </figure>
 
 Next, log into the Auth Service with the default credentials `admin` and the value of `AUTH_SERVICE_ADMIN_PASSWORD`
@@ -51,14 +51,14 @@ and select the "dbrepo" realm :material-numeric-1-circle-outline:. In the sideba
 :material-numeric-3-circle-outline:.
 
 <figure markdown>
-![Keycloak identitiy provider list](/images/screenshots/auth-service-ldap-1.png){ .img-border }
+![Keycloak identitiy provider list](../images/screenshots/auth-service-ldap-1.png){ .img-border }
 </figure>
 
 Second, modify the Bind DN :material-numeric-1-circle-outline:. Change the **Bind credentials** to the desired
 password :material-numeric-2-circle-outline: from the variable `IDENTITY_SERVICE_ADMIN_PASSWORD` in `.env`.
 
 <figure markdown>
-![Keycloak identity provider settings](/images/screenshots/auth-service-ldap-2.png){ .img-border }
+![Keycloak identity provider settings](../images/screenshots/auth-service-ldap-2.png){ .img-border }
 </figure>
 
 ### Apply
@@ -80,7 +80,7 @@ Please be warned that the default configuration is not intended for public deplo
 running system within minutes to play around within the system and explore features. It is strongly advised to change
 the default `.env` environment variables.
 
-Next, create a [user account](/api/#create-user-account) and
-then [create a database](/api/#create-database)
-to [import a dataset](/api/#import-dataset).
+Next, create a [user account](../user-guide/create-account) and
+then [create a database](../user-guide/create-database)
+to [import a dataset](../user-guide/import-dataset).
 

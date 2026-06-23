@@ -95,7 +95,7 @@ User Interface on development.
 
 ### Customization
 
-The UI supports adding pages in [Markdown]() format to describe the terms of use, policies and the repository itself.
+The UI supports adding pages in [Markdown](https://www.markdownguide.org/) format to describe the terms of use, policies and the repository itself.
 Inject your content through the environment variables:
 
 * `NUXT_PUBLIC_ABOUT_CONTENT` (`/about`)

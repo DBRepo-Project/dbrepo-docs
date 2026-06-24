@@ -19,7 +19,7 @@ on:
         default: 'DBRepo-Project/dbrepo'
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: pages
@@ -29,6 +29,8 @@ jobs:
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     env:
       # Pitfall 5: inputs context is empty on push/PR triggers; coerce defaults
       # so push/PR builds do not pass empty unhandled values to the fetch script.
@@ -78,6 +80,8 @@ jobs:
   build-check:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       # D-21: PR build-check exercises the full fetch+fallback flow on every PR.
       INPUT_RELEASE_TAG: ${{ inputs.release_tag || '' }}
@@ -112,6 +116,8 @@ jobs:
     # site end-to-end. Runs only on workflow_dispatch.
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     env:
       INPUT_RELEASE_TAG: ${{ inputs.release_tag || '' }}
       INPUT_RELEASE_REPO: ${{ inputs.release_repo || 'DBRepo-Project/dbrepo' }}

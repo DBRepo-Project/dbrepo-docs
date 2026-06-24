@@ -158,12 +158,204 @@ stage_openapi_viewer() {
 }
 
 # ----------------------------------------------------------------------------
-# main — orchestrate validation, tag resolution, OpenAPI fetch (D-02/ART-01),
-# and Swagger UI staging (Research Pitfall 1). Runs in both the fetched and
-# no-release frozen-fallback paths so every build serves the Swagger UI from a
-# zensical-reachable non-dot path. Fetched content is ephemeral per D-17/D-18 —
-# nothing here stages or commits to git; the docs/openapi/ staging dir is
-# gitignored (T-04-03).
+# fetch_rest — D-09 / D-10.
+#   Download the REST Markdown asset (named $REST_ASSET, e.g. `rest.md`) from
+#   the resolved GitHub release on $RELEASE_REPO and overlay it onto
+#   $REST_DEST (docs/api/rest.md). This fetch is INDEPENDENT of the OpenAPI
+#   and Python fetches per D-10: a partial release that ships only some assets
+#   degrades per-asset. Uses `gh release download` with the auto-provided
+#   GH_TOKEN (D-15). The asset name equals the destination basename, so no
+#   rename is needed. On any fetch failure the frozen docs/api/rest.md remains
+#   untouched and the build falls back to it (ART-03). Fetched content is
+#   ephemeral per D-17.
+# ----------------------------------------------------------------------------
+fetch_rest() {
+  local TAG="$1"
+  local dest_dir
+  dest_dir="$(dirname "$REST_DEST")"
+
+  echo "Fetching REST asset $REST_ASSET from $RELEASE_REPO@$TAG..."
+  if gh release download "$TAG" -R "$RELEASE_REPO" -p "$REST_ASSET" \
+       -D "$dest_dir" --clobber; then
+    echo "Fetched REST Markdown -> $REST_DEST"
+  else
+    # Fallback-class result (ART-03): the frozen docs/api/rest.md remains and
+    # the build proceeds with it. Independent of OpenAPI/Python outcome (D-10).
+    echo "WARNING: REST fetch from $RELEASE_REPO@$TAG failed; using frozen $REST_DEST." >&2
+  fi
+}
+
+# ----------------------------------------------------------------------------
+# fetch_python — D-05 / D-08.
+#   Download the Python Sphinx HTML archive (named $PYTHON_ASSET, e.g.
+#   `python-sphinx.tar.gz`) from the resolved GitHub release on $RELEASE_REPO
+#   into $PYTHON_ARCHIVE (/tmp/python-sphinx.tar.gz). Python uses the same
+#   ART-04 error flow as OpenAPI per D-08 (404→silent fallback, missing→warn,
+#   fetch failure→use landing page without the Sphinx link rendered). On any
+#   fetch failure the archive is not produced and the landing page keeps its
+#   committed fallback block (update_python_landing respects the absence of
+#   docs/python/.fetched). Fetched content is ephemeral per D-17.
+# ----------------------------------------------------------------------------
+fetch_python() {
+  local TAG="$1"
+  local dest_dir
+  dest_dir="$(dirname "$PYTHON_ARCHIVE")"
+
+  echo "Fetching Python Sphinx asset $PYTHON_ASSET from $RELEASE_REPO@$TAG..."
+  if gh release download "$TAG" -R "$RELEASE_REPO" -p "$PYTHON_ASSET" \
+       -D "$dest_dir" --clobber; then
+    echo "Fetched Python Sphinx archive -> $PYTHON_ARCHIVE"
+  else
+    # Fallback-class result (ART-03): the archive is not produced; the landing
+    # page keeps its committed fallback block (D-07). Independent of OpenAPI /
+    # REST outcome (D-10).
+    echo "WARNING: Python Sphinx fetch from $RELEASE_REPO@$TAG failed; landing page keeps the fallback block." >&2
+  fi
+}
+
+# ----------------------------------------------------------------------------
+# extract_python_sphinx — D-05 / D-08 / T-04-07.
+#   Extract the fetched Sphinx HTML archive into $PYTHON_DEST_DIR (docs/python)
+#   and write the docs/python/.fetched sentinel ONLY after successful
+#   extraction and index.html presence check (T-04-07 tampering mitigation).
+#   The archive may contain the Sphinx HTML at the root, under a single
+#   top-level `html/` directory, or under a single top-level `build/html/`
+#   directory (covers the monorepo's build-site.sh output shapes); the function
+#   normalizes all three into docs/python/ with index.html at the root. Any
+#   stale docs/python/ is removed before extraction so a failed prior run does
+#   not masquerade as a fresh fetch. On any failure docs/python/ is cleaned up
+#   and the .fetched sentinel is NOT written, so update_python_landing keeps
+#   the committed fallback block (D-09/D-17). docs/python/ is gitignored
+#   (per-build, ephemeral).
+# ----------------------------------------------------------------------------
+extract_python_sphinx() {
+  # Nothing to extract if the archive fetch did not produce a file.
+  if [[ ! -s "$PYTHON_ARCHIVE" ]]; then
+    return 0
+  fi
+
+  # Remove any stale docs/python/ from a prior run so a failed extraction
+  # cannot leave a stale .fetched sentinel masquerading as success (D-07).
+  rm -rf "$PYTHON_DEST_DIR"
+  mkdir -p "$PYTHON_DEST_DIR"
+
+  # Work in a private scratch dir so the archive's own top-level layout can be
+  # inspected and normalized into docs/python/ with index.html at the root.
+  local scratch
+  scratch="$(mktemp -d)"
+  if ! tar -xf "$PYTHON_ARCHIVE" -C "$scratch"; then
+    echo "WARNING: Python Sphinx archive $PYTHON_ARCHIVE failed to extract; landing page keeps the fallback block." >&2
+    rm -rf "$scratch" "$PYTHON_DEST_DIR"
+    return 0
+  fi
+
+  # Determine the Sphinx HTML root inside the scratch tree. Supports three
+  # archive shapes observed in monorepo build outputs:
+  #   (a) files at root (index.html, _static/, _sources/, ...)
+  #   (b) single top-level html/ directory containing the Sphinx site
+  #   (c) single top-level build/html/ directory containing the Sphinx site
+  local html_root="$scratch"
+  if [[ -f "$scratch/index.html" ]]; then
+    html_root="$scratch"
+  elif [[ -d "$scratch/html" && -f "$scratch/html/index.html" ]]; then
+    html_root="$scratch/html"
+  elif [[ -d "$scratch/build/html" && -f "$scratch/build/html/index.html" ]]; then
+    html_root="$scratch/build/html"
+  else
+    echo "WARNING: Python Sphinx archive $PYTHON_ARCHIVE has no index.html at root, html/, or build/html/; landing page keeps the fallback block." >&2
+    rm -rf "$scratch" "$PYTHON_DEST_DIR"
+    return 0
+  fi
+
+  # Overlay the normalized Sphinx site into docs/python/. The trailing slash on
+  # $html_root/ ensures cp -r copies the directory's contents, not the dir
+  # itself, so docs/python/index.html (not docs/python/<scratch>/index.html).
+  cp -r "$html_root/" "$PYTHON_DEST_DIR/"
+
+  # T-04-07 — do not write the .fetched sentinel unless the extracted site has
+  # a usable entrypoint. A missing index.html means the archive was not a valid
+  # Sphinx site; the landing page keeps its committed fallback block (D-07).
+  if [[ ! -f "$PYTHON_DEST_DIR/index.html" ]]; then
+    echo "WARNING: extracted Python Sphinx site has no index.html; landing page keeps the fallback block." >&2
+    rm -rf "$scratch" "$PYTHON_DEST_DIR"
+    return 0
+  fi
+
+  touch "$PYTHON_DEST_DIR/.fetched"
+  rm -rf "$scratch"
+  echo "Extracted Python Sphinx HTML -> $PYTHON_DEST_DIR (sentinel .fetched written)."
+}
+
+# ----------------------------------------------------------------------------
+# update_python_landing — D-06 / D-07 / D-17.
+#   Conditionally rewrite the Sphinx section of docs/api/python.md in the CI
+#   working tree so the reader sees the Open Sphinx API reference CTA when the
+#   Sphinx HTML was fetched and staged, and the honest fallback notice
+#   otherwise. The committed baseline in git ALWAYS retains the fallback
+#   blockquote (D-17 — fetched content is ephemeral; this only overlays the
+#   working tree for the current build). The block swap targets the committed
+#   "Sphinx UI not yet available" blockquote and replaces the whole Sphinx
+#   section with the UI-SPEC C1 fetched form, leaving Version matching and
+#   Installation untouched.
+# ----------------------------------------------------------------------------
+update_python_landing() {
+  # No fetch happened (no docs/python/ at all, or extraction did not write the
+  # sentinel) -> the committed fallback block stays (D-07/D-17).
+  if [[ ! -f "$PYTHON_DEST_DIR/.fetched" ]]; then
+    return 0
+  fi
+
+  local landing="docs/api/python.md"
+  if [[ ! -f "$landing" ]]; then
+    echo "WARNING: $landing not found; cannot install Sphinx CTA." >&2
+    return 0
+  fi
+
+  # Build the replacement with the fetched-form Sphinx section (UI-SPEC C1).
+  # The awk-based swap replaces the "## Sphinx API reference" H2 heading and
+  # the blockquote that immediately follows it (the committed fallback block)
+  # with the fetched-form CTA block, then prints the rest of the file
+  # (Version matching and Installation sections) verbatim.
+  local replacement
+  replacement="## Sphinx API reference
+
+The full Python API reference is rendered by Sphinx and published as a release artifact from
+the [DBRepo monorepo](https://github.com/DBRepo-Project/dbrepo).
+
+[:octicons-arrow-right-24: Open Sphinx API reference](/python/)
+
+The Sphinx pages open in a sibling path under this version; use your browser's back button to
+return to this page."
+
+  # In-place swap: from the "## Sphinx API reference" line through the end of
+  # the blockquote (the last line beginning with `> `), print the replacement,
+  # then resume printing from the next H2 (## ) that follows. awk is used
+  # because the blockquote length is not fixed across the committed and
+  # script-produced forms.
+  local tmp
+  tmp="$(mktemp)"
+  awk -v replacement="$replacement" '
+    /^## Sphinx API reference$/ { in_block = 1; print replacement; next }
+    in_block && /^> / { next }
+    in_block && /^## / { in_block = 0; print; next }
+    in_block && NF == 0 { next }
+    in_block && !/^> / && !/^## / { in_block = 0; print; next }
+    { print }
+  ' "$landing" > "$tmp"
+
+  mv -f "$tmp" "$landing"
+  echo "Updated $landing with the Open Sphinx API reference CTA (fetched form)."
+}
+
+# ----------------------------------------------------------------------------
+# main — orchestrate validation, tag resolution, per-asset fetch (D-02 D-09
+# D-05; ART-01), Python Sphinx extraction (D-05/D-08), Swagger UI staging
+# (Research Pitfall 1), and the conditional Python landing-page block swap
+# (D-06/D-17). Runs in both the fetched and no-release frozen-fallback paths
+# so every build serves the Swagger UI from a zensical-reachable non-dot path
+# and the Python landing page reflects whether Sphinx HTML was fetched.
+# Fetched content is ephemeral per D-17/D-18 — nothing here stages or commits
+# to git; the docs/openapi/ and docs/python/ staging dirs are gitignored.
 # ----------------------------------------------------------------------------
 main() {
   validate_inputs
@@ -181,19 +373,32 @@ main() {
     # D-04 — one deterministic no-release fallback line naming the docs version
     # and repo. The frozen artifacts remain; the build proceeds with them. Do
     # NOT exit here — the Swagger UI still needs to be staged so zensical serves
-    # it (Research Pitfall 1).
+    # it (Research Pitfall 1), and update_python_landing will keep the
+    # committed Python fallback block because no .fetched sentinel exists.
     echo "No release matching v${DOC_VERSION}.* found on ${RELEASE_REPO} — using frozen artifacts."
   else
     echo "Resolved release tag: $tag"
-    # D-02/ART-01 — fetch the OpenAPI asset, overlaying docs/.openapi/api.yaml.
-    # On any fetch failure the frozen fallback remains (D-17/ART-03).
+    # D-02 / ART-01 — fetch OpenAPI; frozen fallback remains on any failure.
     fetch_openapi "$tag"
+    # D-09 / D-10 — fetch REST Markdown INDEPENDENTLY of OpenAPI/Python.
+    fetch_rest "$tag"
+    # D-05 / D-08 — fetch Python Sphinx archive; on failure the landing page
+    # keeps the fallback block (D-07).
+    fetch_python "$tag"
+    # D-05 / D-08 / T-04-07 — extract into docs/python/ and write .fetched only
+    # after a valid index.html is present.
+    extract_python_sphinx
   fi
 
   # Stage the Swagger UI into a zensical-served non-dot directory so the build
   # emits site/openapi/swagger-ui.html (Research Pitfall 1 — zensical drops
   # dot-prefixed dirs). Runs in both fetched and fallback paths.
   stage_openapi_viewer
+
+  # D-06 / D-17 — swap the Python landing-page Sphinx section to the fetched
+  # CTA only when docs/python/.fetched exists; otherwise the committed
+  # fallback block stays in place (D-07).
+  update_python_landing
 }
 
 main "$@"

@@ -9,3 +9,9 @@ __pycache__/
 # Synthesized per-build staging directory copied from docs/.openapi/ before
 # zensical build (zensical does not serve dot-prefixed dirs). Never commit.
 docs/openapi/
+
+# Extracted Python Sphinx HTML staged by scripts/fetch-artifacts.sh when a
+# python-sphinx release asset is fetched (D-05/D-17 — per-build, ephemeral;
+# the committed docs/api/python.md baseline always retains the fallback
+# block). Never commit.
+docs/python/

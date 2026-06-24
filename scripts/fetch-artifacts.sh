@@ -389,10 +389,12 @@ extract_python_sphinx() {
     return 0
   fi
 
-  # Overlay the normalized Sphinx site into docs/python/. The trailing slash on
-  # $html_root/ ensures cp -r copies the directory's contents, not the dir
-  # itself, so docs/python/index.html (not docs/python/<scratch>/index.html).
-  cp -r "$html_root/" "$PYTHON_DEST_DIR/"
+  # Overlay the normalized Sphinx site into docs/python/. The /. suffix on
+  # $html_root/. ensures cp -r copies the directory's CONTENTS, not the dir
+  # itself — a bare trailing slash on the source is insufficient on GNU coreutils
+  # cp (it nests the dir as docs/python/<basename>/). This produces
+  # docs/python/index.html, not docs/python/<scratch>/index.html.
+  cp -r "$html_root/." "$PYTHON_DEST_DIR/"
 
   # T-04-07 — do not write the .fetched sentinel unless the extracted site has
   # a usable entrypoint. A missing index.html means the archive was not a valid
@@ -459,9 +461,9 @@ return to this page."
   awk -v replacement="$replacement" '
     /^## Sphinx API reference$/ { in_block = 1; print replacement; next }
     in_block && /^> / { next }
-    in_block && /^## / { in_block = 0; print; next }
+    in_block && /^## / { in_block = 0; print ""; print; next }
     in_block && NF == 0 { next }
-    in_block && !/^> / && !/^## / { in_block = 0; print; next }
+    in_block && !/^> / && !/^## / { in_block = 0; print ""; print; next }
     { print }
   ' "$landing" > "$tmp"
 

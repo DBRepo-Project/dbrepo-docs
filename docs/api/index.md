@@ -13,7 +13,6 @@ The API guide describes entry points that can be used to interact with the repos
     This API is a convenience wrapper for data scientists and cover most of the REST API.
 
     [:octicons-arrow-right-24: Getting started](python)
-    [:octicons-arrow-right-24: Swagger UI](rest)
 
 -   :material-api:{ .lg .middle } **REST API**
 
@@ -21,7 +20,8 @@ The API guide describes entry points that can be used to interact with the repos
 
     This API manages the entire system. Every component can be manged using this API.
 
-    [:octicons-arrow-right-24: Getting started](rest)
+    [:octicons-arrow-right-24: Swagger UI](/openapi/swagger-ui.html)
+    [:octicons-arrow-right-24: Reference](rest)
 
 -   :material-queue-first-in-last-out:{ .lg .middle } **AMQP / MQTT API**
 

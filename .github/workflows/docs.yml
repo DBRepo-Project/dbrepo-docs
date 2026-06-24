@@ -6,6 +6,17 @@ on:
       - main
   pull_request:
   workflow_dispatch:
+    inputs:
+      release_tag:
+        description: 'Release tag to fetch (overrides auto-resolved v<docs_version>.x)'
+        required: false
+        type: string
+        default: ''
+      release_repo:
+        description: 'Source repo in OWNER/REPO format'
+        required: false
+        type: string
+        default: 'DBRepo-Project/dbrepo'
 
 permissions:
   contents: write
@@ -18,6 +29,11 @@ jobs:
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     runs-on: ubuntu-latest
+    env:
+      # Pitfall 5: inputs context is empty on push/PR triggers; coerce defaults
+      # so push/PR builds do not pass empty unhandled values to the fetch script.
+      INPUT_RELEASE_TAG: ${{ inputs.release_tag || '' }}
+      INPUT_RELEASE_REPO: ${{ inputs.release_repo || 'DBRepo-Project/dbrepo' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -32,6 +48,16 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Fetch release artifacts
+        env:
+          # D-15: use the auto-provided GITHUB_TOKEN for gh release access (no
+          # secret). Token is scoped to step env only; never printed or logged.
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_REPO: ${{ env.INPUT_RELEASE_REPO }}
+          RELEASE_TAG_OVERRIDE: ${{ env.INPUT_RELEASE_TAG }}
+          DOC_VERSION: '1.13'
+        run: bash scripts/fetch-artifacts.sh
 
       - name: Verify tools
         run: |
@@ -52,6 +78,10 @@ jobs:
   build-check:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+    env:
+      # D-21: PR build-check exercises the full fetch+fallback flow on every PR.
+      INPUT_RELEASE_TAG: ${{ inputs.release_tag || '' }}
+      INPUT_RELEASE_REPO: ${{ inputs.release_repo || 'DBRepo-Project/dbrepo' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -64,6 +94,47 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r requirements.txt
+
+      - name: Fetch release artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_REPO: ${{ env.INPUT_RELEASE_REPO }}
+          RELEASE_TAG_OVERRIDE: ${{ env.INPUT_RELEASE_TAG }}
+          DOC_VERSION: '1.13'
+        run: bash scripts/fetch-artifacts.sh
+
+      - name: Build site
+        run: zensical build
+
+  dry-run:
+    # D-19/D-20: manual-trigger dry-run validates fetch + zensical build without
+    # deploying. Proves fetched (or frozen-fallback) artifacts produce a valid
+    # site end-to-end. Runs only on workflow_dispatch.
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    env:
+      INPUT_RELEASE_TAG: ${{ inputs.release_tag || '' }}
+      INPUT_RELEASE_REPO: ${{ inputs.release_repo || 'DBRepo-Project/dbrepo' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch release artifacts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_REPO: ${{ env.INPUT_RELEASE_REPO }}
+          RELEASE_TAG_OVERRIDE: ${{ env.INPUT_RELEASE_TAG }}
+          DOC_VERSION: '1.13'
+        run: bash scripts/fetch-artifacts.sh
 
       - name: Build site
         run: zensical build

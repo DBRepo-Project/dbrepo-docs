@@ -43,6 +43,13 @@ set -euo pipefail
 : "${PYTHON_ARCHIVE:=/tmp/python-sphinx.tar.gz}"
 : "${PYTHON_DEST_DIR:=docs/python}"
 
+# ART-04 retry tuning — 5xx-class (transient server) failures are retried a
+# bounded number of times with a short sleep between attempts; auth/rate-limit
+# (403/429) and unexpected failures are NOT retried (D-16). After the final
+# attempt a still-transient failure is converted to a job failure (exit 2).
+: "${FETCH_RETRIES:=3}"
+: "${FETCH_RETRY_SLEEP:=2}"
+
 # ----------------------------------------------------------------------------
 # validate_inputs — reject workflow_dispatch-controlled strings before any gh
 # command runs (T-04-01 tampering mitigation).
@@ -80,6 +87,161 @@ resolve_tag() {
 }
 
 # ----------------------------------------------------------------------------
+# classify_fetch_failure — ART-04 error matrix / Pitfall 2.
+#   `gh release download` exit codes do NOT distinguish 404 vs 403 vs 5xx (all
+#   return exit 1). So this function first inspects the captured stderr for the
+#   two known fallback-class strings, then falls back to `gh api -i` for an
+#   authoritative HTTP status for non-obvious failures.
+#
+#   Returns:
+#     0 — fallback-class (release/asset missing): warn + continue per asset.
+#     2 — auth/rate-limit (403/429) or unexpected: fail the job, no retry (D-16).
+#     3 — 5xx transient server: caller (with_retries) retries, then fails.
+#
+#   $1 = captured gh release download stderr
+#   $2 = asset name (for diagnostics)
+#   $3 = asset description (for diagnostics, e.g. "OpenAPI")
+# ----------------------------------------------------------------------------
+classify_fetch_failure() {
+  local err="$1" asset="$2" description="$3"
+
+  # D-10 — release exists but this asset is missing: warn + per-asset fallback.
+  if [[ "$err" == *"no assets match the file pattern"* ]]; then
+    echo "  WARNING: asset '$asset' missing from release $TAG — $description uses frozen fallback." >&2
+    return 0
+  fi
+
+  # D-04 — release vanished mid-pipeline (race with release deletion): fallback.
+  if [[ "$err" == *"release not found"* ]]; then
+    echo "  WARNING: release $TAG vanished mid-pipeline — $description uses frozen fallback." >&2
+    return 0
+  fi
+
+  # Non-obvious failure — classify via gh api -i HTTP status (Pitfall 2: gh
+  # exit codes alone are insufficient). The -i flag prints the HTTP status line
+  # first; grep extracts the 3-digit code.
+  local status
+  status="$(gh api "repos/${RELEASE_REPO}/releases/tags/${TAG}" -i 2>&1 \
+            | head -1 | grep -oE '[0-9]{3}' || true)"
+
+  case "$status" in
+    403|429)
+      # D-16 — auth or rate-limit failure: fail the job, do NOT retry. With
+      # GITHUB_TOKEN's 1000 req/hr headroom (Pitfall 4), a 403 means a real
+      # problem (revoked token, repo went private, permissions misconfigured),
+      # not a transient rate limit.
+      echo "  FAILURE: AUTH/RATE-LIMIT failure ($status) fetching $asset — failing job." >&2
+      return 2
+      ;;
+    5*)
+      # ART-04 — transient server error: caller retries a bounded number of
+      # times, then fails if GitHub remains unavailable.
+      echo "  WARNING: transient server error ($status) fetching $asset — retry per ART-04." >&2
+      return 3
+      ;;
+    *)
+      # Unexpected / unclassifiable — fail defensively rather than silently
+      # fall back to stale docs.
+      echo "  FAILURE: unexpected error fetching $asset: $err (status=$status) — failing job." >&2
+      return 2
+      ;;
+  esac
+}
+
+# ----------------------------------------------------------------------------
+# fetch_asset — shared per-asset download with ART-04 classification.
+#   Downloads $asset (e.g. openapi.yaml) from the resolved GitHub release on
+#   $RELEASE_REPO@$TAG into the directory of $dest, then overlays it onto
+#   $dest (renaming if the asset name differs from the destination basename,
+#   e.g. openapi.yaml -> docs/.openapi/api.yaml per D-02). On download failure
+#   the captured stderr is classified by classify_fetch_failure, which returns
+#   0 (fallback), 2 (fail), or 3 (retry). fetch_asset propagates that code so
+#   with_retries can decide whether to retry.
+#
+#   $1 = asset name (gh release download -p pattern)
+#   $2 = destination path (frozen-fallback basename; fetched asset renamed to it)
+#   $3 = asset description (diagnostics)
+# ----------------------------------------------------------------------------
+fetch_asset() {
+  local asset="$1" dest="$2" description="$3"
+  local dest_dir
+  dest_dir="$(dirname "$dest")"
+  local err_file
+  err_file="$(mktemp)"
+
+  if gh release download "$TAG" -R "$RELEASE_REPO" -p "$asset" \
+       -D "$dest_dir" --clobber 2>"$err_file"; then
+    # D-02 overlay — gh writes the asset under its original name; rename it to
+    # the frozen destination basename so downstream viewers resolve the fetched
+    # copy (e.g. swagger-ui.html url: 'api.yaml'). No-op when names already match
+    # (REST: rest.md == rest.md; Python: python-sphinx.tar.gz == python-sphinx.tar.gz).
+    local downloaded="$dest_dir/$asset"
+    if [[ -f "$downloaded" && "$downloaded" != "$dest" ]]; then
+      mv -f "$downloaded" "$dest"
+    fi
+    echo "  fetched $asset -> $dest"
+    rm -f "$err_file"
+    return 0
+  else
+    # Download failed — classify the failure (ART-04 matrix) and propagate the
+    # classification code. stderr is captured to a file (not the script stderr)
+    # so classify_fetch_failure can inspect it and so the mock-gh test harness
+    # sees only the classified log lines, not raw gh stderr.
+    local err
+    err="$(cat "$err_file" 2>/dev/null || true)"
+    rm -f "$err_file"
+    classify_fetch_failure "$err" "$asset" "$description"
+    return $?
+  fi
+}
+
+# ----------------------------------------------------------------------------
+# with_retries — bounded retry for 5xx-class (transient server) failures.
+#   Wraps a single fetch_asset attempt. Exit code 0 (success or fallback-class)
+#   returns immediately. Exit code 2 (auth/rate-limit/unexpected) fails the job
+#   immediately with no retry (D-16). Exit code 3 (5xx transient) is retried up
+#   to $FETCH_RETRIES times with $FETCH_RETRY_SLEEP-second sleeps; if all
+#   attempts are still transient, the final failure is converted to exit 2
+#   (fail the job) so the build does not silently ship stale docs.
+#
+#   $1 = asset description (diagnostics)
+#   $2 = asset name
+#   $3 = destination path
+# ----------------------------------------------------------------------------
+with_retries() {
+  local description="$1" asset="$2" dest="$3"
+  local attempt=0
+  local rc=0
+
+  while [[ "$attempt" -lt "$FETCH_RETRIES" ]]; do
+    attempt=$((attempt + 1))
+    echo "  attempt $attempt/$FETCH_RETRIES: $description"
+    # fetch_asset ... && rc=0 || rc=$? disables set -e for the call (and for
+    # commands inside fetch_asset) so a nonzero classification code is captured
+    # instead of aborting the script mid-retry.
+    fetch_asset "$asset" "$dest" "$description" && rc=0 || rc=$?
+    case "$rc" in
+      0)
+        return 0   # success or fallback-class — continue to next asset
+        ;;
+      2)
+        return 2   # auth/rate-limit/unexpected — fail job, no retry (D-16)
+        ;;
+      3)
+        # 5xx transient — retry unless this was the last attempt.
+        if [[ "$attempt" -lt "$FETCH_RETRIES" ]]; then
+          echo "  retrying $description after ${FETCH_RETRY_SLEEP}s..." >&2
+          sleep "$FETCH_RETRY_SLEEP"
+        fi
+        ;;
+    esac
+  done
+
+  echo "  FAILURE: $description — $FETCH_RETRIES attempts exhausted (transient server error); failing job." >&2
+  return 2
+}
+
+# ----------------------------------------------------------------------------
 # fetch_openapi — D-02 / ART-01.
 #   Download the OpenAPI asset (named $OPENAPI_ASSET, e.g. `openapi.yaml`) from
 #   the resolved GitHub release on $RELEASE_REPO and overlay it onto
@@ -88,36 +250,15 @@ resolve_tag() {
 #   Uses `gh release download` with the auto-provided GH_TOKEN (D-15) — no curl
 #   on the primary fetch path (ART-01). Fetched content is ephemeral per D-17:
 #   this only overlays the working tree, never stages or commits to git.
-#   On any fetch failure the frozen docs/.openapi/api.yaml remains untouched and
-#   the build falls back to it (ART-03). `gh release download` writes the asset
-#   under its original name, so the downloaded file is renamed to the frozen
-#   destination basename to satisfy D-02's "placed at docs/.openapi/api.yaml"
-#   overlay contract.
+#   On fallback-class failure the frozen docs/.openapi/api.yaml remains and the
+#   build proceeds with it (ART-03). On auth/rate-limit or retry-exhausted
+#   failure the job fails (ART-04/D-16) — the wrong branch must not silently
+#   ship stale docs.
 # ----------------------------------------------------------------------------
 fetch_openapi() {
   local TAG="$1"
-  local dest_dir
-  dest_dir="$(dirname "$OPENAPI_DEST")"
-
   echo "Fetching OpenAPI asset $OPENAPI_ASSET from $RELEASE_REPO@$TAG..."
-  if gh release download "$TAG" -R "$RELEASE_REPO" -p "$OPENAPI_ASSET" \
-       -D "$dest_dir" --clobber; then
-    # D-02 — overlay the fetched asset onto the frozen api.yaml destination.
-    # gh release download writes the asset as $OPENAPI_ASSET (e.g. openapi.yaml);
-    # rename it to $OPENAPI_DEST (docs/.openapi/api.yaml) so swagger-ui.html's
-    # relative `url: 'api.yaml'` reference resolves to the fetched spec.
-    local downloaded="$dest_dir/$OPENAPI_ASSET"
-    if [[ -f "$downloaded" && "$downloaded" != "$OPENAPI_DEST" ]]; then
-      mv -f "$downloaded" "$OPENAPI_DEST"
-    fi
-    echo "Fetched OpenAPI spec -> $OPENAPI_DEST"
-  else
-    # Fallback-class result (ART-03): the frozen docs/.openapi/api.yaml remains
-    # and the build proceeds with it. ART-04's strict 403/429-fail status
-    # classification is documented in docs/.openapi/README.md and refined in a
-    # later plan; this plan's contract is fetch-or-fallback (D-17/D-04).
-    echo "WARNING: OpenAPI fetch from $RELEASE_REPO@$TAG failed; using frozen $OPENAPI_DEST." >&2
-  fi
+  with_retries "OpenAPI" "$OPENAPI_ASSET" "$OPENAPI_DEST"
 }
 
 # ----------------------------------------------------------------------------
@@ -165,24 +306,15 @@ stage_openapi_viewer() {
 #   and Python fetches per D-10: a partial release that ships only some assets
 #   degrades per-asset. Uses `gh release download` with the auto-provided
 #   GH_TOKEN (D-15). The asset name equals the destination basename, so no
-#   rename is needed. On any fetch failure the frozen docs/api/rest.md remains
-#   untouched and the build falls back to it (ART-03). Fetched content is
-#   ephemeral per D-17.
+#   rename is needed (fetch_asset's rename guard is a no-op here). On
+#   fallback-class failure the frozen docs/api/rest.md remains (ART-03); on
+#   auth/rate-limit or retry-exhausted failure the job fails (ART-04/D-16).
+#   Fetched content is ephemeral per D-17.
 # ----------------------------------------------------------------------------
 fetch_rest() {
   local TAG="$1"
-  local dest_dir
-  dest_dir="$(dirname "$REST_DEST")"
-
   echo "Fetching REST asset $REST_ASSET from $RELEASE_REPO@$TAG..."
-  if gh release download "$TAG" -R "$RELEASE_REPO" -p "$REST_ASSET" \
-       -D "$dest_dir" --clobber; then
-    echo "Fetched REST Markdown -> $REST_DEST"
-  else
-    # Fallback-class result (ART-03): the frozen docs/api/rest.md remains and
-    # the build proceeds with it. Independent of OpenAPI/Python outcome (D-10).
-    echo "WARNING: REST fetch from $RELEASE_REPO@$TAG failed; using frozen $REST_DEST." >&2
-  fi
+  with_retries "REST" "$REST_ASSET" "$REST_DEST"
 }
 
 # ----------------------------------------------------------------------------
@@ -191,26 +323,16 @@ fetch_rest() {
 #   `python-sphinx.tar.gz`) from the resolved GitHub release on $RELEASE_REPO
 #   into $PYTHON_ARCHIVE (/tmp/python-sphinx.tar.gz). Python uses the same
 #   ART-04 error flow as OpenAPI per D-08 (404→silent fallback, missing→warn,
-#   fetch failure→use landing page without the Sphinx link rendered). On any
-#   fetch failure the archive is not produced and the landing page keeps its
-#   committed fallback block (update_python_landing respects the absence of
-#   docs/python/.fetched). Fetched content is ephemeral per D-17.
+#   403/429→fail job, 5xx→retry then fail). On fallback-class failure the
+#   archive is not produced and the landing page keeps its committed fallback
+#   block (update_python_landing respects the absence of
+#   docs/python/.fetched). On auth/rate-limit or retry-exhausted failure the
+#   job fails (ART-04/D-16). Fetched content is ephemeral per D-17.
 # ----------------------------------------------------------------------------
 fetch_python() {
   local TAG="$1"
-  local dest_dir
-  dest_dir="$(dirname "$PYTHON_ARCHIVE")"
-
   echo "Fetching Python Sphinx asset $PYTHON_ASSET from $RELEASE_REPO@$TAG..."
-  if gh release download "$TAG" -R "$RELEASE_REPO" -p "$PYTHON_ASSET" \
-       -D "$dest_dir" --clobber; then
-    echo "Fetched Python Sphinx archive -> $PYTHON_ARCHIVE"
-  else
-    # Fallback-class result (ART-03): the archive is not produced; the landing
-    # page keeps its committed fallback block (D-07). Independent of OpenAPI /
-    # REST outcome (D-10).
-    echo "WARNING: Python Sphinx fetch from $RELEASE_REPO@$TAG failed; landing page keeps the fallback block." >&2
-  fi
+  with_retries "Python Sphinx" "$PYTHON_ASSET" "$PYTHON_ARCHIVE"
 }
 
 # ----------------------------------------------------------------------------
@@ -349,11 +471,19 @@ return to this page."
 
 # ----------------------------------------------------------------------------
 # main — orchestrate validation, tag resolution, per-asset fetch (D-02 D-09
-# D-05; ART-01), Python Sphinx extraction (D-05/D-08), Swagger UI staging
-# (Research Pitfall 1), and the conditional Python landing-page block swap
-# (D-06/D-17). Runs in both the fetched and no-release frozen-fallback paths
-# so every build serves the Swagger UI from a zensical-reachable non-dot path
-# and the Python landing page reflects whether Sphinx HTML was fetched.
+# D-05; ART-01/ART-04), Python Sphinx extraction (D-05/D-08), Swagger UI
+# staging (Research Pitfall 1), and the conditional Python landing-page block
+# swap (D-06/D-17). Runs in both the fetched and no-release frozen-fallback
+# paths so every build serves the Swagger UI from a zensical-reachable non-dot
+# path and the Python landing page reflects whether Sphinx HTML was fetched.
+#
+# ART-04 fail-job contract: under `set -euo pipefail`, a per-asset fetch that
+# hits an auth/rate-limit (403/429) or retry-exhausted 5xx failure returns
+# exit 2 from with_retries, which propagates through fetch_openapi/fetch_rest/
+# fetch_python and aborts main() immediately — the job fails and staging /
+# landing-swap do NOT run. Only fallback-class (no-release / missing-asset)
+# results continue to staging. This prevents the wrong branch from silently
+# shipping stale docs (ART-04 highest-risk behavior).
 # Fetched content is ephemeral per D-17/D-18 — nothing here stages or commits
 # to git; the docs/openapi/ and docs/python/ staging dirs are gitignored.
 # ----------------------------------------------------------------------------
@@ -378,12 +508,14 @@ main() {
     echo "No release matching v${DOC_VERSION}.* found on ${RELEASE_REPO} — using frozen artifacts."
   else
     echo "Resolved release tag: $tag"
-    # D-02 / ART-01 — fetch OpenAPI; frozen fallback remains on any failure.
+    # D-02 / ART-01 / ART-04 — fetch OpenAPI. Fallback-class failure (missing
+    # asset / release vanished) continues to the next asset; auth/rate-limit or
+    # retry-exhausted 5xx fails the job immediately (exit 2, D-16).
     fetch_openapi "$tag"
-    # D-09 / D-10 — fetch REST Markdown INDEPENDENTLY of OpenAPI/Python.
+    # D-09 / D-10 / ART-04 — fetch REST Markdown INDEPENDENTLY of OpenAPI/Python.
     fetch_rest "$tag"
-    # D-05 / D-08 — fetch Python Sphinx archive; on failure the landing page
-    # keeps the fallback block (D-07).
+    # D-05 / D-08 / ART-04 — fetch Python Sphinx archive; fallback-class
+    # failure keeps the landing-page fallback block (D-07).
     fetch_python "$tag"
     # D-05 / D-08 / T-04-07 — extract into docs/python/ and write .fetched only
     # after a valid index.html is present.

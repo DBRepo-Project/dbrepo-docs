@@ -24,6 +24,9 @@ on:
 permissions:
   contents: read
 
+env:
+  DOC_VERSION: '1.13'
+
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -61,7 +64,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_REPO: ${{ env.INPUT_RELEASE_REPO }}
           RELEASE_TAG_OVERRIDE: ${{ env.INPUT_RELEASE_TAG }}
-          DOC_VERSION: '1.13'
+          DOC_VERSION: ${{ env.DOC_VERSION }}
         run: bash scripts/fetch-artifacts.sh
 
       - name: Verify tools
@@ -78,7 +81,7 @@ jobs:
         run: zensical build --strict
 
       - name: Deploy with mike
-        run: mike deploy --push --update-aliases 1.13 latest
+        run: mike deploy --push --update-aliases "$DOC_VERSION" latest
 
       - name: Set default version
         run: mike set-default --push latest
@@ -110,7 +113,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_REPO: ${{ env.INPUT_RELEASE_REPO }}
           RELEASE_TAG_OVERRIDE: ${{ env.INPUT_RELEASE_TAG }}
-          DOC_VERSION: '1.13'
+          DOC_VERSION: ${{ env.DOC_VERSION }}
         run: bash scripts/fetch-artifacts.sh
 
       - name: Build site
@@ -203,7 +206,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           RELEASE_REPO: ${{ env.INPUT_RELEASE_REPO }}
           RELEASE_TAG_OVERRIDE: ${{ env.INPUT_RELEASE_TAG }}
-          DOC_VERSION: '1.13'
+          DOC_VERSION: ${{ env.DOC_VERSION }}
         run: bash scripts/fetch-artifacts.sh
 
       - name: Build site

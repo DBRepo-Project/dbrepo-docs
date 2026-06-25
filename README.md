@@ -1,6 +1,6 @@
 # DBRepo Web
 
-Website and documentation source for DBRepo, published at <https://dbrepo.github.io/>.
+Website and documentation source for DBRepo, published at <https://dbrepo-project.github.io/dbrepo-docs/>.
 
 This repository currently hosts the migrated MkDocs documentation from the DBRepo monorepo. It is intended to grow into the public DBRepo website while keeping the documentation build independent from application code.
 
@@ -20,13 +20,13 @@ Build the static site:
 
 ## Deployment
 
-The GitHub Actions workflow in `.github/workflows/docs.yml` builds the site on pull requests and pushes to `main`. Pushes to `main` deploy the generated `site/` directory to GitHub Pages.
+The GitHub Actions workflow in `.github/workflows/docs.yml` builds the site on pull requests and pushes to `main`. Pushes to `main` run `mike deploy --push`, which updates the `gh-pages` branch that GitHub Pages serves.
 
 Repository settings need GitHub Pages configured with "Deploy from a branch: gh-pages" as the source.
 
 ## Versioning
 
-The MkDocs configuration keeps `mike` support for documentation versioning. The current deployment workflow publishes the latest built site directly through GitHub Pages actions.
+The Zensical configuration keeps `mike` support for documentation versioning. The current deployment workflow publishes version `1.13` and the `latest` alias to the `gh-pages` branch.
 
 For manual versioned publishing, use:
 
@@ -45,9 +45,9 @@ The initial migration includes generated documentation artifacts copied from the
 
 Future releases should publish these from the DBRepo application repository as release artifacts, then consume them here during the website build.
 
-## Known Migration Follow-Ups
+## Migration Status
 
-- Replace hard-coded `/...` links with root-relative or relative links for `https://dbrepo.github.io/`.
-- Replace remaining GitLab source URLs in content pages with GitHub URLs.
-- Decide whether Python Sphinx HTML should be embedded under `docs/python/` or published as a separate build artifact.
-- Revisit `mike` deployment once the desired public URL and version URL layout are finalized.
+- Root-relative documentation links were remediated for mike versioned paths.
+- Active GitLab source URLs were migrated to GitHub; historical changelog links intentionally remain on GitLab.
+- OpenAPI and Python API documentation artifacts are fetched from GitHub releases when available, with committed frozen fallbacks.
+- Scheduled external link checking and site-root `llms.txt` are configured.

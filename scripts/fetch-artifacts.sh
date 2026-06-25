@@ -83,7 +83,7 @@ validate_inputs() {
 resolve_tag() {
   local version="$1" repo="$2"
   gh release list -R "$repo" --json tagName -L 100 \
-    --jq "map(select(.tagName | startswith(\"v${version}.\"))) | sort | last | .tagName // \"\""
+    --jq "map(select(.tagName | startswith(\"v${version}.\"))) | sort_by(.tagName | ltrimstr(\"v\") | split(\".\") | map(tonumber)) | last | .tagName // \"\""
 }
 
 # ----------------------------------------------------------------------------
@@ -394,7 +394,11 @@ extract_python_sphinx() {
   # itself — a bare trailing slash on the source is insufficient on GNU coreutils
   # cp (it nests the dir as docs/python/<basename>/). This produces
   # docs/python/index.html, not docs/python/<scratch>/index.html.
-  cp -r "$html_root/." "$PYTHON_DEST_DIR/"
+  if ! cp -r "$html_root/." "$PYTHON_DEST_DIR/"; then
+    echo "WARNING: failed to copy Python Sphinx HTML into $PYTHON_DEST_DIR; landing page keeps the fallback block." >&2
+    rm -rf "$scratch" "$PYTHON_DEST_DIR"
+    return 0
+  fi
 
   # T-04-07 — do not write the .fetched sentinel unless the extracted site has
   # a usable entrypoint. A missing index.html means the archive was not a valid

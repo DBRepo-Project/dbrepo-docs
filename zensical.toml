@@ -1,6 +1,6 @@
 [project]
 site_name = "DBRepo"
-site_url = "https://dbrepo.github.io/"
+site_url = "https://dbrepo-project.github.io/dbrepo-docs/"
 site_description = "Documentation for DBRepo - a repository software for relational databases"
 repo_url = "https://github.com/DBRepo-Project/dbrepo"
 repo_name = "DBRepo-Project/dbrepo"
@@ -111,12 +111,11 @@ nav = [
 [project.validation]
 unresolved_references = false
 
-# Validation severity: warn = surfaces in build output without blocking deploy
-# Phase 5 may tighten to "error" once all links are confirmed clean
+# Validation severity: error = blocks build/deploy on broken links (Phase 5 D-09)
 [project.validation.links]
-absolute_links = "warn"
-anchors = "warn"
-unrecognized_links = "warn"
+absolute_links = "error"
+anchors = "error"
+unrecognized_links = "error"
 # NOTE: The categories above do NOT detect empty link targets `()`, so an empty
 # href renders as a dead/self-referential link in production while `zensical
 # build --strict` still exits 0 ("No issues found"). The phase-gate/CI
@@ -189,7 +188,7 @@ options = { custom_icons = ["docs/overrides/.icons"] }
 [project.plugins.search]
 
 [project.extra]
-homepage = "https://dbrepo.github.io/"
+homepage = "https://dbrepo-project.github.io/dbrepo-docs/"
 
 [project.extra.version]
 provider = "mike"

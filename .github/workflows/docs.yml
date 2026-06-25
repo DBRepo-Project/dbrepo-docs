@@ -71,6 +71,9 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
+      - name: Strict pre-deploy build gate
+        run: zensical build --strict
+
       - name: Deploy with mike
         run: mike deploy --push --update-aliases 1.13 latest
 
@@ -108,7 +111,7 @@ jobs:
         run: bash scripts/fetch-artifacts.sh
 
       - name: Build site
-        run: zensical build
+        run: zensical build --strict
 
   dry-run:
     # D-19/D-20: manual-trigger dry-run validates fetch + zensical build without

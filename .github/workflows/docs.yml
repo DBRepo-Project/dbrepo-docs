@@ -207,4 +207,4 @@ jobs:
         run: bash scripts/fetch-artifacts.sh
 
       - name: Build site
-        run: zensical build
+        run: zensical build --strict

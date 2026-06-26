@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/maintainer-guide/updating/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/maintainer-guide/updating/">
       
       
         <link rel="prev" href="../troubleshooting/">
@@ -100,7 +100,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -396,7 +396,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3150,12 +3150,12 @@
 
 <p>The update procedure is:</p>
 <ol>
-<li>Make a <a href="/maintainer-guide/backup-data/">full backup</a> of the Metadata Database.</li>
+<li>Make a <a href="../backup-data/">full backup</a> of the Metadata Database.</li>
 <li>If there are schema changes, you need to apply them in the Metadata Database according to the release notes. We
    supply a migration script in this case with the release notes.</li>
 <li>For Docker, update the <code>docker-compose.yml</code> with
-   the <a href="/maintainer-guide/install-docker/">updated file</a>. For Kubernetes, install the
-   new <a href="/maintainer-guide/install-kubernetes/">Helm Chart</a>.</li>
+   the <a href="../install-docker/">updated file</a>. For Kubernetes, install the
+   new <a href="../install-kubernetes/">Helm Chart</a>.</li>
 <li>Restart the application.</li>
 </ol>
 

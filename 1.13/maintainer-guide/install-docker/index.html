@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/maintainer-guide/install-docker/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/maintainer-guide/install-docker/">
       
       
         <link rel="prev" href="../install-kubernetes/">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -397,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3273,7 +3273,7 @@ is intended for a quick look at DBRepo.</p>
 </div>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Install DBRepo in one line:</p>
-<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span>https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/release-1.13/.scripts/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-sSL<span class="w"> </span>https://raw.githubusercontent.com/DBRepo-Project/dbrepo/release-1.13/.scripts/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
 </code></pre></div>
 <p>Then start DBRepo and visit <a href="http://localhost"><code>http://localhost</code></a> in your browser:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
@@ -3287,7 +3287,7 @@ is intended for a quick look at DBRepo.</p>
 </ul>
 </div>
 <p>Since DBRepo is intended to be a publicly available repository, an optional fixed/static IP-address with optional
-SSL/TLS certificate is recommended. Follow the <a href="#secure-installation">Secure Installation</a> guide.</p>
+SSL/TLS certificate is recommended. Follow the <a href="../configuration/">Secure Installation</a> guide.</p>
 <h2 id="uninstall">Uninstall<a class="headerlink" href="#uninstall" title="Permanent link">&para;</a></h2>
 <p>Remove DBRepo by stopping and removing all containers and volumes:</p>
 <div class="highlight"><pre><span></span><code>docker<span class="w"> </span>container<span class="w"> </span>stop<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>container<span class="w"> </span>ls<span class="w"> </span>-f<span class="w"> </span><span class="s2">&quot;name=dbrepo-*&quot;</span><span class="w"> </span>-aq<span class="k">)</span>
@@ -3298,7 +3298,7 @@ docker<span class="w"> </span>volume<span class="w"> </span>rm<span class="w"> <
 <p class="admonition-title">Further configuration is highly recommended</p>
 <p>See "Security Disclaimer" above, this quick &amp; non-secure installation needs to be configured further to achieve
 basic security guarantees. Please visit
-the <a href="/maintainer-guide/configuration/">configuration</a> page in the next step to complete
+the <a href="../configuration/">configuration</a> page in the next step to complete
 the installation.</p>
 </div>
 

@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/maintainer-guide/configuration/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/maintainer-guide/configuration/">
       
       
         <link rel="prev" href="../">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -397,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3308,7 +3308,7 @@
   <h1 id="__skip">Configuration</h1>
 
 <p>This guide assumes you have already performed the
-quick <a href="/maintainer-guide/install-docker/">Install on Docker</a>. You can (re-)configure most
+quick <a href="../install-docker/">Install on Docker</a>. You can (re-)configure most
 components by executing:</p>
 <div class="highlight"><pre><span></span><code>make<span class="w"> </span>gen-secrets
 </code></pre></div>
@@ -3332,19 +3332,19 @@ components by executing:</p>
 <p>First, access the Admin UI at <a href="http://localhost:8080">http://localhost:8080</a> and change the client secret of the
 default <code>dbrepo-client</code> client:</p>
 <figure>
-<p><img alt="Change the Client Secret" src="/images/screenshots/auth-service-client-secret.png" /></p>
+<p><img alt="Change the Client Secret" src="../../images/screenshots/auth-service-client-secret.png" /></p>
 </figure>
 <p>Next, log into the Auth Service with the default credentials <code>admin</code> and the value of <code>AUTH_SERVICE_ADMIN_PASSWORD</code>
 and select the "dbrepo" realm <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. In the sidebar, select the
 "User federation" <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> and from the provider list, select the "Identity Service" provider
 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15 15a2 2 0 0 1-2 2H9v-2h4v-2h-2v-2h2V9H9V7h4a2 2 0 0 1 2 2v1.5a1.5 1.5 0 0 1-1.5 1.5 1.5 1.5 0 0 1 1.5 1.5zM12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>.</p>
 <figure>
-<p><img alt="Keycloak identitiy provider list" class="img-border" src="/images/screenshots/auth-service-ldap-1.png" /></p>
+<p><img alt="Keycloak identitiy provider list" class="img-border" src="../../images/screenshots/auth-service-ldap-1.png" /></p>
 </figure>
 <p>Second, modify the Bind DN <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span>. Change the <strong>Bind credentials</strong> to the desired
 password <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 7h4a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2v2h4v2H9v-4a2 2 0 0 1 2-2h2V9H9zm3-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> from the variable <code>IDENTITY_SERVICE_ADMIN_PASSWORD</code> in <code>.env</code>.</p>
 <figure>
-<p><img alt="Keycloak identity provider settings" class="img-border" src="/images/screenshots/auth-service-ldap-2.png" /></p>
+<p><img alt="Keycloak identity provider settings" class="img-border" src="../../images/screenshots/auth-service-ldap-2.png" /></p>
 </figure>
 <h3 id="apply">Apply<a class="headerlink" href="#apply" title="Permanent link">&para;</a></h3>
 <p>You need to remove all containers and volumes to apply the changes and then restart:</p>
@@ -3358,9 +3358,9 @@ docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> 
 <p>Please be warned that the default configuration is not intended for public deployments. It is only intended to have a
 running system within minutes to play around within the system and explore features. It is strongly advised to change
 the default <code>.env</code> environment variables.</p>
-<p>Next, create a <a href="/api/#create-user-account">user account</a> and
-then <a href="/api/#create-database">create a database</a>
-to <a href="/api/#import-dataset">import a dataset</a>.</p>
+<p>Next, create a <a href="../../user-guide/create-account">user account</a> and
+then <a href="../../user-guide/create-database">create a database</a>
+to <a href="../../user-guide/import-dataset">import a dataset</a>.</p>
 
 
 

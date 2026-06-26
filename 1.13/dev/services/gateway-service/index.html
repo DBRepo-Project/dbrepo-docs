@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/dev/services/gateway-service/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/dev/services/gateway-service/">
       
       
         <link rel="prev" href="../dashboard-service/">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -397,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3443,11 +3443,11 @@ have a load balancer or reverse proxy running.</p>
 <p>If your TLS private key as a password, you need to specify it in the <code>dbrepo.conf</code> file.</p>
 <h3 id="connection-timeouts">Connection Timeouts<a class="headerlink" href="#connection-timeouts" title="Permanent link">&para;</a></h3>
 <p>The reverse proxy has a defined timeout of 90 seconds on all requests (these are also enforced in the
-<a href="/dev/services/ui">User Interface</a> using the <a href="https://www.npmjs.com/package/axios"><code>axios</code></a>
+<a href="../ui">User Interface</a> using the <a href="https://www.npmjs.com/package/axios"><code>axios</code></a>
 module). For large databases these timeouts may need to be increased, e.g. the timeout for creating subsets is by
 default already increased to 600 seconds.</p>
 <h3 id="user-interface">User Interface<a class="headerlink" href="#user-interface" title="Permanent link">&para;</a></h3>
-<p>To serve the <a href="/dev/services/ui/">User Interface</a> under different port than <code>80</code>, change the port
+<p>To serve the <a href="../ui">User Interface</a> under different port than <code>80</code>, change the port
 mapping in
 the <code>docker-compose.yml</code> to e.g. port <code>8000</code>:</p>
 <div class="highlight"><span class="filename">docker-compose.yml</span><pre><span></span><code><span class="nt">services</span><span class="p">:</span>
@@ -3490,14 +3490,14 @@ the <code>docker-compose.yml</code> to e.g. port <code>8000</code>:</p>
 <div class="admonition question">
 <p class="admonition-title">Do you miss functionality? Do these limitations affect you?</p>
 <p>We strongly encourage you to help us implement it as we are welcoming contributors to open-source software and get
-in <a href="/contact">contact</a> with us, we happily answer requests for collaboration with attached CV and your programming
+in <a href="../../../contact">contact</a> with us, we happily answer requests for collaboration with attached CV and your programming
 experience!</p>
 </div>
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>
 <ol>
 <li>
 <p>Enable TLS encryption by downloading
-   the <a href="https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/dbrepo-gateway-service/dbrepo.conf"><code>dbrepo.conf</code></a>
+   the <a href="https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/dbrepo-gateway-service/dbrepo.conf"><code>dbrepo.conf</code></a>
    and editing the <em>server</em> block to include your TLS certificate (with trust chain) <code>fullchain.pem</code> and TLS private key
    <code>privkey.pem</code> (PEM-encoded).</p>
 <div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>

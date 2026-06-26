@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/get-started/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/get-started/">
       
       
         <link rel="prev" href="./..">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -399,7 +399,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3416,13 +3416,13 @@ we only consider Debian.</p>
 <p>We maintain a rapid prototype deployment option through Docker Compose (v2.17.0 and newer). This deployment creates the
 core infrastructure and a single Docker container for all user-generated databases.</p>
 <p>Download the
-latest <a href="https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/docker-compose.prod.yml"><code>docker-compose.yml</code></a>,
+latest <a href="https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/docker-compose.prod.yml"><code>docker-compose.yml</code></a>,
 nginx reverse proxy
-conf <a href="https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/dbrepo.conf"><code>dbrepo.conf</code></a>
-and <a href="https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/.env.unix.example"><code>.env</code></a>:</p>
-<pre><code>curl -o docker-compose.yml https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/docker-compose.prod.yml
-curl -o dbrepo.conf https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/dbrepo.conf
-curl -o .env https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/master/.env.unix.example
+conf <a href="https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/dbrepo.conf"><code>dbrepo.conf</code></a>
+and <a href="https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/.env.unix.example"><code>.env</code></a>:</p>
+<pre><code>curl -o docker-compose.yml https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/docker-compose.prod.yml
+curl -o dbrepo.conf https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/dbrepo.conf
+curl -o .env https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/.env.unix.example
 </code></pre>
 <p>Increase the virtual memory max swap limit for OpenSearch to at least 262144 on the <em>host machine</em> according
 to <a href="https://opensearch.org/docs/1.0/opensearch/install/important-settings/">the official manual</a>, you need <em>sudo</em>

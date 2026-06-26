@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/dev/services/search-service/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/dev/services/search-service/">
       
       
         <link rel="prev" href="../metadata-service/">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -397,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3348,24 +3348,24 @@
 </code></pre></div>
 </div>
 <h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
-<p>This service communicates between the Search Database and the <a href="/dev/services/ui">User Interface</a>
+<p>This service communicates between the Search Database and the <a href="../ui">User Interface</a>
 to allow structured search of databases, tables, columns, users, identifiers, views, semantic concepts &amp; units of
 measurements used in databases.</p>
 <figure>
-<p><img alt="Built-in search" src="/images/screenshots/feature-search.png" /></p>
+<p><img alt="Built-in search" src="../../../images/screenshots/feature-search.png" /></p>
 </figure>
 <h2 id="index">Index<a class="headerlink" href="#index" title="Permanent link">&para;</a></h2>
 <p>There is only one
-index <a href="https://gitlab.phaidra.org/fair-data-austria-db-repository/fda-services/-/raw/dev/dbrepo-search-db/init/indices/database.json"><code>database</code></a>
+index <a href="https://raw.githubusercontent.com/DBRepo-Project/dbrepo/main/dbrepo-search-db/init/indices/database.json"><code>database</code></a>
 that holds all the metadata information which is mirrored from
-the <a href="/dev/services/metadata-db">Metadata Database</a>.</p>
+the <a href="../metadata-db">Metadata Database</a>.</p>
 <figure>
-<p><img alt="Mirroring statistical properties in Metadata Database and Search Database" src="/images/statistics-mirror.png" /></p>
+<p><img alt="Mirroring statistical properties in Metadata Database and Search Database" src="../../../images/statistics-mirror.png" /></p>
 </figure>
 <h2 id="faceted-browsing">Faceted Browsing<a class="headerlink" href="#faceted-browsing" title="Permanent link">&para;</a></h2>
 <p>This service enables the frontend to search the <code>database</code> index with eight different <em>types</em> of desired results
 (database, table, column, view, identifier, user, concept, unit) and their <em>facets</em>.</p>
-<p>For example, the <a href="/dev/services/ui/">User Interface</a> allows for the search of databases that contain a certain
+<p>For example, the <a href="../ui">User Interface</a> allows for the search of databases that contain a certain
 semantic concept (provided as URI, e.g.
 temperature <a href="http://www.wikidata.org/entity/Q11466">http://www.wikidata.org/entity/Q11466</a>) and unit of measurement
 (provided as URI, e.g. degree
@@ -3374,7 +3374,7 @@ Celsius <a href="http://www.ontology-of-units-of-measure.org/resource/om-2/degre
 <div class="admonition question">
 <p class="admonition-title">Do you miss functionality? Do these limitations affect you?</p>
 <p>We strongly encourage you to help us implement it as we are welcoming contributors to open-source software and get
-in <a href="/contact">contact</a> with us, we happily answer requests for collaboration with attached CV and your programming
+in <a href="../../../contact">contact</a> with us, we happily answer requests for collaboration with attached CV and your programming
 experience!</p>
 </div>
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>

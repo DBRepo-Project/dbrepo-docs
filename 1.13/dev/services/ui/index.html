@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/dev/services/ui/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/dev/services/ui/">
       
       
         <link rel="prev" href="../storage-service/">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -397,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3340,7 +3340,7 @@ runtime, you need to override those values through environment variables or by m
 example, you can configure the logo <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 7h4v10h-2V9h-2zm2-5a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8"/></svg></span> below. Make sure you mount the logo
 as image as well, in this example we want to mount a custom logo <code>my_logo.png</code> into the container and specify the name.</p>
 <figure>
-<p><img alt="Architecture of the UI microservice" src="/images/screenshots/ui-config-step-1.png" /></p>
+<p><img alt="Architecture of the UI microservice" src="../../../images/screenshots/ui-config-step-1.png" /></p>
 </figure>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Docker Compose</label><label for="__tabbed_1_2">Kubernetes</label></div>
 <div class="tabbed-content">
@@ -3363,7 +3363,7 @@ configuration through adding the logo file as <code>ConfigMap</code>.</p>
 <div class="highlight"><pre><span></span><code><span class="go">kubectl [-n namespace] create configmap gateway-service-config \</span>
 <span class="go">  --from-file=logo.png</span>
 </code></pre></div>
-<p>Then you need to mount the configmap into the <a href="/gateway-service">Gateway Service</a> under <code>/etc/nginx/assets/assets</code>.</p>
+<p>Then you need to mount the configmap into the <a href="../gateway-service">Gateway Service</a> under <code>/etc/nginx/assets/assets</code>.</p>
 <div class="highlight"><span class="filename">dbrepo-ui-custom.yaml</span><pre><span></span><code><span class="nt">gatewayservice</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">extraVolumes</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config-map</span>
@@ -3388,7 +3388,7 @@ configuration through adding the logo file as <code>ConfigMap</code>.</p>
 <p>The server-client architecture of the User Interface is shown below, it is supposed to help debug the
 User Interface on development.</p>
 <figure>
-<p><img alt="Architecture of the UI microservice" src="/images/architecture-ui.svg" /></p>
+<p><img alt="Architecture of the UI microservice" src="../../../images/architecture-ui.svg" /></p>
 </figure>
 <ul>
 <li>Runtime: Node.js 22 LTS</li>
@@ -3399,7 +3399,7 @@ User Interface on development.</p>
 <li>State: <a href="https://pinia.vuejs.org/">Pinia</a></li>
 </ul>
 <h3 id="customization">Customization<a class="headerlink" href="#customization" title="Permanent link">&para;</a></h3>
-<p>The UI supports adding pages in <a href="">Markdown</a> format to describe the terms of use, policies and the repository itself.
+<p>The UI supports adding pages in <a href="https://www.markdownguide.org/">Markdown</a> format to describe the terms of use, policies and the repository itself.
 Inject your content through the environment variables:</p>
 <ul>
 <li><code>NUXT_PUBLIC_ABOUT_CONTENT</code> (<code>/about</code>)</li>
@@ -3416,7 +3416,7 @@ rendered.</p>
 <div class="admonition question">
 <p class="admonition-title">Do you miss functionality? Do these limitations affect you?</p>
 <p>We strongly encourage you to help us implement it as we are welcoming contributors to open-source software and get
-in <a href="/contact">contact</a> with us, we happily answer requests for collaboration with attached CV and your programming
+in <a href="../../../contact">contact</a> with us, we happily answer requests for collaboration with attached CV and your programming
 experience!</p>
 </div>
 <h2 id="security">Security<a class="headerlink" href="#security" title="Permanent link">&para;</a></h2>

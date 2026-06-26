@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/examples/power/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/examples/power/">
       
       
         <link rel="prev" href="../health/">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -397,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3304,16 +3304,16 @@
 <h2 id="tldr">tl;dr<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p><a class="md-button md-button--primary" href="https://dbrepo.datalab.tuwien.ac.at/database/14daff7e-9dae-4ba0-9887-6ded15572c4e" target="_blank"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M448 205.8c-14.8 9.8-31.8 17.7-49.5 24-47 16.8-108.7 26.2-174.5 26.2s-127.6-9.5-174.5-26.2c-17.6-6.3-34.7-14.2-49.5-24V288c0 44.2 100.3 80 224 80s224-35.8 224-80zm0-77.8V80c0-44.2-100.3-80-224-80S0 35.8 0 80v48c0 44.2 100.3 80 224 80s224-35.8 224-80m-49.5 261.8C351.6 406.5 289.9 416 224 416s-127.6-9.5-174.5-26.2c-17.6-6.3-34.7-14.2-49.5-24V432c0 44.2 100.3 80 224 80s224-35.8 224-80v-66.2c-14.8 9.8-31.8 17.7-49.5 24"/></svg></span> &nbsp;Dataset</a></p>
 <h2 id="description">Description<a class="headerlink" href="#description" title="Permanent link">&para;</a></h2>
-<p>The <a href="">Pilotfabrik</a> of TU Wien is monitored for energy-efficiency and productivity of machinery. In principle, certain
+<p>The <a href="https://www.pilotfabrik.at/">Pilotfabrik</a> of TU Wien is monitored for energy-efficiency and productivity of machinery. In principle, certain
 conditions/parameters are observed such as: electric rate of energy transfer, transmission of cooling liquid,
 transmission of compressed air, acceleration, forces at work and temperatures to research on preventive/predictive
 maintenance, quality of products and ultimately process efficiency and -productivity.</p>
 <figure>
-<p><img alt="" src="/images/screenshots/power.png" /></p>
+<p><img alt="" src="../../images/screenshots/power.png" /></p>
 <figcaption>Figure 1: Total power usage of machine floor TU Pilotfabrik, image from <a href="https://publik.tuwien.ac.at/files/PubDat_252294.pdf">Hacksteiner (2016)</a>.</figcaption>
 </figure>
 <h2 id="solution">Solution<a class="headerlink" href="#solution" title="Permanent link">&para;</a></h2>
-<p>We connected our <a href="/api/broker-service">Broker Service</a> with the MQTT broker of the Pilotfabrik using a self-written
+<p>We connected our <a href="../../api/broker">Broker Service</a> with the MQTT broker of the Pilotfabrik using a self-written
 connector service, bridging the two different protocols. The tuples are ingested into DBRepo at a rate of about 10/s.</p>
 <h2 id="dbrepo-features">DBRepo Features<a class="headerlink" href="#dbrepo-features" title="Permanent link">&para;</a></h2>
 <ul class="task-list">

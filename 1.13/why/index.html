@@ -12,7 +12,7 @@
         <meta name="author" content="Martin Weise">
       
       
-        <link rel="canonical" href="https://dbrepo.github.io/1.13/why/">
+        <link rel="canonical" href="https://dbrepo-project.github.io/dbrepo-docs/1.13/why/">
       
       
         <link rel="prev" href="../get-started/">
@@ -101,7 +101,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-header__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -397,7 +397,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://dbrepo.github.io/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
+    <a href="https://dbrepo-project.github.io/dbrepo-docs/" title="DBRepo" class="md-nav__button md-logo" aria-label="DBRepo" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
@@ -3370,22 +3370,22 @@ evolving, allows reproducing of query results and supports findable-, accessible
 <p>DBRepo makes your dataset searchable without extra effort: most metadata is generated automatically for data in your
 databases. The fast and powerful OpenSearch database allows a fast retrieval of any information. Adding semantic mapping
 through a suggestion-feature, allows machines to properly understand the context of your data
-<a href="/concepts/search">Learn more</a>.</p>
+<a href="../dev/services/search-service">Learn more</a>.</p>
 <h3 id="citable-datasets">Citable datasets<a class="headerlink" href="#citable-datasets" title="Permanent link">&para;</a></h3>
 <p>Adopting the recommendations of the RDA-WGDC, arbitrary subsets can be precisely, persistently identified using
 system-versioned tables of MariaDB and the DataCite schema for minting DOIs. External systems i.e. metadata harvesters
 (OpenAIRE, Google Datasets) can access these datasets through OAI-PMH, JSON-LD and FAIR Signposting protocols
-<a href="/concepts/pid">Learn more</a>.</p>
+<a href="../user-guide/create-pid">Learn more</a>.</p>
 <h3 id="powerful-api-for-data-scientists">Powerful API for Data Scientists<a class="headerlink" href="#powerful-api-for-data-scientists" title="Permanent link">&para;</a></h3>
 <p>With our strongly typed Python Library, Data Scientists can import, export and work with data from Jupyter Notebook or
 Python script, optionally using Pandas DataFrames. For example: the AMQP API Client can collect continuous data from
-edge devices like sensors and store them asynchronous in DBRepo <a href="/api/python">Learn more</a>.</p>
+edge devices like sensors and store them asynchronous in DBRepo <a href="../api/python">Learn more</a>.</p>
 <h3 id="cloud-native">Cloud Native<a class="headerlink" href="#cloud-native" title="Permanent link">&para;</a></h3>
 <p>Our lightweight Helm chart allows for installations on any cloud provider or private-cloud setting that has an
 underlying PV storage provider. DBRepo can be installed from
 the <a href="https://artifacthub.io/packages/helm/dbrepo/dbrepo">Artifact Hub</a> repository. Databases are managed as MariaDB
 Galera Cluster with high degree of availability ensuring your data is always accessible
-<a href="/maintainer-guide/install-kubernetes/">Learn more</a>.</p>
+<a href="../maintainer-guide/install-kubernetes/">Learn more</a>.</p>
 <h2 id="demo-site">Demo Site<a class="headerlink" href="#demo-site" title="Permanent link">&para;</a></h2>
 <p>We run a small demonstration instance so you can see the latest version of DBRepo in action. The demonstration instance
 is updated with new releases and should be considered ephemeral.</p>

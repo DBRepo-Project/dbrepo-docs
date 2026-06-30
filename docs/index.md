@@ -4,7 +4,7 @@ author: Martin Weise
 
 # DBRepo
 
-[![Documentation](https://github.com/DBRepo-Project/dbrepo-web/actions/workflows/docs.yml/badge.svg)](https://github.com/DBRepo-Project/dbrepo-web/actions/workflows/docs.yml){ tabindex=-1 }
+[![Documentation](https://github.com/DBRepo-Project/dbrepo-docs/actions/workflows/docs.yml/badge.svg)](https://github.com/DBRepo-Project/dbrepo-web/actions/workflows/docs.yml){ tabindex=-1 }
 [![Latest Release](https://img.shields.io/github/v/release/DBRepo-Project/dbrepo)](https://github.com/DBRepo-Project/dbrepo/releases){ tabindex=-1 }
 [![PyPI Library version](https://img.shields.io/pypi/v/dbrepo)](https://pypi.org/project/dbrepo/){ tabindex=-1 }
 [![Image Pulls](images/pulls.svg)](https://registry.datalab.tuwien.ac.at/api/v2.0/projects/dbrepo/repositories/data-service){ tabindex=-1 }

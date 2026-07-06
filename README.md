@@ -1,4 +1,4 @@
-# DBRepo Web
+# DBRepo Documentation
 
 Website and documentation source for DBRepo, published at <https://dbrepo-project.github.io/dbrepo-docs/>.
 

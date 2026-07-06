@@ -7,25 +7,25 @@ on:
   pull_request:
   schedule:
     # Weekly link-rot sweep (Mondays 06:00 UTC) per D-02
-    - cron: '0 6 * * 1'
+    - cron: "0 6 * * 1"
   workflow_dispatch:
     inputs:
       release_tag:
-        description: 'Release tag to fetch (overrides auto-resolved v<docs_version>.x)'
+        description: "Release tag to fetch (overrides auto-resolved v<docs_version>.x)"
         required: false
         type: string
-        default: ''
+        default: ""
       release_repo:
-        description: 'Source repo in OWNER/REPO format'
+        description: "Source repo in OWNER/REPO format"
         required: false
         type: string
-        default: 'DBRepo-Project/dbrepo'
+        default: "DBRepo-Project/dbrepo"
 
 permissions:
   contents: read
 
 env:
-  DOC_VERSION: '1.13'
+  DOC_VERSION: "1.13"
 
 concurrency:
   group: pages
@@ -157,7 +157,7 @@ jobs:
 
       - name: Lychee external link check
         id: lychee
-        uses: lycheeverse/lychee-action@v2
+        uses: lycheeverse/lychee-action@8646ba30535128ac92d33dfc9133794bfdd9b411
         with:
           fail: ${{ steps.inputs.outputs.fail }}
           args: >-
@@ -171,7 +171,7 @@ jobs:
 
       - name: Create issue from weekly report
         if: github.event_name == 'schedule' && steps.lychee.outputs.exit_code != 0
-        uses: peter-evans/create-issue-from-file@v5
+        uses: peter-evans/create-issue-from-file@fca9117c27cdc29c6c4db3b86c48e4115a786710
         with:
           title: Weekly link-check report
           content-filepath: ./lychee/out.md

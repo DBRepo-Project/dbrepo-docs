@@ -25,7 +25,7 @@ permissions:
   contents: read
 
 env:
-  DOC_VERSION: "1.13"
+  DOC_VERSION: "1.14"
 
 concurrency:
   group: pages

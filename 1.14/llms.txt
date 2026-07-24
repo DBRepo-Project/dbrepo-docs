@@ -1,0 +1,15 @@
+# DBRepo
+
+> DBRepo is a repository software for relational databases. This static site is built with
+> Zensical and deployed via mike to GitHub Pages. Versioned docs live under /latest/.
+
+## Docs
+
+- [Get Started](https://raw.githubusercontent.com/DBRepo-Project/dbrepo-docs/main/docs/get-started.md): Welcome, why use DBRepo, and help
+- [User Guide](https://raw.githubusercontent.com/DBRepo-Project/dbrepo-docs/main/docs/user-guide/quickstart.md): Quickstart and account/database/data management
+- [API](https://raw.githubusercontent.com/DBRepo-Project/dbrepo-docs/main/docs/api/index.md): REST, Python, broker, OAI-PMH, JSON-LD, FAIR Signposting APIs
+- [Maintainer Guide](https://raw.githubusercontent.com/DBRepo-Project/dbrepo-docs/main/docs/maintainer-guide/index.md): Configuration, deployments (Kubernetes/Docker/VM), backup/restore, troubleshooting
+
+## Optional
+
+- [OpenAPI spec (frozen)](https://raw.githubusercontent.com/DBRepo-Project/dbrepo-docs/main/docs/.openapi/api.yaml): REST API contract (~8500 lines)

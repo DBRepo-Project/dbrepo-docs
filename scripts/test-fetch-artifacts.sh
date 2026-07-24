@@ -14,6 +14,10 @@
 #                    with "no assets match the file pattern"; script exits 0
 #                    with a per-asset warning that names the missing asset
 #                    (D-10).
+#   no-assets     -> gh release list returns a tag; gh release download fails
+#                    with "no assets to download" (release exists but has zero
+#                    uploaded assets); script exits 0 with a frozen-fallback
+#                    warning (D-04 zero-asset branch).
 #   forbidden     -> gh release list returns a tag; gh release download fails;
 #                    gh api -i returns HTTP 403; script exits nonzero with an
 #                    auth/rate-limit failure log (D-16, no retry).
@@ -79,7 +83,7 @@ if [[ "${1:-}" == "release" && "${2:-}" == "list" ]]; then
       # No output -> resolve_tag captures "" -> D-04 no-release fallback.
       exit 0
       ;;
-    missing-asset|forbidden|server-error)
+    missing-asset|forbidden|server-error|no-assets)
       printf 'v1.13.4\n'
       exit 0
       ;;
@@ -98,6 +102,13 @@ if [[ "${1:-}" == "release" && "${2:-}" == "download" ]]; then
   case "$scenario" in
     missing-asset)
       echo "no assets match the file pattern" >&2
+      exit 1
+      ;;
+    no-assets)
+      # Release exists but has zero uploaded assets (e.g. dbrepo release
+      # pipeline does not publish API artifacts yet). gh emits "no assets to
+      # download" — DISTINCT from "no assets match the file pattern".
+      echo "no assets to download" >&2
       exit 1
       ;;
     forbidden)
@@ -267,6 +278,16 @@ assert_exit 0 "missing-asset exits 0 (per-asset fallback)"
 # (the unhardened script's generic WARNING does not contain "missing", so this
 # is a precise RED/GREEN discriminator).
 assert_log "openapi\.yaml.*missing from release" "missing-asset warns and names the missing asset"
+echo
+
+# --- no-assets (D-04 zero-asset release) ------------------------------------
+run_scenario "no-assets"
+assert_exit 0 "no-assets exits 0 (frozen fallback)"
+# classify_fetch_failure's zero-asset branch warns with the literal "no
+# downloadable assets" contract; the unhardened script misclassifies as an
+# unexpected error (exit 2), so the exit-0 + log pattern is a precise
+# RED/GREEN discriminator.
+assert_log "no downloadable assets" "no-assets logs zero-asset fallback warning"
 echo
 
 # --- forbidden (D-16, no retry) --------------------------------------------

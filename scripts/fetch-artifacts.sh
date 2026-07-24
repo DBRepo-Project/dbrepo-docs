@@ -117,6 +117,18 @@ classify_fetch_failure() {
     return 0
   fi
 
+  # D-04 — release exists but has zero uploaded assets (e.g. dbrepo release
+  # pipeline does not publish API artifacts yet): treat identically to a
+  # missing-asset case and fall back to frozen versions. `gh release download`
+  # emits "no assets to download" here, which is DISTINCT from "no assets match
+  # the file pattern" (the latter means the release has some assets, just not
+  # this one). Without this check, a zero-asset release lands in the gh api 200
+  # branch below and is misclassified as an unexpected error (exit 2).
+  if [[ "$err" == *"no assets to download"* ]]; then
+    echo "  WARNING: release $TAG has no downloadable assets — $description uses frozen fallback." >&2
+    return 0
+  fi
+
   # Non-obvious failure — classify via gh api -i HTTP status (Pitfall 2: gh
   # exit codes alone are insufficient). The -i flag prints the HTTP status line
   # first; grep extracts the 3-digit code.

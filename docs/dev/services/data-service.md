@@ -29,9 +29,10 @@ Data Service up.
 
 ## Data Analytics
 
-The Data Service uses [Apache Spark](https://spark.apache.org/), a open-source data analytics engine to load data
-from/into the [Data Database](data-db) with a wide range of open-source connectors. Retrieving data from a subset
-internally generates a view with the 64-character hash of the query. This view is not automatically deleted currently.
+The Data Service uses [Apache Spark](https://spark.apache.org/), a open-source data analytics engine to import data
+into the [Data Database](data-db) with a wide range of open-source connectors. Table, view and subset data is read
+directly from the Data Database over JDBC and streamed to the client while the rows arrive, so exports are not limited
+by the memory of the Data Service or the space in the [Storage Service](storage-service).
 
 The Data Service also uses [DuckDB](https://duckdb.org/), a open-source column-oriented database for large-data analytics. It is used as
 in-memory data type analytics database to suggest data types from a (big) dataset using the larger-than-memory feature.

@@ -6,8 +6,9 @@ A user wants to create a database in DBRepo.
 
 ### UI
 
-A database can be created by choosing a name (e.g. My Database), selecting an engine (e.g. MariaDB) and defining the
-visibility, this can be [changed later](update-visibility).
+A database can be created by choosing a name (e.g. My Database) and selecting an engine (e.g. MariaDB). The "Draft"
+checkbox is checked by default: the database is hidden and only users with access can see it. Uncheck it to make the
+database public. This can be [changed later](update-visibility).
 
 <video autoplay loop>
   <source src="/videos/create-database.webm" type="video/webm" />

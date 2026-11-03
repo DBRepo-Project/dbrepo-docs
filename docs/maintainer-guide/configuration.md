@@ -7,7 +7,7 @@ quick [Install on Docker](install-docker/). You can (re-)configure most
 components by executing:
 
 ```shell
-make gen-secrets
+INSTALL_SCRIPT=1 bash ./config/gen-secrets.sh
 ```
 
 Note that this script overwrites (previously generated) secrets, use with caution.
@@ -21,7 +21,7 @@ You need to manually update the `s3_config.json` file when changing either `S3_A
 Add the admin password to the `.env` file:
 
 ```shell
-echo "IDENTITY_SERVICE_ADMIN_PASSWORD=$(openssl rand -hex 16) >> .env"
+echo "IDENTITY_SERVICE_ADMIN_PASSWORD=$(openssl rand -hex 16)" >> .env
 ```
 
 ### Auth Service
@@ -35,7 +35,7 @@ We need to configure three components:
 First, add the admin password to the `.env` file:
 
 ```shell
-echo "AUTH_SERVICE_ADMIN_PASSWORD=$(openssl rand -hex 16) >> .env"
+echo "AUTH_SERVICE_ADMIN_PASSWORD=$(openssl rand -hex 16)" >> .env
 ```
 
 First, access the Admin UI at [http://localhost:8080](http://localhost:8080) and change the client secret of the

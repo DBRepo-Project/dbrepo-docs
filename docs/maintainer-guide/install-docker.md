@@ -27,7 +27,7 @@ docker compose up -d
 !!! info
 
     * min. 8 vCPU cores
-    * min. 20GB free RAM memory
+    * min. 10GB free RAM memory
 
 Since DBRepo is intended to be a publicly available repository, an optional fixed/static IP-address with optional
 SSL/TLS certificate is recommended. Follow the [Secure Installation](configuration/) guide.

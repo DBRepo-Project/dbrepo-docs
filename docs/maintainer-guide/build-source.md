@@ -16,7 +16,8 @@ Clone the source code repository and build the container images:
 
     ```shell
     git clone git@github.com:DBRepo-Project/dbrepo.git && \
-    git checkout release-1.10 && \
+    cd dbrepo && \
+    git checkout release-1.14 && \
     make build-java-lib build-images
     ```
 
@@ -24,7 +25,8 @@ Clone the source code repository and build the container images:
 
     ```shell
     git clone https://github.com/DBRepo-Project/dbrepo.git && \
-    git checkout release-1.10 && \
+    cd dbrepo && \
+    git checkout release-1.14 && \
     make build-java-lib build-images
     ```
 
@@ -40,22 +42,34 @@ docker compose up -d
 
 !!! info
 
-    * Docker 28.x
+    * Docker 28+ with Docker Compose v2
+    * JDK 21, and Maven running on JDK 21 (newer JDKs fail with `TypeTag :: UNKNOWN` from Lombok)
+    * Python 3.11 as `python3`, with `pipenv`
+    * [bun](https://bun.sh/), only for `make build-ui`
+
+The build locks the Python dependencies with the `python3` found on your `PATH`. The service images use Python 3.11,
+so a different version (e.g. 3.12) can produce a lock file that does not install in the images.
 
 Utility tools to run the build commands:
 
 === "Debian"
 
     ```shell
-    apt install git make bash
+    apt install git make bash openjdk-21-jdk-headless maven
     ```
+
+If several JDKs are installed, point Maven to JDK 21, e.g. on macOS:
+
+```shell
+export JAVA_HOME=$(/usr/libexec/java_home -v 21)
+```
 
 ### Runtime
 
 !!! info
 
     * min. 8 vCPU cores
-    * min. 20GB free RAM memory
+    * min. 10GB free RAM memory
 
 ## Build
 
@@ -65,14 +79,16 @@ Clone the source code repository:
 
     ```shell
     git clone git@github.com:DBRepo-Project/dbrepo.git && \
-    git checkout release-1.10
+    cd dbrepo && \
+    git checkout release-1.14
     ```
 
 === "HTTPS"
 
     ```shell
     git clone https://github.com/DBRepo-Project/dbrepo.git && \
-    git checkout release-1.10
+    cd dbrepo && \
+    git checkout release-1.14
     ```
 
 Build the Docker container images and auxiliary files needed for the Auth Service:
